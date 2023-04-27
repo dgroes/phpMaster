@@ -55,7 +55,7 @@
 
 
     echo "<br>";
-    echo "<h3>"."Crea una variable edad y determina si es mayor o menor de edad."."<h3/>";
+    echo "<h3>"."Crea una variable edad y determina si es mayor o menor de edad."."</h3>";
     $edad = 17;
     if($edad >= 18){
         echo "La persona es mayor de edad.";
@@ -63,7 +63,7 @@
 
 
     echo "<br>";
-    echo "<h3>"."Crea una variable num y determina si es positivo, negativo o cero."."<h3/>";
+    echo "<h3>"."Crea una variable num y determina si es positivo, negativo o cero."."</h3>";
     $num = 0;
     if($num == 0){
         echo "El numero es cero";
@@ -75,7 +75,7 @@
 
 
     echo "<br>";
-    echo "<h3>"."Crea una variable hora y determina si es de día o de noche."."<h3/>";
+    echo "<h3>"."Crea una variable hora y determina si es de día o de noche."."</h3>";
     $hora = date("H");
     if($hora >= 6 && $hora <= 18){
         echo "Es de día";
@@ -85,7 +85,7 @@
 
 
     echo "<br>";
-    echo "<h3>"."Crea una variable temperatura y determina si está haciendo calor o frío."."<h3/>";
+    echo "<h3>"."Crea una variable temperatura y determina si está haciendo calor o frío."."</h3>";
     $temperatura = 14;
     if($temperatura >= 27){
         echo "Hace calor";
@@ -95,7 +95,126 @@
         echo "Hace frio";
     }
 
+    echo "<hr>";
+    echo "<h2>"."Nivel de dificultad de identidad sexual y etnia."."</h2>";
+    $sexo = "hombre";
+    $piel = "blanco";
+    if($sexo == "mujer" ){
+        if($piel == "moreno"){
+            echo "Estás en nivel muy dificil.";
+        }elseif($piel == "blanca"){
+            echo "Estás en nivel dificil.";
+        }else{
+            echo "Estás en nivel Extremo";
+        }
+    }elseif($sexo == "hombre"){
+        if($piel == "blanco"){
+            echo "Estás en modo  tutorial";
+        }elseif($piel == "moreno"){
+            echo "Estás en nivel facil";
+        }else{
+            echo "Estás en nivel medio";
+        }
+    }
+
+    echo "<hr>";
+    $age1 = 18;
+    $age2 = 65;
+    $age = 17;
+    if($age >= $age1 && $age < $age2){
+        echo "Estás en condiciones de trabajar";
+    }elseif($age < $age1){
+        echo "Lo siento, no contratamos menores de edad.";
+    }else{
+        echo "Ya estás jubilado, no lo siento, pero no puedes trabajar con nostros";
+    }
 
 
+    echo "<hr>";
+    $pais = "peru";
+    if($pais == "chile" || $pais == "mexico" || $pais == "peru" || $pais == "argentina"){
+        echo "Eres de latam";
+    }else{
+        echo "No eres de latam;";
+    }
+
+    echo "<hr>";
+    $dia = 6;
+    switch ($dia){
+        case 1:
+            echo "Es lunes";
+            break;
+        case 2:
+            echo "Es martes";
+            break;
+        case 3:
+            echo "Es miercoles";
+            break;
+        case 4:
+            echo "Es jueves";
+            break;
+        case 5:
+            echo "Es viernes";
+            break;
+        case 6:
+            echo "Es sabado";
+            break;
+        case 7:
+            echo "Es domingo";
+            break;
+        default:
+            echo "Debe introducir un día de la semana entre el 1 y 7.";
+    }
+
+    echo "<hr>";
+    $mes = 6;
+    switch($mes){
+        case 1:
+            echo "Enero";
+            break;
+        case 2:
+            echo "Febrero";
+            break;
+        case 3:
+            echo "Marzo";
+            break;
+        case 4:
+            echo "Abril";
+            break;
+        case 5:
+            echo "Mayo";
+            break;
+        case 6:
+            echo "Junio";
+            break;
+        case 7:
+            echo "Julio";
+            break;
+        case 8:
+            echo "Agosto";
+            break;
+        case 9:
+            echo "Septiembre";
+            break;
+        case 10:
+            echo "Octubre";
+            break;
+        case 11:
+            echo "Noviembre";
+            break;
+        case 12:
+            echo "Diciembre";
+            break;
+        default:
+            echo "El mes no corresponde, debe ser entre el 1 y 12.";
+            
+    }
+
+    echo "<hr>";
+    $color = "rojo";
+    switch($color){
+        case "rojo";
+        echo "Verde";
+    }
 
 ?>
