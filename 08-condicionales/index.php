@@ -210,11 +210,4 @@
             
     }
 
-    echo "<hr>";
-    $color = "rojo";
-    switch($color){
-        case "rojo";
-        echo "Verde";
-    }
-
 ?>
