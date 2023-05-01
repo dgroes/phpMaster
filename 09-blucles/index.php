@@ -27,4 +27,15 @@
     }
     var_dump($numero);
 
+    // DO WHILE
+    echo "<hr>";
+    $edad = 18;
+    $contador = 1;
+    do {
+        echo "Tienes acceso al nivel secreto: $contador"."<br>";
+        $contador++;
+    }while($edad >= 18 && $contador <= 10);
+
+    
+
 ?>
