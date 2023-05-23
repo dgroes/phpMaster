@@ -53,7 +53,46 @@ if($_POST){
 }
 
 echo "<br>";
-echo "<h3>4)Crear un programa en PHP que solicite al usuario ingresar un número y luego calcule y muestre la suma de todos los dígitos del número ingresado.</h3>";
+echo "<h3>4)Desarrolla un programa que pida al usuario un número y muestre si es par o impar.</h3>";
+$num = 7;
+if($num % 2 == 0){
+    echo "El número es par.";
+}else{
+    echo "El número es impar";
+}
 
+echo "<br>";
+echo "<h3>5) Crea un programa que solicite al usuario su edad y muestre un mensaje indicando si es mayor de edad o no.</h3>";
 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio GPT</title>
+</head>
+<body>
+    <form action="ejercicioGPT.php" method="post">
+        <p>Ingresar tu edad porfavor.</p>
+        <input type="text" name="edad" id="">
+        <input type="submit" value="Multiplicar" style="background-color: yellow;">
+    </form>
+    
+</body>
+</html>
+<?php
+
+    if($_POST){
+        $edad=$_POST['edad'];
+        if($edad <=18){
+            echo "Eres mayor de edad.";
+        }else{
+            echo "Eres menor ded edad, fuera de este lugar";
+        }
+    
+    }else{
+        echo "Por favor, debe ingresar un numero para que funcione el programa";
+    }
 ?>
