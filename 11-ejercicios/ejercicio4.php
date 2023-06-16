@@ -23,6 +23,7 @@
         <br/>
         <input type="text" name="valorB" id="">
         <input type="submit" value="Calcular">
+        
     </form>
     
 </body>
