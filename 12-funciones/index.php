@@ -19,7 +19,77 @@
             }
     }
     tabla(29);
+
+    //Ejemplo 3
     echo "<br>";
+    echo "<h3>Calculadora</h3>";
+    function calculadora($numero1, $numero2){
+        $suma = $numero1 + $numero2;
+        $resta = $numero1 - $numero2;
+        $multiplicacion = $numero1 * $numero2;
+        $division = $numero1 / $numero2;
+        echo "Suma: $suma <br>";
+        echo "Resta: $resta <br>";
+        echo "Multiplicación: $multiplicacion <br>";
+        echo "División: $division";
+    }
+    calculadora(5,5);
+
+    echo "<hr>";
+    echo "<h3>Return en una Función</h3>";
+    function devuelveNombre ($name){
+        return "El nombre es: $name";
+    }
+    echo devuelveNombre("Andy");
+
+
+    /* function devuelveNombre ($name){
+        echo "El nombre es: $name";
+    }
+    devuelveNombre("Andy"); */
+
+    //Ejemplo 4
+    echo "<hr>";
+    echo "<h3>Función dentro de otra</h3>";
+    function getNombre($name){
+        $texto = "El nombbre es: $name";
+        return $texto;
+    }
+    function getApellido($lastName){
+        $texto = "El apellido es: $lastName";
+        return $texto;
+    }
+
+
+    function devuelveNombreApellido($name, $lastName){
+        $texto = getNombre($name)
+        ."<br/>".
+        getApellido($lastName);
+       return $texto;
+    }
+    echo devuelveNombreApellido("Diego","Pastén");
+
+    echo "<hr>";
+    function getSexo($sexo){
+        if($sexo = "hombre"){
+            $texto = "El nivel es Facil.";
+        }else {
+            $texto = "El Nivel Es Dificil.";
+        }
+        return $texto;
+    }
+    function dificultad($name, $lastName, $sexo){
+        $texto = getNombre($name)
+        ."<br>".
+        getApellido($lastName)
+        ."<br>".
+        getSexo($sexo);
+        return $texto;
+    }
+    echo dificultad("diego", "pasten", "hombre");
+
+
+    echo "<hr>";
     echo "<h2>Ejercicios ft GPT 3.5</h2>";
     echo "<h3>Crear una función llamada saludar() que reciba como argumento el nombre de una persona y muestre por pantalla el mensaje ¡Hola, [nombre]!</h3>";
     function saludar($nombre){
