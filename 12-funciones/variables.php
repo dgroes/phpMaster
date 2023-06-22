@@ -14,5 +14,30 @@ function hola(){
     echo "hola $frase";
 }
 hola();
+echo "<hr>";
+
+//Funciones variables 
+/* Las funciones variables, también conocidas como "callable", son una característica de PHP que permite tratar a las funciones como cualquier otro tipo de dato. En resumen, esto significa que puedes almacenar una función en una variable y luego llamarla utilizando esa variable.*/
+
+    function buenosDias(){
+        return "Hola buenos días ";
+    }
+
+    function buenasTardes(){
+        return "Hey, Que tal ha ido la comida?";
+    }
+
+    function buenasNoches(){
+        return "Oye, te vas a dormir ya?";
+    }
+
+    $horario = 'buenasNoches';
+
+    echo $horario();
+    echo "<br>";
+    
+    $miFuncion = "buenas ".$horario();
+    echo $miFuncion;
+
 
 ?>
