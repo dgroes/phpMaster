@@ -18,24 +18,10 @@
 ?>
 
 <table border="1">
-    <tr>
-        <?php foreach($categorias as $categoria):?>
-        <th><?=$categoria?></th>
-        <?php endforeach; ?>
-    </tr>
-    <tr>
-        <td><?=$tabla['ACCION'] [0] ?></tDd>
-        <td><?=$tabla['AVENTURA'] [0] ?></td>
-        <td><?=$tabla['DEPORTES'] [0] ?></td>
-    </tr>
-    <tr>
-        <td><?=$tabla['ACCION'] [1] ?></tDd>
-        <td><?=$tabla['AVENTURA'] [1] ?></td>
-        <td><?=$tabla['DEPORTES'] [1] ?></td>
-    </tr>
-    <tr>
-        <td><?=$tabla['ACCION'] [2] ?></tDd>
-        <td><?=$tabla['AVENTURA'] [2] ?></td>
-        <td><?=$tabla['DEPORTES'] [2] ?></td>
-    </tr>
+    <?php require_once 'encabezado.php'?>
+    <?php require_once 'primeraFila.php'?>
+    <?php require_once 'segundaFila.php'?>
+    <?php require_once 'terceraFila.php'?>
+    
+   
 </table>
