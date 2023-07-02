@@ -1,3 +1,17 @@
 body{
-    background-color: #ce571f;
+    
+}
+
+main article p{
+    text-align: justify;
+    font-family: 'Source Code Pro', monospace;
+}
+
+main article img{
+    width: 400px;
+    float: left;
+    margin-right: 10px;
+}
+.veinte{
+    background-color: #ebc47f;
 }
