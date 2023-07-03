@@ -1,7 +1,0 @@
-Este es un entorno de trabajo en el cual se estudiará PHP en profundidad, incluyendo SQL, POO, MVC, Laravel, 
-Symfony, WordPress, entre otras herramientas y frameworks. El fin de aprender PHP será por decisión propia, 
-nunca he podido aprender a programar de manera correcta y completa, ya me manejo en un nivel intermedio en HTML 
-y CSS, pero no sirve de nada si no sabes algo de Back-End o programación general. Para estudiar PHP lo haré 
-siguiendo el "Master en PHP" que compré en Udemy de Victor Robles, además aprenderé de otras funtes, como la 
-pagina oficial de PHP, W3School, entre otras. Tambien con ayuda a Chat GPT practicaré ademas de aclarar algunas 
-dudas, la seción de chat estará en el usuario "aknarot" y la sesión tendrá el nombre de: "PHP".
