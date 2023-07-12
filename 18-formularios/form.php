@@ -51,8 +51,24 @@
         <label for="WEB">pAGINA</label>
         <p><input type="url" name="WEB" id=""></p>
 
-        <label for=""></label>
-        <p><input type="text" name="" id=""></p>
+        <label for="area">Area de texto</label>
+        <p><textarea name="area" id="" cols="30" rows="10"></textarea></p>
+
+        <label for="select">Select</label>
+        <p>
+            <select name="select" id="">
+                <option value="GTA">GTA</option>
+                <option value="Dark">Dark Souls</option>
+                <option value="Bloodborne">Bloodborne</option>
+                <option value="Doom">Doom</option>
+                <option value="Terraria">Terraria</option>
+                <option value="Portal">Portal</option>
+                <option value="Bully">Bully</option>
+
+            </select>
+        </p>
+        
+        
 
 
         <input type="submit" value="Enviar">
