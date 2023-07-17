@@ -1,1 +1,2 @@
 Hola, soy un archivo de texto
+esta es una segunda linea.Soy una nueva linea de texto agregado con PHP.Soy una nueva linea de texto agregado con PHP.
