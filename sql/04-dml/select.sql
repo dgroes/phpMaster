@@ -10,3 +10,4 @@ SELECT email, (4+7) as 'Operacion' FROM usuarios;
 SELECT id, email  FROM usuarios ORDER BY id; 
 
 #Funciones Matematicas#
+SELECT abs(7) as 'Operacion' FROM usuarios; 
