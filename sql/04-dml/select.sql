@@ -37,3 +37,11 @@ SELECT nombre, SYSDATE() as fecha from USUARIOS;
 SELECT nombre, date_format(fecha, '%d-%m-%Y') from USUARIOS;
 
 
+#Otras funciones utilez
+select email, ISNULL(NOMBRE) from usuarios;
+select * from usuarios;
+select version() from usuarios;
+select distinct user() from usuarios;
+select distinct database() from usuarios;
+select ifnull(apellidos, 'Este campo está vacio') from usuarios;
+
