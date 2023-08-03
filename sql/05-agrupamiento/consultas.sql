@@ -1,0 +1,1 @@
+select count(titulo) as 'numero de entradas', categoria_id from entradas group by categoria_id;
