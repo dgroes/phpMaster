@@ -1,4 +1,4 @@
-/* Visualizar todos los coches en cuya marca exista la letra 'A' y que empiece for 'F'*/
+/* Visualizar todos los coches en cuya marca exista la letra 'A' y todos los modelos que empiece for 'F'*/
 
 SELECT * FROM coches;
 
