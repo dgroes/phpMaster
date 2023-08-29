@@ -44,6 +44,9 @@
                 </li>
             </ul>
         </nav>
+
+        <div class="clearfix"></div>
+
     </header>
     <div id="contenedor">
         <!-- BARRAR LATERAL -->
