@@ -51,7 +51,7 @@
     <div id="contenedor">
         <!-- BARRAR LATERAL -->
         <aside id="sidebar">
-            <div id="login" class="blocke">
+            <div id="login" class="bloque">
                 <h3>Identificate</h3>
                 <form action="login.php" method="post">
                     <label for="email">Email</label>
@@ -63,7 +63,7 @@
                 </form>
             </div>
 
-            <div id="register" class="blocke">
+            <div id="register" class="bloque">
                 <h3>Registrate</h3>
                 <form action="registro.php" method="post">
                     <label for="nombre">Nombre</label>
@@ -86,30 +86,47 @@
         <div id="principal">
             <h1>Ultimas Entradas</h1>
             <article class="entrada">
-                <h2>Titulo de mi entrada</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                <a href="">
+                    <h2>Titulo de mi entrada</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                </a>
             </article>
 
             <article class="entrada">
-                <h2>Titulo de mi entrada</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                <a href="">
+                    <h2>Titulo de mi entrada</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                </a>
             </article>
 
             <article class="entrada">
-                <h2>Titulo de mi entrada</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                <a href="">
+                    <h2>Titulo de mi entrada</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                </a>
             </article>
 
             <article class="entrada">
-                <h2>Titulo de mi entrada</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                <a href="">
+                    <h2>Titulo de mi entrada</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                </a>
             </article>
 
             <article class="entrada">
-                <h2>Titulo de mi entrada</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                <a href="">
+                    <h2>Titulo de mi entrada</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, incidunt, sequi inventore impedit ipsum suscipit commodi necessitatibus nam quidem modi nihil corrupti saepe consequatur delectus illum fugiat amet, beatae in.</p>
+                </a>
             </article>
-        </div>
+
+            <div id="ver-todas">
+                <a href="">Ver todas las entradas</a>
+            </div>
+
+        </div>      <!-- FIN PRINCIPAL -->
+
+        <div class="clearfix"></div>
     </div>
 
     <!-- PIE DE PÁGINA -->
