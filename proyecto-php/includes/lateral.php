@@ -25,7 +25,7 @@
 
             <label for="password">Contraseña</label>
             <input type="password" name="password">
-            <input type="submit" value="Registrar">
+            <input type="submit" name="submit" value="Registrar">
         </form>
     </div>
 </aside>
