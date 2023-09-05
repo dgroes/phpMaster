@@ -15,14 +15,14 @@
 
     <div id="register" class="bloque">
         <h3>Registrate</h3>
-            //Alertas
-        //Alerta de EXITO
+            <!-- //Alertas
+        //Alerta de EXITO -->
         <?php if(isset($_SESSION['completado'])): ?>
 			<div class="alerta alerta-exito">
 				<?=$_SESSION['completado']?>
 			</div>
             
-        //Alerta de Error
+        <!-- //Alerta de Error -->
 		<?php elseif(isset($_SESSION['errores']['general'])): ?>
 			<div class="alerta alerta-error">
 				<?=$_SESSION['errores']['general']?>
