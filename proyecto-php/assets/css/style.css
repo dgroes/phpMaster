@@ -23,6 +23,20 @@
 body {
     font-family: "fajala";
     background: url(../img/cubes.png) #f4f4f4;
+    border-radius: 2px;
+}
+
+.alerta {
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(45, 129, 45);
+    box-shadow: 0px 1px 3px #ccc;
+    margin-bottom: 15px;
+}
+
+.alerta-error {
+    background-color: rgb(188, 83, 83) ;
 }
 
 
