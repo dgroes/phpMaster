@@ -7,7 +7,7 @@
             $alerta = "<div class='alerta alerta-error'>".$errores[$campo].'</div>';
         }
         
-            return $alerta;
+        return $alerta;
     }
 
     //Eliminiar los mensajes de error almacenados en la sessión.
@@ -32,7 +32,3 @@
         return $borrado;
     
     }
-    
-
-
-?>
