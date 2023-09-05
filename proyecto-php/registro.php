@@ -1,14 +1,16 @@
 <?php
-if (isset($_POST)) {
-    /* //Conexión a la vase de datos */
-    require_once 'includes/conexion.php';
+if(isset($_POST)){
+	
+	// Conexión a la base de datos
+	require_once 'includes/conexion.php';
 
-    /* //Iniciar sesión */
-    if (isset($_SESSION)) {
-        session_start();
-    }
+	// Iniciar sesión
+	if(!isset($_SESSION)){
+		session_start();
+	}
+
     /* //Recoger los valores del formulario de registro */
-    $$nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($db, $_POST['nombre']) : false;
+    $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($db, $_POST['nombre']) : false;
     $apellidos = isset($_POST['apellidos']) ? mysqli_real_escape_string($db, $_POST['apellidos']) : false;
     $email = isset($_POST['email']) ? mysqli_real_escape_string($db, trim($_POST['email'])) : false;
     $password = isset($_POST['password']) ? mysqli_real_escape_string($db, $_POST['password']) : false;
@@ -19,12 +21,13 @@ if (isset($_POST)) {
     /* 
     //Validar los datos anetes de guardarlos en la base de datos
     //Validando campo Nombre */
-    if (!empty($nombre) && !is_numeric($nombre) && !preg_match("/[0-9]/", $nombre)) {
-        $nombre_validado = true;
-    } else {
-        $nombre_validado = false;
-        $errores['nombre'] = "El nombre no es válido";
-    }
+	if(!empty($nombre) && !is_numeric($nombre) && !preg_match("/[0-9]/", $nombre)){
+		$nombre_validado = true;
+	}else{
+		$nombre_validado = false;
+		$errores['nombre'] = "El nombre no es válido";
+	}
+
 
     /* //Validadndo campo Apellidos */
     if (!empty($apellidos) && !is_numeric($apellidos) && !preg_match("/[0-9]/", $apellidos)) {
