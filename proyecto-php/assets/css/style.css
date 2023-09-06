@@ -172,6 +172,26 @@ input[type="submit"],
     padding: 7px;
 }
 
+.boton {
+    width: 130px;
+    text-align: center;
+}
+
+.boton-naranja {
+   background-color: rgb(179, 176, 67);
+   border-color: orange;
+}
+
+.boton-verde {
+    background-color: rgb(82, 172, 112);
+    border-color: green;
+ }
+
+ .boton-rojo {
+    background-color: rgb(200, 100, 100);
+    border-color: red;
+ }
+
 
 /*Principal*/
 #principal {
