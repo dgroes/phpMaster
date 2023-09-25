@@ -1,5 +1,8 @@
 <?php
-//  Primero hacer la conexión a la BD
+    //  Inicar sesión
+    session_start();
+
+    //  Primero hacer la conexión a la BD
     $conn = mysqli_connect(
         'localhost',
         'root',
@@ -11,7 +14,3 @@
     /* if(isset($conn)){
         echo "Conectado";
     } */
-
-
-
-?>
