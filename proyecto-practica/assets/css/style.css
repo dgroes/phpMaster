@@ -48,6 +48,8 @@ nav a:hover {
 }
 
 
+
+
 /* SECTION */
 
 section {
@@ -90,4 +92,67 @@ section article h2:hover {
     height: auto;
     padding: 7px;
     text-align: center;
+}
+
+
+
+
+/* INICIO DE SESION */
+/* Estilos generales */
+.container-inicio {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    background-image: linear-gradient(to bottom, #ddaaea, #d6a9e2, #cfa8d9, #c9a7d1, #c2a6c9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.container-inicio h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form {
+    padding: 20px;
+    width: 50%;
+}
+
+/* Estilos del formulario */
+label {
+    font-weight: bold;
+    color: #444;
+}
+ #submit {
+    text-decoration: none;
+    margin-top: 10px;
+    height: 35px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #3a4f47;
+    color: #e6e5c1;
+ }
+ 
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 240px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .container-inicio {
+        flex-direction: column;
+        text-align: center;
+    }
+    .form {
+        width: 80%;
+    }
 }

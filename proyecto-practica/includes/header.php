@@ -17,6 +17,6 @@
             <img src="assets/img/logo.png" alt="logo">
         </a>
         <nav>
-            <a href="">Inicio</a>
+            <a href="inicio.php">Inicio</a>
         </nav>
     </header>
