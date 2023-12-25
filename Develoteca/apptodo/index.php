@@ -34,21 +34,27 @@
                         <input type="text" class="form-control" name="tarea" id="tarea" aria-describedby="helpId" placeholder="Escribe el nombre de la Tarea " />
                         <br>
                         <input name="agregar_tarea" id="agregar_tarea" class="btn btn-primary" type="submit" value="Agregar Tarea" />
+                        <style>
+                            .subrayado {
+                                text-decoration: line-through;
+                            }
+                        </style>
                     </form>
 
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <input class="form-check-input float-start" type="checkbox" value="" id="" checked />
-                        &nbsp; <span class="float-start">Tarea 1 </span>
-                        <h6 class="float-start">
-                           &nbsp; <span class="badge bg-danger"> x </span>
-                        </h6>
-                    </li>
-                    <li class="list-group-item"><input class="form-check-input" type="checkbox" value="" id="" checked />
-                        Tarea 2</li>
-                    <li class="list-group-item"><input class="form-check-input" type="checkbox" value="" id="" checked />
-                        Tarea 3</li>
+                    <?php foreach ($registros as $registro) { ?>
+                        <li class="list-group-item">
+                            <input class="form-check-input float-start" type="checkbox" value="" id="" checked />
+                            <?php echo $registro['completado']; ?>
+                            &nbsp; <span class="float-start <?php ?> subrayado ">&nbsp; <?php echo $registro['tarea']; ?> </span>
+                            <h6 class="float-start">
+                                &nbsp; <a href="?id=<?php echo $registro['id']; ?>"><span class="badge bg-danger"> x </span></a>
+                            </h6>
+                        </li>
+
+                    <?php } ?>
+
                 </ul>
 
 
