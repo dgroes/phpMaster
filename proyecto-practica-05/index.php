@@ -27,27 +27,27 @@
                 <br>
 
                 <label for="depto">Departamento:</label>
-                <input type="text" name="depto" id="depto" required>
+                <input type="text" name="depto" id="depto" required maxlength="4">
                 <br>
 
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" required>
+                <input type="text" name="nombre" id="nombre" required maxlength="50">
                 <br>
 
                 <label for="run">Run:</label>
-                <input type="text" name="run" id="run" required>
+                <input type="text" name="run" id="run" required maxlength="9">
                 <br>
 
                 <label for="matricula">Matricula:</label>
-                <input type="text" name="matricula" id="matricula">
+                <input type="text" name="matricula" id="matricula" maxlength="10">
                 <br>
 
                 <label for="marca">Marca:</label>
-                <input type="text" name="marca" id="marca">
+                <input type="text" name="marca" id="marca" maxlength="50">
                 <br>
 
                 <label for="parentesco">Parentesco:</label>
-                <input type="text" name="parentesco" id="parentesco">
+                <input type="text" name="parentesco" id="parentesco" maxlength="50">
                 <br>
 
                 <input type="submit" value="Agregar">
@@ -77,12 +77,12 @@
                         <tr>
                             <td><?php echo $dato['fecha']; ?></td>
                             <td><?php echo $dato['hora_llegada']; ?></td>
-                            <td><?php echo $dato['hora_salida']; ?></td>
+                            <td><?php echo $dato['hora_salida'] !== null ? $dato['hora_salida'] : 'Sin Datos'; ?></td>
                             <td><?php echo $dato['depto']; ?></td>
                             <td><?php echo $dato['id_persona']; ?></td>
-                            <td><?php echo $dato['id_vehiculo']; ?></td>
-                            <td><?php echo $dato['marca']; ?></td>
-                            <td><?php echo $dato['parentesco']; ?></td>
+                            <td><?php echo !empty($dato['id_vehiculo']) ? $dato['id_vehiculo'] : 'Sin Datos'; ?></td>
+                            <td><?php echo !empty($dato['marca']) ? $dato['marca'] : 'Sin Datos'; ?></td>
+                            <td><?php echo $dato['parentesco'] !== null ? $dato['parentesco'] : 'Sin Datos'; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
