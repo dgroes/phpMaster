@@ -31,3 +31,9 @@ CREATE TABLE visita (
     FOREIGN KEY (id_persona) REFERENCES persona(id),
     FOREIGN KEY (id_vehiculo) REFERENCES vehiculo(id)
 );
+
+-- Creación de la vista Visitas para una mejor lectura de los datos.
+CREATE VIEW visitas AS
+SELECT vi.fecha, vi.hora_llegada, vi.hora_salida, vi.depto, vi.id_persona, id_vehiculo, ve.marca, vi.parentesco
+FROM visita vi
+INNER JOIN vehiculo vvisitase on vi.id_vehiculo = ve.id;
