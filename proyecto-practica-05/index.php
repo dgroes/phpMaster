@@ -67,7 +67,7 @@
                         <th colspan="1">Hora Salida</th>
                         <th colspan="1">Depto</th>
                         <th colspan="1">Run</th>
-                        <th colspan="1">Matriula</th>
+                        <th colspan="1">Matricula</th>
                         <th colspan="1">Marca</th>
                         <th colspan="1">Parentesco</th>
                     </tr>
