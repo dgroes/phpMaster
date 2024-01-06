@@ -59,7 +59,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="8">Visitas</th>
+                        <th colspan="9">Visitas</th>
                     </tr>
                     <tr>
                         <th colspan="1">Fecha</th>
@@ -70,6 +70,7 @@
                         <th colspan="1">Matricula</th>
                         <th colspan="1">Marca</th>
                         <th colspan="1">Parentesco</th>
+                        <th colspan="1"> Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,6 +84,8 @@
                             <td><?php echo !empty($dato['id_vehiculo']) ? $dato['id_vehiculo'] : 'Sin Datos'; ?></td>
                             <td><?php echo !empty($dato['marca']) ? $dato['marca'] : 'Sin Datos'; ?></td>
                             <td><?php echo $dato['parentesco'] !== null ? $dato['parentesco'] : 'Sin Datos'; ?></td>
+                            <td><a href="quieries.php?id=<?php echo $dato['id']; ?>">Borrar</a></td>
+
                         </tr>
                     <?php } ?>
                 </tbody>
