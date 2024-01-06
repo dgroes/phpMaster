@@ -32,7 +32,7 @@ if ($_POST) {
     $fecha = $_POST['fecha'];
     $hora_llegada = $_POST['hora_llegada'];
     $parentesco = $_POST['parentesco'];
-    
+
     //3.1 Antes de comenzar con el insert se deberán obener los id de las tablas relacionadas a visita.
     $id_persona = $run;
     $id_vehiculo = $matricula;
@@ -46,4 +46,27 @@ if ($_POST) {
     $sentenceVisita->execute();
 
     header("Location:?"); /*Evitar que se agregen registros de manera automatica cuando la pagina se actualiza */
+}
+
+
+// DELETE
+// DELETE
+if ($_GET && isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    if (!empty($id)) {
+        $sentenceBorrar = $conection->prepare("DELETE FROM visita WHERE id = :id");
+        $sentenceBorrar->bindParam(':id', $id);
+        $result = $sentenceBorrar->execute();
+
+        if ($result) {
+            header("Location: index.php");
+        } else {
+            echo "Error al intentar eliminar el registro.";
+        }
+    } else {
+        echo "ID no válido.";
+    }
+} else {
+    echo "ID no especificado.";
 }
