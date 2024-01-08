@@ -1,0 +1,8 @@
+Proyecto de practica 05
+Realizar un sistema integrado con PHP y MySQL PDO el cual organize el sistema de visistas del edificio mirador de los andes
+- Dicho sistema deberá contar con una BD la cual se trabajará con xampp con InnoDB.
+- Deberá poseer tablas con relación
+- Deberá poseer un clasico CRUD con la información que se almacené en la página
+- Deberá poseer una interfaz grafica simple con HTML y CSS
+- Se deberá crear todo a mano, boceto de BD, script de BD, funciones, etc. Esto para poder entender y aprender conceptos vistos.
+- Se deberá entender todo en su totalidad, no deberá haber línea de código que no se entienda por mi parte.
