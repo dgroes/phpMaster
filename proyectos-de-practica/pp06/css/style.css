@@ -1,0 +1,49 @@
+html {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #18181b;
+    color: whitesmoke;
+}
+
+.container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.form-container {
+    background-color: #28282c;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.25rem 1rem;
+    color: whitesmoke;
+}
+
+.form-container label {
+    display: block;
+    margin: 0.5rem 0 0.5rem;
+    
+}
+
+.form-container input {
+    width: 96%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #333;
+    border-radius: 0.25rem;
+    background-color: #cfaed7;
+    font-size: larger;
+}
+
+.form-container input[type="submit"] {
+    background-color: #4caf50;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #45a049;
+}
