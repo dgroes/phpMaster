@@ -1,4 +1,4 @@
-/*Fuentes*/
+/* FUENTES */
 @font-face {
     font-family: "fajala";
     src: url(../fonts/fuente.ttf) format('truetype');
@@ -6,8 +6,7 @@
     font-style: normal;
 }
 
-
-/*Generales*/
+/* GENERALES */
 * {
     margin: 0px;
     padding: 0px;
@@ -20,37 +19,22 @@
     float: none;
 }
 
+
 body {
-    font-family: "fajala";
-    background: url(../img/cubes.png) #f4f4f4;
-    border-radius: 2px;
+    background: url(../img/cubes.png) #F4F4F4;
 }
 
-.alerta {
-    padding: 5px;
-    font-size: 14px;
-    color: white;
-    background-color: rgb(45, 129, 45);
-    box-shadow: 0px 1px 3px #ccc;
-    margin-bottom: 15px;
-}
-
-.alerta-error {
-    background-color: rgb(188, 83, 83) ;
-}
-
-
-/*Cabecera*/
+/* CABECERA */
 #cabecera {
     width: 85%;
     height: auto;
     background: transparent;
     margin: 0px auto;
-    /*  border: 1px solid black; */
+    /* border: 1px solid black; */
 }
 
 
-/*Logotipo*/
+/* LOGOPITO */
 #logo {
     float: left;
     width: 540px;
@@ -61,7 +45,7 @@ body {
     font-family: "fajala", Helvetica;
     font-size: 40px;
     letter-spacing: 2px;
-    color: #2e6187;
+    color: #2979cd;
     text-shadow: 0px 0px 0px black, 1px 1px 0px black, 2px 2px 0px black;
     transition: all 500ms;
     line-height: 90px;
@@ -74,7 +58,8 @@ body {
 }
 
 
-/*Menu*/
+/* MENÚ */
+
 #menu {
     clear: both;
     width: 100%;
@@ -84,24 +69,28 @@ body {
     border-radius: 8px;
     box-shadow: 0px 1px 1px #ccc;
     overflow: hidden;
+
 }
 
 #menu ul {
     list-style: none;
+
 }
 
 #menu ul li {
     float: left;
     line-height: 44px;
-    border-right: 1px solid #D6D6D6;
+    border-right: 1px solid #d6d6d6;
 }
+
+
 
 #menu ul li a {
     display: block;
-    padding-left: 10px;
+    padding-left: 40px;
     padding-right: 10px;
     font-size: 15px;
-    color: #585858
+    color: #838282;
 }
 
 #menu ul li a:hover {
@@ -109,21 +98,23 @@ body {
 }
 
 
-/*Contenedor*/
+
+/* CONTENIDO */
 #contenedor {
     width: 85%;
     height: auto;
-    /* min-height: auto; */
+  /*   min-height: auto; */
     margin: 0px auto;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 
-/*Barra lateral*/
+/* BARRA LATERAL */
+
 #sidebar {
     float: right;
-    width: 26%;
+    width: 25%;
     height: auto;
 }
 
@@ -172,42 +163,23 @@ input[type="submit"],
     padding: 7px;
 }
 
-.boton {
-    width: 130px;
-    text-align: center;
-}
-
-.boton-naranja {
-   background-color: rgb(179, 176, 67);
-   border-color: orange;
-}
-
-.boton-verde {
-    background-color: rgb(82, 172, 112);
-    border-color: green;
- }
-
- .boton-rojo {
-    background-color: rgb(200, 100, 100);
-    border-color: red;
- }
-
-
-/*Principal*/
+/*PRINCIPAL*/
 #principal {
     float: left;
     width: 65%;
-    min-height: 570px;
-    background-color: white;
+    min-height: 600px;
+    background: white;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #eee;
+    box-shadow: 0px 0px 5px #ccc;
     margin-left: 20px;
     padding: 20px;
     overflow: hidden;
+
 }
 
 #principal a {
     color: #333;
+
 }
 
 #principal h1 {
@@ -216,11 +188,12 @@ input[type="submit"],
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px #ccc;
     font-family: "fajala";
+
 }
 
 #principal h2 {
     font-size: 20px;
-    color: #6276b5;
+    color: #2979cd;
     text-shadow: 1px 1px 2px #ccc;
     letter-spacing: 1px;
     font-family: "fajala";
@@ -231,29 +204,27 @@ input[type="submit"],
     margin-top: 8px;
 }
 
-
 #ver-todas a {
     display: block;
     border-radius: 2px;
     padding: 15px;
     color: white;
-    background-color: #007ee5;
+    background: #007ee5;
     border: 1px solid #156785;
     cursor: pointer;
     width: 160px;
-    margin: 0px auto;
-    margin-top: 50px;
+    margin: 0pc auto;
+    margin-top: 40px;
+
 }
 
-
-/* Pie de página*/
-
+/*PIE DE PAGINA*/
 #pie {
     clear: both;
     width: 85%;
     margin: 0px auto;
-    background: linear-gradient(to bottom, #f2f2f2 0px, #dad9d4 100%);
-    border: 1px solid #C9C9C9;
+    background: linear-gradient(to bottom, #f9f9f9 0px, #e9e9e9 100%);
+    border: 1px solid #c9c9c9;
     border-bottom: none;
     border-radius: 8px 8px 0px 0px;
     color: #666;
