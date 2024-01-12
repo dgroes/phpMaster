@@ -1,6 +1,10 @@
 <?php
-session_start();
 if (isset($_POST)) {
+
+    require_once 'includes/conexion.php';
+
+    //Iniciar Sesión
+    session_start();
 
     //RECOGER LOS VALORES DEL FORMULARIO DE REGISTRO
     // Con el operador ternario se define si existe: ejemplo: Si $_POST['nombre'] está definido (es decir, si existe y no es null), entonces $nombre toma el valor de $_POST['nombre']. Si no está definido, $nombre se establece en false.
@@ -58,9 +62,20 @@ if (isset($_POST)) {
     if (count($errores) == 0) {
         $guardar_usuario = true;
 
+        //Cifrar la contraseña
+        $password_segura = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
+
         //Insertar el usuario en la base de datos
+		$sql = "INSERT INTO usuarios VALUES(null, '$nombre', '$apellidos', '$email', '$password_segura', CURDATE());";
+		$guardar = mysqli_query($db, $sql);
+        if ($guardar) {
+            $_SESSION['completado'] = "El registro se ha completado con exito.";
+        } else {
+            $_SESSION['errores']['general'] = "Fallo al guardar el usuario";
+        }
     } else {
-      $_SESSION['errores']  = $errores;
-      header('Location: index.php');
+        $_SESSION['errores']  = $errores;
+        header('Location: index.php');
     }
 }
+header('Location:index.php');
