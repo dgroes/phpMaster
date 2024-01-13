@@ -24,6 +24,21 @@ body {
     background: url(../img/cubes.png) #F4F4F4;
 }
 
+.alerta {
+    padding:5px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(40, 173, 40);
+    box-shadow: 0px 1px 3px #ccc;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.alerta-error {
+    background-color: rgb(226, 82, 82);
+}
+
+
 /* CABECERA */
 #cabecera {
     width: 85%;
@@ -161,6 +176,27 @@ input[type="submit"],
     border: 1px solid #156785;
     cursor: pointer;
     padding: 7px;
+}
+
+.boton { 
+    text-align: center;
+    width: 120px;
+    border-color: blue;
+}
+
+.boton-naranja { 
+    background-color: rgb(192, 147, 65);
+    border-color: orange;
+    
+}
+.boton-verde { 
+    background-color: rgb(51, 177, 51);
+    border-color: green;
+}
+
+.boton-rojo { 
+    background-color: rgb(199, 63, 63);
+    border-color: rgb(119, 0, 0);
 }
 
 /*PRINCIPAL*/
