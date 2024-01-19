@@ -16,7 +16,7 @@
 		<?php echo isset($_SESSION['errores_entrada']) ? mostrarError($_SESSION['errores_entrada'], 'titulo') : ''; ?>
 		
 		<label for="descripcion">Descripción:</label>
-		<textarea name="descripcion"></textarea>
+		<textarea name="descripcion" rows="20" cols="64"></textarea>
 		<?php echo isset($_SESSION['errores_entrada']) ? mostrarError($_SESSION['errores_entrada'], 'descripcion') : ''; ?>
 		
 		<label for="categoria">Categoría</label>
