@@ -185,6 +185,7 @@ input[type="submit"],
 }
 
 .boton { 
+    color: white !important;
     text-align: center;
     width: 120px;
     border-color: blue;
