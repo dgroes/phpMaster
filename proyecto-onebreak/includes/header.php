@@ -1,3 +1,5 @@
+<?php require_once 'config/db_conection.php'; ?>
+<?php require_once ('actions/helpers.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
