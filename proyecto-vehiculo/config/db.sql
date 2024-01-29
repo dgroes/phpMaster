@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS vehiculo (
     precio INT(8) NOT NULL,
     estado VARCHAR(1) NOT NULL,
     revision BIT(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO
     vehiculo
@@ -29,3 +29,18 @@ VALUES
         'N',
         1
     );
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+/* MODIFICACIÓN DE LA TABLA VEHICULO PARA RELACIONARLA CON PERSONA:*/
+ALTER TABLE
+    vehiculo
+ADD
+    COLUMN id_usuario INT,
+ADD
+    CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id);
