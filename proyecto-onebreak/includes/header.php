@@ -1,5 +1,5 @@
 <?php require_once 'config/db_conection.php'; ?>
-<?php require_once ('actions/helpers.php'); ?>
+<?php require_once('actions/helpers.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
     <title>OneBreak</title>
