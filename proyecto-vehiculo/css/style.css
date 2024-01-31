@@ -6,7 +6,8 @@ body {
     margin: 0;
     background-color: #8b6ee6;
     color: whitesmoke;
-    min-height: 100vh; /* Asegura que el cuerpo tenga al menos el 100% de la altura visible (viewport height) */
+    min-height: 100vh;
+    /* Asegura que el cuerpo tenga al menos el 100% de la altura visible (viewport height) */
     display: flex;
     flex-direction: column;
 }
@@ -20,7 +21,8 @@ h2 {
     width: 800px;
     margin: 0 auto;
     padding-top: 20px;
-    flex: 1; /* Hace que el contenedor principal ocupe el espacio restante */
+    flex: 1;
+    /* Hace que el contenedor principal ocupe el espacio restante */
 }
 
 .form-container {
@@ -29,6 +31,9 @@ h2 {
     padding: 0.25rem 1rem;
     color: whitesmoke;
     padding-bottom: 20px;
+    margin-bottom: 50px;
+    overflow-x: auto;   
+
 }
 
 .bloque-izquierda {
@@ -57,6 +62,7 @@ h2 {
     background-color: #c2aeff;
     font-size: larger;
 }
+
 .form-container #boton {
     margin-top: 15px;
 }
@@ -93,13 +99,15 @@ h2 {
 .bloque-derecha label .pop {
     color: red;
 }
+
 .bloque-izquierda label .pop {
     color: red;
 }
 
 
 .placeholder-color::placeholder {
-    color: rgb(70, 68, 68); /* Reemplaza "yourColor" con el código de color deseado */
+    color: rgb(70, 68, 68);
+    /* Reemplaza "yourColor" con el código de color deseado */
 }
 
 
@@ -109,5 +117,44 @@ h2 {
     color: white;
     text-align: center;
     padding: 10px;
-    margin-top: auto; /* Empuja el pie de página hacia la parte inferior del contenedor */
+    margin-top: auto;
+    /* Empuja el pie de página hacia la parte inferior del contenedor */
+}
+
+
+/* LISTADO DE VEHÍCULOS.
+ */
+
+/* Agrega estos estilos en tu archivo style.css */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* BUSCADOR */
+
+#buscador {
+    display: flex;
+    align-items: center; /* Puedes ajustar esto según tu necesidad para alinear verticalmente los elementos */
+}
+#buscador input {
+    width: 300px;
+}
+
+#buscador form {
+    margin-left: 10px; /* Añade un margen entre el formulario y el texto para separarlos un poco */
 }
