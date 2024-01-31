@@ -72,7 +72,7 @@ if (isset($_POST)) {
         /* mysqli_stmt_bind_param: Esta función se utiliza para vincular variables a una sentencia preparada antes de ejecutarla. Asegura que los valores se inserten de manera segura en la consulta y ayuda a prevenir la inyección de SQL. */
         /* $stmt: La primera variable que toma mysqli_stmt_bind_param es la sentencia preparada a la cual deseas vincular los parámetros. */
         /* "issisissis": Esta cadena define el tipo de datos de cada parámetro. En este caso: "i" significa entero. / "s" significa cadena (string). La secuencia de tipos se corresponde con la secuencia de variables que se pasan a continuación. */
-        mysqli_stmt_bind_param($stmt, "issisisssi", $codigo, $num_motor, $tipo_vehiculo, $marca, $modelo, $anno, $color, $precio, $estado, $revision);
+        mysqli_stmt_bind_param($stmt, "issssisssi", $codigo, $num_motor, $tipo_vehiculo, $marca, $modelo, $anno, $color, $precio, $estado, $revision);
 
         // Ejecutar la sentencia.
         /* mysqli_stmt_execute: Esta función forma parte de la extensión MySQLi (MySQL Improved) en PHP y se utiliza específicamente para ejecutar una sentencia preparada. La abreviatura "stmt" se refiere a "statement" (sentencia). */
