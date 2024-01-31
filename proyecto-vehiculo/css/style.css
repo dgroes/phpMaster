@@ -18,7 +18,7 @@ h2 {
 }
 
 .container {
-    width: 800px;
+    width: 95%;
     margin: 0 auto;
     padding-top: 20px;
     flex: 1;
@@ -152,7 +152,7 @@ th {
     align-items: center; /* Puedes ajustar esto según tu necesidad para alinear verticalmente los elementos */
 }
 #buscador input {
-    width: 300px;
+    width: 100px;
 }
 
 #buscador form {
