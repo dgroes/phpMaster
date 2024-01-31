@@ -31,6 +31,7 @@
                 <option value="M" title="Mitsubishi">Mitsubishi</option>
                 <option value="R" title="Renault">Renault</option>
                 <option value="T" title="Toyota">Toyota</option>
+                <option value="S" title="Susuki">Susuki</option>
             </select>
 
             <!-- MODELO -->
