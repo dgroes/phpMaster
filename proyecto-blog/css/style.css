@@ -1,0 +1,224 @@
+@font-face {
+    font-family: 'satoshi';
+    src: url('../fonts/Satoshi-Black.woff') format('woff'),
+        url('../fonts/Satoshi-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'switzer';
+    src: url('../fonts/Switzer-Medium.woff') format('woff'),
+        url('../fonts/Switzer-Medium.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, #167766, #13574a);
+}
+
+
+/* _HEADER_ */
+
+header {
+    font-family: 'switzer', switzer;
+    font-size: large;
+    background-color: #18181b;
+    min-height: 105px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    -webkit-box-shadow: 0px 7px 31px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 7px 31px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 7px 31px -3px rgba(0, 0, 0, 0.75);
+}
+
+header a {
+    transition: color 0.3s ease;
+    color: #ffffe3;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #4b9c8d;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 90px;
+    color: white;
+}
+
+nav a {
+    padding-right: 11px;
+}
+
+@media (max-width: 630px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        padding: 10px 0px;
+    }
+}
+
+
+
+/*  _SECTION_  */
+
+.container {
+    width: 400px;
+    margin: 0 auto;
+}
+
+
+/* _.POST_ */
+
+.post {
+    font-family: 'satoshi', satoshi;
+    transition: box-shadow 0.3s ease;
+    background-color: #ffffe3;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0;
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+
+.post:hover {
+    -webkit-box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    /* Positions the elements at the extremes */
+    align-items: center;
+    padding-left: 10px;
+
+}
+
+.user-info-izquierda {
+    display: flex;
+    align-items: center;
+}
+
+.user-info-izquierda img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: -10px;
+    /* Adjust this value as needed */
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+    margin-left: 0px;
+    /* Adjust this value as needed */
+}
+
+.user-info-derecha {
+    text-align: right;
+}
+
+.post-date {
+    margin: 0;
+    color: #888;
+}
+
+.like-dislike-section {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like-btn,
+.dislike-btn {
+    
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 56px;
+    border: none;
+    border-radius: 5px;
+}
+
+.like-btn {
+    background-color: #167766;
+}
+
+.like-btn:hover {
+    background-color: #135c4f;
+    color: #ffffe3;
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
+    box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
+
+}
+
+.dislike-btn {
+    font-family: 'switzer', switzer;
+    background-color: rgb(233, 140, 78);
+}
+
+.dislike-btn:hover {
+    background-color: orange;
+    color: #ffffe3;
+}
+
+
+.like-count {
+    margin: 0;
+    color: #888;
+}
+
+
+
+.post h2,
+.post p {
+    margin: 1rem;
+}
+
+.post img {
+    max-width: 400px;
+}
+
+
+
+
+
+
+/* _FOOTER_ */
+footer {
+    background-color: #18181b;
+    padding: 3rem;
+    color: #ffffe3;
+}
+
+footer section {
+    float: right;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    transition: color 0.3s ease;
+    color: #ffffe3;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #4b9c8d;
+}
