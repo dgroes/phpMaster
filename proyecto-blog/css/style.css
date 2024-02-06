@@ -13,6 +13,7 @@
 body {
     margin: 0;
     background: linear-gradient(to bottom, #167766, #13574a);
+
 }
 
 
@@ -71,7 +72,7 @@ nav a {
 /*  _SECTION_  */
 
 .container {
-    width: 400px;
+    width: 600px;
     margin: 0 auto;
 }
 
@@ -135,6 +136,14 @@ nav a {
     color: #888;
 }
 
+.separador {
+    margin-top: 3px;
+}
+
+.descripcion {
+    text-align: justify;
+}
+
 .like-dislike-section {
     justify-content: center;
     display: flex;
@@ -144,36 +153,38 @@ nav a {
 
 .like-btn,
 .dislike-btn {
-    
+    font-family: 'switzer', switzer;
     margin-right: 10px;
     padding: 5px 10px;
     cursor: pointer;
-    width: 56px;
+    width: 59px;
     border: none;
     border-radius: 5px;
 }
 
 .like-btn {
-    background-color: #167766;
+    background-color: #4cad9c;
 }
 
 .like-btn:hover {
-    background-color: #135c4f;
+    background-color: #1c7565;
     color: #ffffe3;
-    -webkit-box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
-    -moz-box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
-    box-shadow: 0px 0px 14px 0px rgba(8, 153, 68, 1);
-
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .dislike-btn {
-    font-family: 'switzer', switzer;
+
     background-color: rgb(233, 140, 78);
 }
 
 .dislike-btn:hover {
     background-color: orange;
     color: #ffffe3;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 
@@ -189,11 +200,156 @@ nav a {
     margin: 1rem;
 }
 
-.post img {
-    max-width: 400px;
+.post .media {
+    max-width: 600px;
+    min-width: 600px;
 }
 
 
+
+
+
+
+
+
+
+/* _REGISTRO DE USUARIO_ */
+.login {
+    transition: box-shadow 0.3s ease;
+    font-family: 'satoshi', satoshi;
+    transition: box-shadow 0.3s ease;
+    background-color: #fdfffe;
+    color: #18181b;
+    margin: 1rem 0;
+    border-radius: 0.9rem;
+    padding: 0.25rem 0;
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+
+
+    text-align: center;
+    /* Centra el contenido dentro del article */
+    display: flex;
+    /* Usa flexbox para centrar los elementos internamente */
+    flex-direction: column;
+    /* Asegura que los elementos se apilen verticalmente */
+    align-items: center;
+    /* Centra horizontalmente los elementos */
+    justify-content: center;
+    /* Centra verticalmente los elementos */
+
+    /* Establece la altura del article al 100% del viewport */
+}
+
+.login:hover {
+    -webkit-box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+}
+
+.login form {
+    width: 70%;
+    min-width: 50%;
+    /* Establece un ancho fijo para el formulario */
+}
+
+.formulario_bloque {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario_bloque input {
+    transition: box-shadow 0.3s ease;
+    font-family: 'satoshi', satoshi;
+    width: calc(100% - 10px);
+    /* Resta 10px del ancho total */
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border-color: #232325;
+    border-style: solid;
+    background-color: #f5f5e7;
+    border-radius: 17px;
+    border-width: 1px;
+    text-align: center;
+}
+
+.formulario_bloque input:hover {
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+}
+
+.formulario_bloque input::placeholder {
+    text-align: center;
+    /* Ajusta este valor según lo que necesites */
+}
+
+
+
+
+
+.login h1 {
+    font-size: 40px;
+    cursor: default;
+}
+
+.boton-enviar {
+    transition: box-shadow 0.3s ease;
+    background-color: #13574a;
+    height: 38px;
+    width: 90px;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: #18181b;
+    border-width: 1px;
+    color: #f5f5e7;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+
+.boton-enviar:hover {
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+
+}
+
+.recordar {
+    padding-top: 15px;
+}
+
+.recordar a {
+    
+    text-decoration: none;
+    color: #18181b;
+    font-size: 22px;
+}
+
+.recordar a:hover {
+    text-decoration: underline;
+    color: #217566;
+}
+
+.registrarse {
+    padding-top: 16px;
+    padding-bottom: 20px;
+    font-size: 22px;
+}
+
+.registrarse a {
+    text-decoration: none;
+    color: #217566;
+    
+}
+
+.registrarse a:hover{
+    color: rgb(134, 75, 134);
+}
 
 
 
