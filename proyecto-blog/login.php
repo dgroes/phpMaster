@@ -1,13 +1,15 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+require_once 'config/conexion.php';
+require_once 'includes/header.php'; ?>
 
 <article class="login">
 
     <h1>Inicio de sesión</h1>
 
-    <form action="login-formulario">
+    <form action="inicio.php" method="POST">
 
         <div class="formulario_bloque">
-            <input type="text" name="nombre" placeholder="Nombre de usuario">
+            <input type="email" name="email" placeholder="Correo electronico">
         </div>
 
         <div class="formulario_bloque">
