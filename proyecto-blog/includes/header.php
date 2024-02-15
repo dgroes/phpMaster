@@ -1,4 +1,4 @@
-<?php require_once 'config/conexion.php';?>
+<?php require_once 'config/conexion.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,8 +18,17 @@
         </a>
         <nav>
             <a href="index.php" class="nav-link">Inicio</a>
-            <a href="" class="nav-link">Categoria</a>
-            <a href="login.php" class="nav-ling">Iniciar Sesión</a>
+            <a href="" class="nav-link">Categoría</a>
+            <?php if (isset($_SESSION['usuario'])) : ?>
+                <a href="post.php" class="nav-link">Crear Post</a>
+                <a href="configuracion.php" class="nav-link">Configuración</a>
+                <a href="logout.php" class="nav-link">Cerrar Sesión</a>
+                <?php if(isset($_SESSION['usuario']['nombre'])) : ?>
+                    <span class="nav-link"><?= $_SESSION['usuario']['nombre']; ?></span>
+                <?php endif; ?>
+            <?php else : ?>
+                <a href="login.php" class="nav-link">Iniciar Sesión</a>
+            <?php endif; ?>
         </nav>
     </header>
     <section class="container">
