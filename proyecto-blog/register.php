@@ -1,13 +1,11 @@
 <?php
-
+require_once 'config/conexion.php';
 require_once 'includes/header.php';
 
 /* INICIALIZAR VARIABLES DE ERRORES */
 $errores = array();
 
-if($_SERVER["REQUES_METOD"]== "POST"){
-    
-}
+
 
 ?>
 
@@ -15,15 +13,20 @@ if($_SERVER["REQUES_METOD"]== "POST"){
 
     <h1>Registrarse</h1>
 
-    <form action="login-formulario">
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
 
-        <div class="formulario_bloque">
+        <div class=" formulario_bloque">
             <input type="text" name="nombre" placeholder="Nombre de usuario">
         </div>
 
         <div class="formulario_bloque">
             <input type="email" name="email" placeholder="Correo">
         </div>
+
+        <div class="formulario_bloque">
+            <input type="file" id="foto" name="foto" accept="image/*" placeholder="Foto de perfil">
+        </div>
+
 
         <div class="formulario_bloque">
             <input type="password" name="password" placeholder="Contraseña">
