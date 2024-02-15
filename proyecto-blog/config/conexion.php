@@ -3,7 +3,7 @@
 $server = 'localhost';
 $user = 'root';
 $password = '';
-$database = 'blog-switzer';
+$database = 'blog_switzer';
 
 /* Conexión a la BD */
 $db = mysqli_connect($server, $user, $password, $database);
@@ -15,4 +15,9 @@ if (!$db) {
 /* ESTABLECER EL JUEGO DE CARACTERES A UTF8 */
 if (!mysqli_set_charset($db, "utf8")) {
     die("Error al establecer el juego de caracteres: " . mysqli_error($db));
+}
+
+//INICIAR LA SESIÓN
+if (!isset($_SESSION)) {
+    session_start();
 }
