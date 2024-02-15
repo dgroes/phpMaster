@@ -35,3 +35,8 @@ INSERT INTO categoria (nombre) VALUES ('television');
 INSERT INTO categoria (nombre) VALUES ('musica');
 INSERT INTO categoria (nombre) VALUES ('arte');
 INSERT INTO categoria (nombre) VALUES ('peliculas');
+
+
+/* Se agrea el atributo Contraseña a la tabla usuario: */
+ALTER TABLE usuario
+ADD COLUMN password VARCHAR(255) NOT NULL AFTER correo;
