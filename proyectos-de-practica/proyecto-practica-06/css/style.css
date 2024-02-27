@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'zodiak';
+    src: url('../fonts/Zodiak-Regular.woff') format('woff'),
+        url('../fonts/Zodiak-Regular.ttf') format('truetype');
+}
+
+
+body {
+    margin: 0;
+    background-color: #f3f6ff;
+}
+
+header {
+    color: #141414;
+    font-family: "DM Serif Display", serif;
+    background-color: #8690b0;
+    padding: 1rem;
+}
+
+nav a {
+    transition: color 0.3s ease;
+    color: #141414;
+    text-decoration: none;
+    padding-right: 12px;
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+    /* Centra el contenedor horizontalmente */
+}
+
+.post {
+    font-family: 'zodiak', zodiak;
+    text-align: justify;
+    color: black;
+    width: 700px;
+    /* Asegura que el ancho sea igual al del contenedor */
+    margin: 1rem auto;
+    /* Centra la publicación horizontalmente */
+    border-radius: 0.5rem;
+    padding: 0.25rem 0;
+    cursor: pointer;
+}
+
+
+
+/* REGISTER */
+.register {
+    background-color: #dadeeb;
+    font-family: 'zodiak', zodiak;
+    margin-top: 70px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .register .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .register input {
+    padding: 10px;
+    width: 97%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    text-align: left;
+  }
+  
+  .register button {
+    font-family: 'zodiak', zodiak;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #141414;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .register button:hover {
+    
+    background-color: #8887c5;
+    color: black
+  }
+  
