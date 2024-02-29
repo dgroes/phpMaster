@@ -18,3 +18,34 @@
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+ function calcularAspectRatio($url) {
+     // Descargar la imagen desde la URL
+     $imagen = file_get_contents($url);
+ 
+     // Crear un recurso de imagen desde la URL
+     $imagenResource = imagecreatefromstring($imagen);
+ 
+     // Obtener el ancho y alto de la imagen
+     $ancho = imagesx($imagenResource);
+     $alto = imagesy($imagenResource);
+ 
+     // Calcular el aspect ratio
+     $aspectRatio = $ancho / $alto;
+ 
+     // Devolver el aspect ratio
+     return $aspectRatio;
+ }
+ 
+ // URL de ejemplo
+ $urlEjemplo = 'https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png';
+ 
+ // Calcular el aspect ratio
+ $aspectRatio = calcularAspectRatio($urlEjemplo);
+ 
+ // Imprimir el resultado
+ echo 'El aspect ratio de la imagen es: ' . $aspectRatio;
+ 
+ ?>
+ 
