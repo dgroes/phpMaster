@@ -1,6 +1,6 @@
 <?php require_once 'includes/header.php' ?>
 
-<form class="register" method="POST" action="controllers/authController.php">
+<form class="register" method="POST" action="controllers/registerController.php">
     <h2>Registrarse</h2>
     <div class="input-group">
         <label for="nombre">Nombre de usuario</label>
