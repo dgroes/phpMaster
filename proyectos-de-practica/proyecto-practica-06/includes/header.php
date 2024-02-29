@@ -1,3 +1,6 @@
+<?php require_once 'config/conection.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,22 +18,21 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
 
 </head>
 
 <body>
-    <!-- Here is our main header that is used across all the pages of our website -->
-
     <header>
         <h1>Cirice</h1>
         <nav>
             <a href="index.php">Home</a>
             <a href="register.php">Registrarse</a>
             <a href="login.php">Inicar Sesión</a>
-            <!-- A Search form is another common non-linear way to navigate through a website. -->
+            <?php if (isset($_SESSION['usuario'])) : ?>
+                <?= $_SESSION['usuario']['nombre']; ?>
+            <?php endif; ?>
 
             <form>
                 <input type="search" name="q" placeholder="Search query" />
@@ -39,7 +41,4 @@
         </nav>
     </header>
 
-
-
-    <!-- Here is our page's main content -->
     <section class="container">
