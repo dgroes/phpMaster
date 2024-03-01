@@ -9,6 +9,20 @@ if (isset($_POST)) {
         unset($_SESSION['error_login']);
     }
 
+
+    // Verificar si el formulario se ha enviado
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        // Verificar si los campos están vacíos
+        if (empty($_POST['email']) || empty($_POST['password'])) {
+            $alerta = "Por favor, completa todos los campos.";
+        } else {
+            // Si los campos no están vacíos, proceder con el procesamiento del formulario
+            // Tu código de procesamiento aquí...
+        }
+    }
+
+
     // Recoger datos del formulario
     $email = trim($_POST['email']);
     $password = $_POST['password'];

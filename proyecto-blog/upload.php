@@ -22,7 +22,7 @@ if (isset($_POST)) {
         $nombre_validado = true;
     } else {
         $nombre_validado = false;
-        $errores['nombre'] = "El nombre no es validos";
+        $errores['nombre'] = "El nombre no es valido";
     }
 
     //Validar Email
@@ -42,32 +42,42 @@ if (isset($_POST)) {
         $errores['password'] = "La contraseña está vacía.";
     }
 
-
     // Procesar la foto de perfil
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        // Ruta donde se almacenará la foto
-        $upload_directory = 'images/users/';
+        // Obtener información sobre el archivo
+        $image_info = getimagesize($_FILES['foto']['tmp_name']);
 
-        // Obtener el nombre y la extensión del archivo
-        $filename = $_FILES['foto']['name'];
-        $tmp_name = $_FILES['foto']['tmp_name'];
-        $file_extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        // Verificar si el archivo es una imagen
+        if ($image_info !== false) {
+            // El archivo es una imagen, puedes continuar con el procesamiento
+            // Ruta donde se almacenará la foto
+            $upload_directory = 'images/users/';
 
-        // Generar un nombre único para el archivo
-        $unique_filename = uniqid('profile_') . '.' . $file_extension;
+            // Obtener el nombre y la extensión del archivo
+            $filename = $_FILES['foto']['name'];
+            $tmp_name = $_FILES['foto']['tmp_name'];
+            $file_extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-        // Mover el archivo al directorio de destino
-        if (move_uploaded_file($tmp_name, $upload_directory . $unique_filename)) {
-            // La foto se cargó exitosamente, ahora puedes almacenar la ruta en la base de datos
-            $foto = $upload_directory . $unique_filename;
+            // Generar un nombre único para el archivo
+            $unique_filename = uniqid('profile_') . '.' . $file_extension;
+
+            // Mover el archivo al directorio de destino
+            if (move_uploaded_file($tmp_name, $upload_directory . $unique_filename)) {
+                // La foto se cargó exitosamente, ahora puedes almacenar la ruta en la base de datos
+                $foto = $upload_directory . $unique_filename;
+            } else {
+                // Ocurrió un error al mover el archivo
+                $errores['foto'] = "Error al cargar la foto de perfil.";
+            }
         } else {
-            // Ocurrió un error al mover el archivo
-            $errores['foto'] = "Error al cargar la foto de perfil.";
+            // El archivo no es una imagen
+            $errores['foto'] = "El archivo seleccionado no es una imagen válida.";
         }
     } else {
-        // El usuario no envió una foto de perfil
-        $errores['foto'] = "Debe seleccionar una foto de perfil.";
+        // El usuario no seleccionó ningún archivo o ocurrió un error al subirlo
+        $errores['foto'] = "Debe seleccionar una imagen de perfil.";
     }
+
 
 
     //Guardar Usuario en la BD.

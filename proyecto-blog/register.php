@@ -1,6 +1,7 @@
 <?php
 require_once 'config/conexion.php';
 require_once 'includes/header.php';
+require_once 'helpers.php';
 
 /* INICIALIZAR VARIABLES DE ERRORES */
 $errores = array();
@@ -17,6 +18,7 @@ $errores = array();
 
         <div class=" formulario_bloque">
             <input type="text" name="nombre" placeholder="Nombre de usuario">
+            <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'nombre') : ''; ?>
         </div>
 
         <div class="formulario_bloque">
@@ -39,6 +41,7 @@ $errores = array();
         </div>
 
     </form>
+    <?php borrarErrores(); ?>
 
 </article>
 

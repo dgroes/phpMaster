@@ -23,9 +23,12 @@
                 <a href="post.php" class="nav-link">Crear Post</a>
                 <a href="configuracion.php" class="nav-link">Configuración</a>
                 <a href="logout.php" class="nav-link">Cerrar Sesión</a>
-                <?php if(isset($_SESSION['usuario']['nombre'])) : ?>
-                    <span class="nav-link"><?= $_SESSION['usuario']['nombre']; ?></span>
-                <?php endif; ?>
+                <!-- <?php if (isset($_SESSION['usuario']['nombre'])) : ?>
+                    <div class="usuario-info">
+                        <span class="nav-link"><?= $_SESSION['usuario']['nombre']; ?></span>
+                        <img src="<?= $_SESSION['usuario']['foto']; ?>" alt="Foto de perfil" class="perfil-img">
+                    </div>
+                <?php endif; ?> -->
             <?php else : ?>
                 <a href="login.php" class="nav-link">Iniciar Sesión</a>
             <?php endif; ?>
