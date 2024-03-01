@@ -1,4 +1,4 @@
-<?php require_once 'includes/conexion.php' ?>
+<?php require_once  'includes/conexion.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -27,20 +27,26 @@
         <h1>Eventos X</h1>
         <nav>
             <a href="index.php">Home</a>
-            <a href="registro.php">Registrarse</a>
-            <a href="login.php">Inicar Sesión</a>
-            <a href="#">Crear Evento</a>
-            <a href="#">Invitaciones</a>
-            <a href="#">Calendario</a>
-        </nav>
-        <?php if (isset($_SESSION['usuario'])) : ?>
-            <p>hola<?= $_SESSION['usuario']['nombre'];?></p>
-            <a href="../logout.php" class="">Cerrar Sesión</a>
+            <?php if(!isset($_SESSION['usuario'])):?>
+            <a href="?page=registro">Registrarse</a>
+            <a href="?page=login">Inicar Sesión</a>
+            <?php endif; ?>
+            
+            
+            <?php if (isset($_SESSION['usuario'])) : ?>
+                <a href="?page=calendario">Calendario</a>
+                <a href="?page=crear_evento">Crear Evento</a>
+                <a href="?page=notificaciones">Invitaciones</a>
+                <a href="?page=perfil">Perfil</a>
+                <a href="?page=logout" class="">Cerrar Sesión</a>
+                <p>hola<?= $_SESSION['usuario']['nombre']; ?></p>
 
-        <?php endif; ?>
+            <?php endif; ?>
+
+        </nav>
+
+
 
     </header>
     <section class="container">
-        <?php var_dump($_SESSION) ?>
-
-        
+      
