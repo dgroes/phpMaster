@@ -1,3 +1,4 @@
+</section>
 </body>
 
 <footer>
