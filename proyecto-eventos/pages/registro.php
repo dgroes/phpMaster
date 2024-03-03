@@ -14,9 +14,9 @@
 
     <div class="input-group">
         <label for="contrasena">Contraseña</label>
-        <input type="contrasena" name="contrasena" id="contrasena">
+        <input type="password" name="contrasena" id="contrasena">
     </div>
-
+    
 
 
     <button type="submit">Iniciar</button>
