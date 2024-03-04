@@ -58,7 +58,9 @@ if (isset($_POST)) {
 
     } else {
         $_SESSION['errores'] = $errores;
-        header('Location: index.php');
+        header('Location:  ../?page=registro');
+        exit();
     }
 }
 header('Location: ../index.php');
+exit();
