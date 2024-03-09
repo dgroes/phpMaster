@@ -20,7 +20,7 @@ if (isset($_POST)) {
         $nombre_validado = true;
     } else {
         $nombre_validado = false;
-        $errores['nombre'] = "El Nombre No Es Valido";
+        $errores['nombre'] = "El nombre no es válido" ;
     }
 
     //Validación Email:
@@ -28,7 +28,7 @@ if (isset($_POST)) {
         $email_validado = true;
     } else {
         $email_validado = false;
-        $errores['email'] = "El Email Está Vacío";
+        $errores['email'] = "El email no es válido";
     }
 
     //Validación de Contraseña:
@@ -36,7 +36,7 @@ if (isset($_POST)) {
         $contrasena_valido = true;
     } else {
         $contrasena_valido = false;
-        $erores['contrasena'] = "La Contraseña Está Vacía";
+        $errores['contrasena'] = "La contraseña está vacía";
     }
 
     //Registrar el Usuario en la BD:
