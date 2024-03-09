@@ -1,84 +1,106 @@
+::selection {
+  background-color: #45adaa; /* Cambia el color de fondo del texto seleccionado */
+  color: black; /* Cambia el color del texto seleccionado */
+}
+
+
 body {
-    margin: 0;
-    background-color: #f3f6ff;
+  margin: 0;
+  background-color: #f3f6ff;
 }
 
 .cabecera {
-    color: #f3f6ff;
-    background-color: #221e30;
-    font-family: "DM Serif Display", serif;
-    padding: 1rem;
+  color: #f3f6ff;
+  background-color: #221e30;
+  font-family: "DM Serif Display", serif;
+  padding: 1rem;
 }
 
 .cabecera nav a {
-    transition: color 0.3s ease;
-    color: #f3f6ff;
-    text-decoration: none;
-    padding-right: 12px;
+  transition: color 0.3s ease;
+  color: #f3f6ff;
+  text-decoration: none;
+  padding-right: 12px;
 }
 
 .cabecera nav a:hover {
-    color: #ed9cc2;
-    font-weight: 900;
+  color: #ed9cc2;
+  font-weight: 900;
 }
 
 .container {
-    width: 86%;
-    margin: 0 auto;
-    /* Centra el contenedor horizontalmente */
-  }
+  width: 86%;
+  margin: 0 auto;
+  /* Centra el contenedor horizontalmente */
+}
 
 
 
 /* REGISTER */
 .register {
-    background-color: #dadeeb;
-    font-family: 'zodiak', zodiak;
-    margin-top: 70px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .register h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .register .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .register input {
-    padding: 10px;
-    width: 97%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .register label {
-    display: block;
-    margin-bottom: 5px;
-    color: #666;
-    text-align: left;
-  }
-  
-  .register button {
-    font-family: 'zodiak', zodiak;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    background-color: #141414;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 800;
-  }
-  
-  .register button:hover {
-    font-weight: 800;
-    background-color: #5fb5be;
-    color: black
-  }
+  background-color: #dadeeb;
+  font-family: 'zodiak', zodiak;
+  margin-top: 70px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h2 {
+  font-family: "DM Serif Display", serif;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.register .input-group {
+  margin-bottom: 15px;
+}
+
+.register input {
+  font-family: "DM Serif Display", serif;
+  padding: 10px;
+  width: 97%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register label {
+  font-family: "DM Serif Display", serif;
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+  text-align: left;
+}
+
+.register button {
+  font-family: 'zodiak', zodiak;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #141414;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 800;
+}
+
+.register button:hover {
+  font-weight: 800;
+  background-color: #5fb5be;
+  color: black
+}
+
+/*  _ALERTAS_ */
+
+.alerta-error {
+  color: #f3f6ff;
+  background-color: #ed9cc2;
+  border-radius: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 5px;
+  font-weight: 800;
+  padding-left: 10px;
+}
