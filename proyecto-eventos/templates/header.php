@@ -1,4 +1,5 @@
 <?php require_once  'includes/conexion.php'; ?>
+<?php require_once  'includes/funciones.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
