@@ -62,5 +62,6 @@ if (isset($_POST)) {
         exit();
     }
 }
-header('Location: ../index.php');
+// header('Location: ../index.php');
+header('Location: ../?page=login');
 exit();
