@@ -23,6 +23,6 @@
         <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'contrasena') : ''; ?>
     </div>
 
-    <button type="submit">Iniciar</button>
+    <button type="submit">Registrar</button>
     <?php borrarErrores(); ?>
 </form>
