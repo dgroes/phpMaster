@@ -1,6 +1,8 @@
 ::selection {
-  background-color: #45adaa; /* Cambia el color de fondo del texto seleccionado */
-  color: black; /* Cambia el color del texto seleccionado */
+  background-color: #45adaa;
+  /* Cambia el color de fondo del texto seleccionado */
+  color: black;
+  /* Cambia el color del texto seleccionado */
 }
 
 
@@ -51,6 +53,7 @@ body {
   font-family: "DM Serif Display", serif;
   margin-bottom: 20px;
   color: #333;
+  font-size: 30px;
 }
 
 .register .input-group {
@@ -66,11 +69,13 @@ body {
 }
 
 .register label {
-  font-family: "DM Serif Display", serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   display: block;
   margin-bottom: 5px;
   color: #666;
   text-align: left;
+  font-size: 18px;
 }
 
 .register button {
@@ -84,12 +89,14 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: 800;
+  font-size: 19px;
 }
 
 .register button:hover {
   font-weight: 800;
   background-color: #5fb5be;
-  color: black
+  color: black;
+  /* font-size: 30px; */
 }
 
 /*  _ALERTAS_ */
