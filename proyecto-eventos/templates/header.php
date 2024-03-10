@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -28,12 +32,12 @@
         <h1>Eventos X</h1>
         <nav>
             <a href="index.php">Home</a>
-            <?php if(!isset($_SESSION['usuario'])):?>
-            <a href="?page=registro">Registrarse</a>
-            <a href="?page=login">Inicar Sesión</a>
+            <?php if (!isset($_SESSION['usuario'])) : ?>
+                <a href="?page=registro">Registrarse</a>
+                <a href="?page=login">Inicar Sesión</a>
             <?php endif; ?>
-            
-            
+
+
             <?php if (isset($_SESSION['usuario'])) : ?>
                 <a href="?page=calendario">Calendario</a>
                 <a href="?page=crear_evento">Crear Evento</a>
@@ -50,4 +54,3 @@
 
     </header>
     <section class="container">
-      
