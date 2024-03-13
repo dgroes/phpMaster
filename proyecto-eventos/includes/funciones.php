@@ -17,5 +17,15 @@ function borrarErrores()
         $borrado = true;
     }
 
+    if (isset($_SESSION['error_login'])) {
+		$_SESSION['error_login'] = null;
+		$borrado = true;
+	}
+
+    if (isset($_SESSION['completado'])) {
+		$_SESSION['completado'] = null;
+		$borrado = true;
+	}
+
     return $borrado;
 }
