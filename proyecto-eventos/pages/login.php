@@ -11,9 +11,12 @@
     <div class="input-group">
         <label for="contrasena">Contraseña</label>
         <input type="password" name="contrasena" id="contrasena">
+        <?php if (isset($_SESSION['error_login'])) : ?>
+            <div class="alerta alerta-error">
+                <?= $_SESSION['error_login']; ?>
+            </div>
+        <?php endif; ?>
     </div>
-
-
-
     <button type="submit">Iniciar</button>
+    <?php borrarErrores(); ?>
 </form>
