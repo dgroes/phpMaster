@@ -40,10 +40,13 @@ if (isset($_POST)) {
 
         if ($isset_user['id'] == $usuario['id'] || empty($isset_user)) {
 
+            // Convertir el nombre del usuario para que cada palabra comience con mayúscula
+            $nombre = ucwords(strtolower($nombre));
+
             //Actualizar el usuario con los nuevos datos en la BD:
             $sql = "UPDATE usuarios SET " .
                 "nombre = '$nombre', " .
-                "email = '$email' " .
+                "email = LOWER('$email') " .
                 "WHERE id = " . $usuario['id'];
             $guardar = mysqli_query($db, $sql);
 
