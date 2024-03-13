@@ -47,8 +47,11 @@ if (isset($_POST)) {
         //Cifrar la Contraseña:
         $contrasena_segura = password_hash($contrasena, PASSWORD_BCRYPT, ['cost' => 5]);
 
+        // Convertir el nombre del usuario para que cada palabra comience con mayúscula
+        $nombre = ucwords(strtolower($nombre));
+
         //Insertar los Datos Validados en la BD:
-        $sql = "INSERT INTO usuarios VALUES(null, '$nombre', '$email', '$contrasena_segura', CURDATE());";
+        $sql = "INSERT INTO usuarios VALUES(null, '$nombre', LOWER('$email'), '$contrasena_segura', CURDATE());";
         $guardar = mysqli_query($db, $sql);
         if ($guardar) {
             $_SESSION['completado'] = "El registro se ha completado con exito";
@@ -63,5 +66,5 @@ if (isset($_POST)) {
     }
 }
 // header('Location: ../index.php');
-header('Location: ../?page=login');
+header('Location: ../?page=registro');
 exit();
