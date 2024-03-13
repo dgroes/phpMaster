@@ -47,44 +47,60 @@ body {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 70px;
 }
 
-.register h2 {
+.register-evento {
+  background-color: #a0a5d6;
+  font-family: 'zodiak', zodiak;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h2, .register-evento h2 {
   font-family: "DM Serif Display", serif;
   margin-bottom: 20px;
   color: #333;
   font-size: 30px;
 }
 
-.register .input-group {
+.register .input-group, .register-evento .input-group {
   margin-bottom: 15px;
 }
 
-.register input {
-  font-family: "DM Serif Display", serif;
+.register input, .register-evento input {
+  font-family: "Source Code Pro", monospace;
+  color: #333;
+  font-weight: 600;
+  font-size: 17px;
   padding: 10px;
   width: 97%;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.register label {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+.register label, .register-evento label {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 600;
   display: block;
   margin-bottom: 5px;
-  color: #666;
+  color: #333;
   text-align: left;
-  font-size: 18px;
+  font-size: 20px;
 }
 
-.register button {
-  font-family: 'zodiak', zodiak;
+.register button, .register-evento button {
+  font-family: "DM Serif Display", serif;
   padding: 10px;
   width: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #141414;
+  /* background-color: #141414; */
+  background-color: #221e30;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -92,22 +108,43 @@ body {
   font-size: 19px;
 }
 
-.register button:hover {
+.register button:hover, .register-evento button:hover {
   font-weight: 800;
   background-color: #5fb5be;
   color: black;
+  border: 1px solid #41929b;
   /* font-size: 30px; */
 }
 
 /*  _ALERTAS_ */
 
 .alerta-error {
+  font-family: "Source Code Pro", monospace;
   color: #f3f6ff;
   background-color: #ed9cc2;
+  width: 98%;
   border-radius: 8px;
   padding-top: 4px;
   padding-bottom: 4px;
   margin-top: 5px;
   font-weight: 800;
+  font-size: 17px;
   padding-left: 10px;
+  border: 1px solid #eb79ae;
+}
+
+.alerta-exito {
+  font-family: "Source Code Pro", monospace;
+  color: #221e30;
+  background-color: #67ccaa;
+  width: 98%;
+  border-radius: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 20px;
+  padding-left: 10px;
+  border: 1px solid #47a888;
 }
