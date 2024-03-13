@@ -30,10 +30,14 @@ if (isset($_POST)) {
             $_SESSION['usuario'] = $usuario;
         } else {
             $_SESSION['error_login'] = "Login incorrecto!";
+            header('Location:  ../?page=login');
+            exit();
         }
     } else {
         //Mensaje de error
         $_SESSION['error_login'] = "Login Incorrecto!";
+        header('Location:  ../?page=login');
+        exit();
     }
 }
 

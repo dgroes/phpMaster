@@ -18,7 +18,7 @@ if (isset($_POST)) {
         $titulo_validado = true;
     } else {
         $titulo_validado = false;
-        $errores['titulo'] = "El Nombre Del Titulo No Es Valido";
+        $errores['titulo'] = "El nombre de titulo está vacío";
     }
 
     //Validación de la Descripción
@@ -26,7 +26,7 @@ if (isset($_POST)) {
         $descripcion_valido = true;
     } else {
         $descripcion_valido = false;
-        $errores['descripcion'] = "La Descripción Del Evento No Es Valido";
+        $errores['descripcion'] = "La descripción del evento está vacía";
     }
 
     //Validación de Fecha:
@@ -47,7 +47,7 @@ if (isset($_POST)) {
         }
     } else {
         $fecha_valido = false;
-        $errores['fecha'] = "La Fecha Del Evento No Es Valdia";
+        $errores['fecha'] = "La fecha del evento no es valida";
     }
 
     //Validación de Hora:
@@ -55,7 +55,7 @@ if (isset($_POST)) {
         $hora_valido = true;
     } else {
         $hora_valido = false;
-        $errores['hora'] = "La Hora no es valida";
+        $errores['hora'] = "La hora del evento está vacía";
     }
 
     //Validación de Ubicación:
@@ -63,7 +63,7 @@ if (isset($_POST)) {
         $ubicacion_valido = true;
     } else {
         $ubicacion_valido = false;
-        $errores['ubicacion'] = "La ubicación ingresada no es valida";
+        $errores['ubicacion'] = "La ubicación del evento está vacía";
     }
 
     //Insertar en la BD:
@@ -78,9 +78,13 @@ if (isset($_POST)) {
             exit; // Salir del script después de la redirección
         } else {
             $_SESSION['errores']['evento'] = "Fallo al guardar el evento";
+            header('Location:  ../?page=crear_evento');
+            exit();
         }
     } else {
         $_SESSION['errores'] = $errores;
+        header('Location:  ../?page=crear_evento');
+        exit();
     }
 }
 
@@ -90,4 +94,3 @@ if ($_GET['page'] != 'crear_evento') {
     header('Location: ?page=crear_evento');
     exit; // Salir del script después de la redirección
 }
-?>
