@@ -23,6 +23,12 @@
         <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'contrasena') : ''; ?>
     </div>
 
+    <?php if (isset($_SESSION['completado'])) : ?>
+        <div class="alerta-exito">
+            <?= $_SESSION['completado'] ?>
+        </div>
+    <?php endif; ?>
+
     <button type="submit">Registrar</button>
     <?php borrarErrores(); ?>
 </form>
