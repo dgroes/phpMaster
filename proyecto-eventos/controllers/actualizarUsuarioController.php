@@ -16,7 +16,7 @@ if (isset($_POST)) {
         $nombre_validado = true;
     } else {
         $nombre_validado = false;
-        $errores['Nombre'] = "El nombre no es válido";
+        $errores['editar_nombre'] = "El nombre no es válido";
     }
 
     //Validar el Email:
@@ -24,7 +24,7 @@ if (isset($_POST)) {
         $email_validado = true;
     } else {
         $email_validado = false;
-        $errores['email'] = "El email no es válido";
+        $errores['editar_email'] = "El email no es válido";
     }
 
     $guardar_usuario = false;
