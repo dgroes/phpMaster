@@ -148,3 +148,13 @@ body {
   padding-left: 10px;
   border: 1px solid #47a888;
 }
+
+
+.calendario {
+  font-family: "Source Code Pro", monospace;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #403a52;
+  color: #ed9cc2;
+  border-radius: 12px;
+}
