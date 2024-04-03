@@ -33,7 +33,11 @@ function borrarErrores()
 function conseguirEventos($conexion) {
     // Ejecutar la consulta SQL
     // $sql = "SELECT id, titulo, descripcion, CONCAT(fecha, ' ', hora) AS datetime, ubicacion, organizador_id FROM eventos";
-    $sql = "SELECT * FROM eventos";
+    // $sql = "SELECT * FROM eventos";
+    $sql = "SELECT e.id as id, e.titulo as titulo, e.descripcion as descripcion, e.fecha as fecha, e.hora as hora, e.ubicacion as ubicacion, u.nombre AS organizador 
+        FROM eventos e
+        INNER JOIN usuarios u ON e.organizador_id = u.id";
+
     $eventos = mysqli_query($conexion, $sql);
 
     
