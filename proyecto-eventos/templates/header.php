@@ -55,7 +55,7 @@
             <?php if (isset($_SESSION['usuario'])) : ?>
                 <a href="?page=calendario">Calendario</a>
                 <a href="?page=crear_evento">Crear Evento</a>
-                <a href="?page=notificaciones">Invitaciones</a>
+                <a href="?page=invitar_usuarios">Invitaciones</a>
                 <a href="?page=perfil">Perfil</a>
                 <a href="?page=logout" class="">Cerrar Sesión</a>
                 <p>hola<?= $_SESSION['usuario']['nombre']; ?></p>
