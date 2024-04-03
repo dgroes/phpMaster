@@ -38,7 +38,7 @@ body {
 
 
 
-/* REGISTER */
+/* REGISTER EVENTO*/
 .register {
   background-color: #dadeeb;
   font-family: 'zodiak', zodiak;
@@ -61,18 +61,34 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.register h2, .register-evento h2 {
+.register-invitaciones {
+  background-color: #4d9e7f;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h2,
+.register-evento h2,
+.register-invitaciones h2 {
   font-family: "DM Serif Display", serif;
   margin-bottom: 20px;
   color: #333;
   font-size: 30px;
 }
 
-.register .input-group, .register-evento .input-group {
+.register .input-group,
+.register-evento .input-group,
+.register-invitaciones .input-group {
   margin-bottom: 15px;
 }
 
-.register input, .register-evento input {
+.register input,
+.register-evento input,
+.register-invitaciones input {
   font-family: "Source Code Pro", monospace;
   color: #333;
   font-weight: 600;
@@ -83,7 +99,9 @@ body {
   border-radius: 5px;
 }
 
-.register label, .register-evento label {
+.register label,
+.register-evento label,
+.register-invitaciones label {
   font-family: "Source Code Pro", monospace;
   font-weight: 600;
   display: block;
@@ -93,7 +111,9 @@ body {
   font-size: 20px;
 }
 
-.register button, .register-evento button {
+.register button,
+.register-evento button,
+.register-invitaciones button {
   font-family: "DM Serif Display", serif;
   padding: 10px;
   width: 100%;
@@ -108,13 +128,56 @@ body {
   font-size: 19px;
 }
 
-.register button:hover, .register-evento button:hover {
+.register button:hover,
+.register-evento button:hover,
+.register-invitaciones button:hover {
   font-weight: 800;
   background-color: #5fb5be;
   color: black;
   border: 1px solid #41929b;
   /* font-size: 30px; */
 }
+
+
+/* _ELEMENTOS DEL REGISTRO DE INVITACIONES_ */
+
+.register-invitaciones .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.register-invitaciones .select-wrapper {
+  width: calc(50% - 10px);
+  /* Calcula el ancho de la mitad del contenedor, restando el margen */
+  margin-bottom: 20px;
+}
+
+.register-invitaciones .select-wrapper:last-child {
+  margin-right: 0;
+  /* Elimina el margen del último select para evitar un espacio extra */
+}
+
+.register-invitaciones select {
+  font-family: "Source Code Pro", monospace;
+  font-size: 17px;
+  font-weight: 600;
+  height: 45px;
+  width: 320px;
+  border-radius: 5px;
+}
+
+.register-invitaciones select:hover {
+  border: 2px solid #ed9cc2;
+}
+
+.register-invitaciones select option {
+  color: rgb(44, 43, 43);
+  background-color: #f3f3f3;
+}
+
+
 
 /*  _ALERTAS_ */
 
@@ -157,4 +220,69 @@ body {
   background-color: #403a52;
   color: #ed9cc2;
   border-radius: 12px;
+}
+
+
+
+/* _ESTILOS DEL MODAL DEL CALENDARIO_ */
+/* Estilos para el modal */
+.modal {
+  display: none;
+  /* Ocultar el modal por defecto */
+  position: fixed;
+  /* Posición fija para que el modal permanezca en la misma posición cuando se desplaza la página */
+  z-index: 1;
+  /* Posición del modal sobre el resto del contenido */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-color: #221e30;
+  overflow: auto;
+  /* Permite desplazarse dentro del modal si el contenido es demasiado grande para caber en la pantalla */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo oscuro semitransparente */
+}
+
+/* Estilos para el contenido del modal */
+.modal-content {
+  border-radius: 10px;
+  font-family: "Source Code Pro", monospace;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #a0a5d6;
+  /* Fondo blanco */
+  color: #221e30;
+  margin: 15% auto;
+  /* Margen superior e inferior para centrar verticalmente el contenido */
+  padding: 20px;
+  border: 1px solid #221e30;
+  width: 80%;
+  /* Ancho del modal */
+  max-width: 600px;
+  /* Ancho máximo del modal */
+}
+
+.modal-content #eventoTitulo {
+  font-family: "DM Serif Display", serif;
+}
+
+.modal-content #eventosSeparador {
+  border: 1px solid black;
+  width: 100%;
+}
+
+/* Estilos para el botón de cerrar */
+.close {
+  color: #403a52;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
