@@ -14,12 +14,12 @@ while ($evento = mysqli_fetch_assoc($eventos)) {
     $eventos_json[] = array(
         'id' => $evento['id'],
         'title' => $evento['titulo'],
-        'description' => $evento['descripcion'],
+        'descripcion' => $evento['descripcion'],
         // 'datetime' => $evento['datetime'],
         'date' => $evento['fecha'],
         'time' => $evento['hora'],
         'location' => $evento['ubicacion'],
-        'organizer_id' => $evento['organizador_id']
+        'organizer' => $evento['organizador']
     );
 }
 
