@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOMContentLoaded: El contenido ha sido cargado');
 
+  // Obtener referencia al elemento del calendario
   var calendarEl = document.getElementById('calendar');
-  console.log('calendarEl:', calendarEl); // Verifica si calendarEl está obteniendo el elemento correctamente
+  console.log('calendarEl:', calendarEl); // Verificar si calendarEl está obteniendo el elemento correctamente
 
+  // Crear instancia de FullCalendar
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     locale: "es",
@@ -16,44 +18,43 @@ document.addEventListener('DOMContentLoaded', function () {
       url: 'controllers/calendarioController.php', // URL para obtener los eventos en formato JSON
       method: 'GET' // Método de solicitud HTTP
     },
-    eventColor: '#a0a5d6',
-    eventTextColor: '#191624',
+    eventColor: '#a0a5d6', // Cambiar color de fondo de los eventos
+    eventTextColor: '#191624', // Cambiar color del texto de los eventos
     eventClick: function (info) {
-      // Aquí puedes acceder a los datos del evento haciendo referencia a 'info.event'
-      // Por ejemplo, para mostrar el título del evento en un modal
-      alert('Título del evento: ' + info.event.title);
-
-      // Si prefieres mostrar los detalles del evento en otro elemento de la página, puedes hacer algo como:
-      // document.getElementById('detalleEvento').innerHTML = 'Título: ' + info.event.title + ', Descripción: ' + info.event.extendedProps.descripcion;
-    }
-
-  });
-
-  console.log('calendar:', calendar); // Verifica si la instancia de FullCalendar se está creando correctamente
-
-  // Agregar un listener para el evento 'loading'
-  calendar.on('loading', function (isLoading) {
-    if (isLoading) {
-      console.log('Cargando eventos...');
-    } else {
-      console.log('Eventos cargados.');
+      // Mostrar detalles del evento en un modal al hacer clic en él
+      mostrarModal(info.event);
     }
   });
 
-  // Agregar un listener para el evento 'eventDataTransform'
-  calendar.on('eventDataTransform', function (data) {
-    console.log('Datos transformados:', data);
-  });
+  console.log('calendar:', calendar); // Verificar si la instancia de FullCalendar se está creando correctamente
 
-  // Agregar un listener para el evento 'eventDidMount'
-  calendar.on('eventDidMount', function (info) {
-    console.log('Evento montado:', info.event);
-  });
-
-  // Agregar un listener para el evento 'eventRender'
-  calendar.on('eventRender', function (info) {
-    console.log('Evento renderizado:', info.event);
-  });
-
+  // Agregar el calendario al DOM
   calendar.render();
+
+  // Función para mostrar modal con detalles del evento
+  function mostrarModal(evento) {
+    var modal = document.getElementById('eventoModal');
+    modal.style.display = 'block';
+
+    // Rellenar el modal con los detalles del evento   evento.extendedProps.time;
+    document.getElementById('eventoTitulo').innerText = evento.title;
+    document.getElementById('eventoDescripcion').innerText = evento.extendedProps.descripcion;
+    document.getElementById('eventoFecha').innerText = 'Fecha: ' + evento.start.toLocaleDateString();
+    document.getElementById('eventoHora').innerText = 'Hora: ' + evento.extendedProps.time;
+    document.getElementById('eventoUbicacion').innerText = 'Ubicación: ' + evento.extendedProps.location;
+    document.getElementById('eventoOrganizador').innerText = 'Organizador: ' + evento.extendedProps.organizer;
+
+    // Cerrar el modal cuando se hace clic en el botón de cerrar
+    var closeBtn = document.getElementsByClassName('close')[0];
+    closeBtn.onclick = function () {
+      modal.style.display = 'none';
+    }
+
+    // Cerrar el modal cuando se hace clic fuera de él
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  }
 });
