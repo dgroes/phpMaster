@@ -1,9 +1,9 @@
-# UniFile
+# UniFile 📁
 
 ## Tema del Proyecto:
 Desarrollo de un Sistema de Gestión de Archivos para la Universidad XYZ.
 
-## Objetivo:
+## Objetivo: 🎯
 Crear una plataforma web segura y fácil de usar que permita a los usuarios cargar, descargar, organizar y compartir archivos de manera eficiente.
 
 ## Requisitos Funcionales:
