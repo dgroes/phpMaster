@@ -1,11 +1,11 @@
 <section>
-    <span class="sub_titulo">Únete a los más de 700 millones de usuarios registrados que confían en Unifile</span>
+    <span class="titulo">Únete a los más de 700 millones de usuarios registrados que confían en Unifile</span>
     <p class="parrafo">
         Fácil de utilizar, confiable, privado y seguro. No es de extrañar que Unifile sea la elección para almacenar y compartir tus archivos más importantes.
         <br>
         Nuestro <ins>Sistema de Gestión de Archivos </ins>es una plataforma web diseñada para ofrecer una solución completa y segura para el manejo de archivos en la Universidad XYZ. Con nuestra aplicación, los usuarios pueden cargar, organizar, compartir y colaborar en archivos de manera eficiente y sin complicaciones.
     </p>
-    <span class="sub_titulo">¿Qué puedes hacer con Unifile?</span>
+    <span class="titulo">¿Qué puedes hacer con Unifile?</span>
     <div class="bordes">
         
         <details>
@@ -38,7 +38,7 @@
     </div>
 
 
-    <span class="sub_titulo">¿Cómo Empezar?</span>
+    <span class="titulo">¿Cómo Empezar?</span>
     <p class="parrafo">
         Si eres nuevo en nuestra plataforma, regístrate ahora para comenzar a disfrutar de todas las funciones que ofrecemos. Si ya tienes una cuenta, ¡inicia sesión y explora todo lo que nuestro Sistema de Gestión de Archivos tiene para ofrecer!
     </p>
