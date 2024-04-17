@@ -1,0 +1,95 @@
+h1 {
+    color: rgb(196, 156, 156);
+}
+.sub_titulo {
+    color: #01aaff;
+    font-size: 42px;
+    font-weight: 700;
+    
+    
+}
+ .parrafo {
+    text-align: justify;
+    padding-top: 20px;
+    padding-bottom: 20px;
+ }
+
+header {
+    background-color: #13171f;
+    border-bottom: 1px solid rgb(30, 30, 41);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+nav {
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+
+section {
+    margin: 0 auto;/* Centra el contenido horizontalmente */
+    max-width: calc(100% - 100px);/* Restringe el ancho máximo del cuerpo, restando los márgenes izquierdo y derecho */
+    padding: 0 60px;/* Añade relleno de 100px a la izquierda y a la derecha */
+    margin-top: 25px;
+}
+details{
+    /* border: 1px solid red; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+   
+    
+}
+hr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+summary {
+    font-size: 20px;
+}
+
+
+summary p {
+    text-align: justify;
+   
+    
+}
+
+.bordes {
+    margin: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    background-color: #202530;
+}
+
+
+.footer {
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Color de fondo del footer */
+    color: #fff;
+    /* Color del texto */
+    padding: 20px 0;
+    /* Espaciado interior */
+    text-align: center;
+    /* Alineación del texto */
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.container {
+    max-width: 1200px;
+    /* Ancho máximo del contenido */
+    margin: 0 auto;
+    /* Centrar el contenido */
+}
