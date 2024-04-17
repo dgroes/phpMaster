@@ -1,18 +1,14 @@
-h1 {
-    color: rgb(196, 156, 156);
-}
-.sub_titulo {
+/* _HEADER_ */
+.titulo{
     color: #01aaff;
     font-size: 42px;
     font-weight: 700;
-    
-    
 }
- .parrafo {
-    text-align: justify;
-    padding-top: 20px;
-    padding-bottom: 20px;
- }
+
+.sub_titulo {
+    color: #01aaff;
+    font-size: 35px;
+}
 
 header {
     background-color: #13171f;
@@ -21,30 +17,87 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Centra verticalmente */
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
+
 nav {
-    margin-left: 25px;
-    margin-right: 25px;
-    text-align: center; /* Centra el texto horizontalmente */
+    text-align: center;
+    /* Centra el texto horizontalmente */
+    display: flex;
+    justify-content: space-between;
+    /* Distribuye los elementos a lo largo del contenedor */
+    align-items: center;
+    /* Centra verticalmente */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
 }
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul:first-child {
+    margin-right: auto;
+    /* Empuja el primer ul (con el título) a la izquierda */
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 15px;
+    /* Espaciado entre elementos del menú */
+}
+
+.title {
+    padding-left: 95px;
+    font-size: 30px;
+}
+
+.enlaces, .dropdown {
+    padding-right: 100px;
+}
+
+
+
+
+
+/* _SECTION_ */
+
+.parrafo {
+    text-align: justify;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 
 
 section {
-    margin: 0 auto;/* Centra el contenido horizontalmente */
-    max-width: calc(100% - 100px);/* Restringe el ancho máximo del cuerpo, restando los márgenes izquierdo y derecho */
-    padding: 0 60px;/* Añade relleno de 100px a la izquierda y a la derecha */
+    margin: 0 auto;
+    /* Centra el contenido horizontalmente */
+    max-width: calc(100% - 100px);
+    /* Restringe el ancho máximo del cuerpo, restando los márgenes izquierdo y derecho */
+    padding: 0 60px;
+    /* Añade relleno de 100px a la izquierda y a la derecha */
     margin-top: 25px;
 }
-details{
+
+.section-login {
+    padding-top: 15vh;
+    padding-bottom: 10%;
+}
+
+details {
     /* border: 1px solid red; */
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 30px;
     padding-bottom: 20px;
-   
-    
+
+
 }
+
 hr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -56,8 +109,8 @@ summary {
 
 summary p {
     text-align: justify;
-   
-    
+
+
 }
 
 .bordes {
@@ -70,6 +123,11 @@ summary p {
     background-color: #202530;
 }
 
+
+
+
+
+/* _FOOTER_ */
 
 .footer {
 
