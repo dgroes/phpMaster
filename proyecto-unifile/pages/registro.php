@@ -1,6 +1,6 @@
 <section class="section-login">
     <h1 class="sub_titulo">Registrarse</h1>
-    <form class="form-login" method="post">
+    <form class="form-login" method="post" action="registroController">
         <fieldset>
             <label>
                 Nombre de usuario
