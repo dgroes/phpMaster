@@ -14,7 +14,7 @@ echo $categoria->nombre;
  */
 
 // ESPACIOS DE NOMBRES Y PAQUETES
-use MisClases\Usuario, MisClases\Categoria, MisClases\Entrada;
+use MisClases\Usuario, MisClases\Categoria, MisClases\Entrada;;
 use PanelAdministrador\Usuario as UsuarioAdmin;
 
 class Principal
