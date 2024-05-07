@@ -14,7 +14,7 @@ echo $categoria->nombre;
  */
 
 // ESPACIOS DE NOMBRES Y PAQUETES
-use MisClases\Usuario, MisClases\Categoria, MisClases\Entrada;;
+use MisClases\Usuario, MisClases\Categoria, MisClases\Entrada;
 use PanelAdministrador\Usuario as UsuarioAdmin;
 
 class Principal
@@ -62,26 +62,29 @@ class Principal
     {
         $this->entrada = $entrada;
     }
+
+   
 }
 
 //Objeto principal
 $principal = new Principal();
-// var_dump($principal->usuario);
+// $principal->informacion();
 
 $metodos = (get_class_methods($principal));
 
 
-$busqueda = array_search('setApellido', $metodos);
+$busqueda = array_search('setUsuario', $metodos);
 
 echo "<pre>";
 var_dump($busqueda);
 echo "</pre>";
 
 //Objeto de otro paquete
-/* $usuario = new UsuarioAdmin();
+$usuario = new UsuarioAdmin();
 
-var_dump($usuario);
- */
+
+// var_dump($usuario); 
+$usuario->informacion();
 
 //__Comprobar si existe una clase__
 $clase = @class_exists("PanelAdministrador\Usuario");
