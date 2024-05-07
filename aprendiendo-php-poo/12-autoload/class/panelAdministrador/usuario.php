@@ -12,4 +12,9 @@ class Usuario
         $this->nombre = "Antonio José De Los Palomares";
         $this->email = "viva-el-vino.com";
     }
+
+    function informacion()
+    {
+        echo __NAMESPACE__;
+    }
 }
