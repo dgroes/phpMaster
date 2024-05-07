@@ -1,0 +1,2 @@
+<?php 
+//Encabezado: Clase Logger Descripción: Crea una clase Logger que registre mensajes de registro en un archivo de registro. Utiliza un destructor para cerrar el archivo de registro al destruir la instancia de la clase. Implementa métodos mágicos para permitir el registro de mensajes utilizando llamadas dinámicas.
