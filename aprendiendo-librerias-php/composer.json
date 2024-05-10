@@ -1,0 +1,8 @@
+{
+    "require": {
+        "spipu/html2pdf": "^4.6",
+        "stefangabos/zebra_pagination": "^2.4",
+        "masterexploder/phpthumb": "^2.1",
+        "firephp/firephp-core": "^0.5.3"
+    }
+}
