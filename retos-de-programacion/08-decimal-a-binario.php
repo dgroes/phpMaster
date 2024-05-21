@@ -20,25 +20,9 @@
  echo decbin(13);
  echo "<br>";
  
- $numero = 13;
- 
- $divisionUno = $numero / 2; // 6.5
- $restoUno = $numero % 2;    // 1
- 
- $divisionDos = $divisionUno / 2; // 3
- $restoDos = $divisionUno % 2;    //0
 
- $divisionTres = $divisionDos / 2;  // 1
- $restoTres = $divisionDos % 2;    //1
-
- $divisionCuatro = $divisionTres / 2;  // 0
- $restoCuatro = $divisionTres % 2;    //1
-
- echo $restoUno . "" . $restoDos . "" . $restoTres . "" . $restoCuatro;
- 
-
- for ($i=$decimal; $i < 0; $i++) { 
+while ($n > 0){
+    $numero = $n % 2;
+    $n = $n / 2;
     
- }
-
-
+}
