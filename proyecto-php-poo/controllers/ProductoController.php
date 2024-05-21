@@ -1,6 +1,6 @@
 <?php
 
-class productoController
+class ProductoController
 {
     public function index()
     {
