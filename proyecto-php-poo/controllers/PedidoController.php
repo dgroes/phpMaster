@@ -1,6 +1,6 @@
 <?php
 
-class pedidoController
+class PedidoController
 {
     public function index()
     {
