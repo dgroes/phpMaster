@@ -24,11 +24,22 @@ a:hover {
 }
 
 .alert_green {
-    color:green;
+    color: green;
 }
 
-.alert_red{
+.alert_red {
     color: red;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+    border: 1px solid #555;
+}
+
+td {
+    border-top: 1px solid #ccc;
+    padding: 2px;
 }
 
 /* __CONTAINER__ */
@@ -209,7 +220,8 @@ input[type="number"]:focus {
 
 input[type="button"],
 input[type="submit"],
-button, .button {
+button,
+.button {
     display: block;
     border-radius: 2px;
     padding: 5px;
@@ -226,6 +238,12 @@ button, .button {
     color: white !important;
     text-decoration: none;
 
+}
+
+.button-small {
+    width: 120px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 label,
