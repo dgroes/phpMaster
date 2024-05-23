@@ -181,6 +181,9 @@ td {
 
 
 /* __FORMULARIOS__ */
+.form_container {
+    width: 50%;
+}
 
 
 label,
@@ -188,7 +191,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
-select {
+select, textarea {
     display: block;
     width: 95%;
     margin-top: 2px;
