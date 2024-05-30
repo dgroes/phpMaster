@@ -12,7 +12,7 @@
             <h2 title="<?= $product->nombre ?>"><?= strlen($product->nombre) > 30 ? substr($product->nombre, 0, 30) . '...' : $product->nombre; ?></h2>
         </a>
         <p><?= $product->precio ?></p>
-        <a href="" class="button">Comprar</a>
+        <a href="<?= base_url ?>carrito/add&id=<?= $product->id ?>" class="button">Comprar</a>
     </div>
 
 <?php endwhile; ?>
