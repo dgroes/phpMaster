@@ -1,6 +1,16 @@
 <!-- BARRA LATERAL -->
 <aside id="lateral">
 
+    <div id="carrito" class="block_aside">
+        <h3>Mi Carrito</h3>
+        <ul>
+            <?php $stats = Utils::statsCarrito(); ?>
+            <li><a href="<?= base_url ?>carrito/index">Productos (<?= $stats['count'] ?>)</a></li>
+            <li><a href="<?= base_url ?>carrito/index">Total: (<?= $stats['total'] ?> CLP)</a></li>
+            <li><a href="<?= base_url ?>carrito/index">Ver el Carrito</a></li>
+        </ul>
+    </div>
+
     <div id="login" class="block_aside">
         <?php if (!isset($_SESSION['identity'])) : ?>
             <h3>Entrar a la web</h3>
@@ -11,7 +21,7 @@
                 <input type="password" name="password" />
                 <input type="submit" value="Enviar" />
             </form>
-            
+
         <?php else : ?>
             <h3><?= $_SESSION['identity']->nombre . " " . $_SESSION['identity']->apellidos ?></h3>
         <?php endif; ?>
@@ -27,7 +37,7 @@
             <?php if (isset($_SESSION['identity'])) : ?>
                 <li><a href="#">Mis Pedidos</a></li>
                 <li><a href="<?= base_url ?>usuario/logout">Cerrar Sesión</a></li>
-            <?php else:?>
+            <?php else : ?>
                 <li><a href="<?= base_url ?>usuario/registro">Registraté Aquí👍</a></li>
             <?php endif; ?>
         </ul>
