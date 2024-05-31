@@ -6,7 +6,7 @@
         <ul>
             <?php $stats = Utils::statsCarrito(); ?>
             <li><a href="<?= base_url ?>carrito/index">Productos (<?= $stats['count'] ?>)</a></li>
-            <li><a href="<?= base_url ?>carrito/index">Total: (<?= $stats['total'] ?> CLP)</a></li>
+            <li><a href="<?= base_url ?>carrito/index">Total: (<?= number_format($stats['total'], 0, ',', '.') ?> CLP)</a></li>
             <li><a href="<?= base_url ?>carrito/index">Ver el Carrito</a></li>
         </ul>
     </div>
@@ -21,21 +21,19 @@
                 <input type="password" name="password" />
                 <input type="submit" value="Enviar" />
             </form>
-
         <?php else : ?>
             <h3><?= $_SESSION['identity']->nombre . " " . $_SESSION['identity']->apellidos ?></h3>
         <?php endif; ?>
 
         <ul>
-
             <?php if (isset($_SESSION['admin'])) : ?>
                 <li><a href="<?= base_url ?>categoria/index">Gestionar Categorias</a></li>
                 <li><a href="<?= base_url ?>producto/gestion">Gestionar Productos</a></li>
-                <li><a href="#">Gestionar Pedidos</a></li>
+                <li><a href="<?= base_url ?>pedido/gestion">Gestionar Pedidos</a></li>
             <?php endif; ?>
 
             <?php if (isset($_SESSION['identity'])) : ?>
-                <li><a href="#">Mis Pedidos</a></li>
+                <li><a href="<?= base_url ?>pedido/mis_pedidos">Mis Pedidos</a></li>
                 <li><a href="<?= base_url ?>usuario/logout">Cerrar Sesión</a></li>
             <?php else : ?>
                 <li><a href="<?= base_url ?>usuario/registro">Registraté Aquí👍</a></li>
