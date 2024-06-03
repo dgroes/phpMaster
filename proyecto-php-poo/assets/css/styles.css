@@ -256,6 +256,11 @@ button,
     margin-bottom: 20px;
 }
 
+.button-red {
+    background: red;
+    border: 1px solid #cf1717;
+}
+
 label,
 input[type="button"],
 input[type="submit"],
@@ -312,7 +317,7 @@ button {
     margin-bottom: 10px;
 }
 
-.img_carrito{
+.img_carrito {
     height: 80px;
     display: block;
     margin: 10px auto;
@@ -364,7 +369,7 @@ button {
     color: #444;
 }
 
-#detail-product .button{
+#detail-product .button {
     width: 200px;
     text-align: center;
 }
@@ -383,6 +388,24 @@ button {
 
 
 /* __CARRITO__ */
+.delete-carrito {
+    width: 295px;
+    float: left;
+}
+
+.button-delete {
+    display: block;
+    float: left;
+    width: 100px;
+}
+
+.button-carrito {
+    width: 70px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+
 
 .total-carrito {
     width: 365px;
@@ -399,4 +422,18 @@ button {
     display: block;
     float: right;
     width: 100px;
+}
+
+
+.updown-unidades{
+    width: 80px;
+    margin: 0px auto;
+}
+
+.updown-unidades .button{
+    display: block;
+    width: 20px;
+    float: left;
+    padding:2px;
+    margin: 7px;
 }
