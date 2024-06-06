@@ -1,0 +1,311 @@
+/* playfair-display-latin-wght-normal */
+@font-face {
+    font-family: 'Playfair Display Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/playfair-display:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* roboto-latin-400-normal */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/roboto@latest/latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.principal_search {
+    width: 150px;
+}
+
+.nav {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.nav h1 {
+    font-family: "Playfair Display Variable";
+}
+
+/* Estilos generales para la página */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 1200px;
+    /* Establece el ancho máximo del contenido */
+    margin: 0 auto;
+    /* Centra el contenido horizontalmente */
+    padding: 0 20px;
+    /* Añade márgenes a los costados del contenido */
+    background-color: #ffffff;
+}
+
+/* Estilos para la lista de categorías */
+.category {
+    text-align: center;
+    /* Centra el contenido horizontalmente */
+
+}
+
+article {
+    background-color: #ffffff;
+}
+
+.category-list {
+    list-style: none;
+    /* Elimina los estilos de lista */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Cambia la dirección del flujo a horizontal */
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+}
+
+.category-list li {
+    margin: 0 10px;
+    /* Añade márgenes entre los elementos */
+    list-style: none;
+}
+
+.category-list li a {
+    text-decoration: none;
+}
+
+.inicio {
+    background-color: #343a40;
+    color: white;
+}
+
+.inicio h2 {
+    font-family: "Playfair Display Variable";
+    font-size: 40px;
+    font-style: italic;
+}
+
+.inicio p {
+    font-family: 'Roboto';
+}
+
+.inicio h2,
+p {
+    color: white;
+}
+
+/* Estilos para los artículos "top" */
+.top {
+    background-color: #ffffff;
+    display: flex;
+    /* Utiliza flexbox */
+    justify-content: space-between;
+    /* Distribuye los artículos a lo largo del eje principal */
+    margin-bottom: 20px;
+    /* Añade un margen inferior para separar los artículos */
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    /* background-color: #8bd926; */
+}
+
+.top_left,
+.top_right {
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    -moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+}
+
+.top_left p,
+.top_right p {
+    color: #ffffff;
+}
+
+.top_left h6,
+.top_right h6 {
+    font-size: 30px;
+    font-family: "Playfair Display Variable";
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.top_left {
+    /* margin-right: 10px; */
+    background-color: #5C6370;
+    border-radius: 4.5px;
+    margin: 0px;
+    /* margin-right: 5px;
+    margin-left: 5px; */
+}
+
+.top_right {
+    /* margin-left: 10px; */
+    background-color: #CCC6B4;
+    border-radius: 4.5px;
+    margin: 0px;
+    /*  margin-right: 5px;
+    margin-left: 5px; */
+}
+
+.midle {
+    /* background-color: blue; */
+    margin: 0px;
+    padding: 7px;
+    background-color: #ffffff;
+}
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column;
+        /* Cambia la dirección del flujo a vertical */
+    }
+}
+
+/* __POST Y POSTS__ */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.posts {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.post {
+    background-color: #D4D4D4;
+    /* color: black; */
+    -webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    -moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+}
+
+.post_head {
+    background-color: #D4D4D4;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+
+.post_head h3 {
+    margin-top: 3px;
+    font-family: "Playfair Display Variable";
+    font-size: 35px;
+}
+
+.post_head .category_post {
+    margin: 0px;
+}
+
+.post_head .post_detail {
+    margin: 0px;
+}
+
+.post p,
+.post h3 {
+    color: black;
+}
+
+
+/* _____SIDEBAR_____ */
+
+.sidebar {
+    padding: 0px;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+.sidebar .about {
+    background-color: #e4e5e7;
+    border-radius: 4.5px;
+    padding: 6px;
+}
+
+
+
+.about_paragraph {
+    color: black;
+}
+
+
+
+/* _Archives_ */
+
+.sidebar .archives,
+.sidebar .elsewhere {
+    background-color: #ffffff;
+    padding: 6px;
+    border-radius: 4.5px;
+}
+
+.about_title,
+.archives_title,
+.elsewhere_title {
+    font-family: "Playfair Display Variable";
+    color: black;
+    font-style: italic;
+    font-size: 26px;
+}
+
+.archives a,
+.elsewhere a {
+    text-decoration: none;
+    color: #018CD4;
+}
+
+.archives a:hover,
+.elsewhere a:hover {
+    text-decoration: none;
+    color: #014C75;
+}
+
+
+.archives_list_ul {
+    padding: 0px;
+}
+
+.archives_list_li {
+    list-style: none;
+}
+
+
+/* _Elsewhere_ */
+
+.elsewhere_list_ul {
+    padding: 0px;
+}
+
+.elsewhere_list_li {
+    list-style: none;
+
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .posts {
+        margin-right: 0;
+    }
+
+    .sidebar {
+        margin-top: 20px;
+        /* Añade un margen superior para separar del contenido principal */
+    }
+}
