@@ -309,3 +309,51 @@ p {
         /* Añade un margen superior para separar del contenido principal */
     }
 }
+
+
+
+
+
+/* ___ LOGIN ___ */
+
+.form_register {
+    font-family: 'Roboto';
+    width: 40%;
+    margin: 0 auto;
+
+    
+}
+
+
+
+
+.register_title {
+    font-family: "Playfair Display Variable";
+    color: black;
+    font-size: 40px;
+    font-style: italic;
+}
+
+.register_parrafo {
+    color: rgb(43, 41, 41);
+    font-style: italic;
+}
+
+.register_parrafo a {
+    text-decoration: none;
+    color: #51B4FF;
+    cursor: pointer;
+}
+
+.register_parrafo a:hover {
+    text-decoration: none;
+    color: #018CD4;
+    cursor: pointer;
+}
+
+.form_register input[type="submit"] {
+    font-family: "Playfair Display Variable";
+    font-size: 20px;
+    align-items: center;
+    font-weight: 600;
+}
