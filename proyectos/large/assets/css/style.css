@@ -46,7 +46,7 @@
     margin-bottom: 0px;
 }
 
-
+/* ____HEADER____ */
 
 .principal_search {
     width: 150px;
@@ -86,6 +86,27 @@
     text-decoration: none;
     color: #F0F1F3;
 }
+
+.nav .username {
+    color: black;
+    font-family: "Playfair Display Variable";
+    font-size: 20px;
+    padding: 0px;
+    margin: 0px;
+    /* padding-left: 10px; */
+}
+
+.line-ul {
+    margin: 0px;
+    border: solid 1px #EFF1F4;
+    width: 100%;
+}
+    /* Gestión de admin */
+
+.admin-management{
+    background-color: #D8D0F1;
+}
+
 
 /* Estilos generales para la página */
 body {
