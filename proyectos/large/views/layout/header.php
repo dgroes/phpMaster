@@ -13,14 +13,43 @@
 <body>
     <main class="container-fluid">
         <nav class="nav">
-
             <ul>
-                <li>
-                    <button class="button-login">
-                        <a href="<?= base_url ?>user/login" class="">Login</a>
-                    </button>
-                </li>
+                <?php if (!isset($_SESSION['identity'])) : ?>
+                    <li>
+                        <a href="<?= base_url ?>user/log" class="">Login</a>
+                    </li>
+                <?php else : ?>
+                    <li>
+                        <details class="dropdown">
+                            <summary>
+                                Account
+                            </summary>
+                            <ul dir="rtl">
+                                <li>
+                                    <?php if (isset($_SESSION['identity']->username)) : ?>
+                                        <p class="username"><?= $_SESSION['identity']->username ?></p>
+                                    <?php else : ?>
+                                        <p class="username">Usuario desconocido</p>
+                                        <?= var_dump($_SESSION['identity']) ?>
+                                    <?php endif; ?>
+                                </li>
+                                <hr class="line-ul">
+                                <li><a href="#">Profile</a></li>
+                                <?php if (isset($_SESSION['admin'])) : ?>
+                                    <li><a href="#" class="admin-management">Categorías</a></li>
+                                    <li><a href="#" class="admin-management">Usuarios</a></li>
+                                    <li><a href="#" class="admin-management">Posts</a></li>
+                                <?php endif; ?>
 
+                                <?php if (isset($_SESSION['identity'])) : ?>
+                                    <li>
+                                        <a href="<?= base_url ?>user/logout" class="">Logout</a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </details>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <ul>
@@ -36,8 +65,8 @@
                     </form>
                 </li>
             </ul>
-
         </nav>
+
         <article class="category">
             <ul class="category-list">
                 <li class="lista"><a href="">World</a></li>
