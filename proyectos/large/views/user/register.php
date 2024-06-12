@@ -51,6 +51,6 @@
         <input type="submit" value="Crear usuario">
     </form>
     <p class="register_parrafo">
-        ¿Ya eres miembro? <a href="<?= base_url ?>user/login">Iniciar sesión</a>
+        ¿Ya eres miembro? <a href="<?= base_url ?>user/log">Iniciar sesión</a>
     </p>
 </article>
