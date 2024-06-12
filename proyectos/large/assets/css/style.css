@@ -18,6 +18,36 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+
+/* __ALERTA DE MENSAJES__ */
+.alert {
+    padding: 6px;
+    border-radius: 4.5px;
+    font-size: 20px;
+    font-family: 'Roboto';
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #D7FBC1;
+    border: 1px solid #398712;
+}
+
+.alert-error {
+    background-color: #F17961;
+    border: 1px solid #9B2318;
+}
+
+.alert-error ul, .alert-error li {
+    padding-left: 0px;
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+
+
 .principal_search {
     width: 150px;
 }
@@ -26,8 +56,35 @@
     border-bottom: 1px solid #e5e5e5;
 }
 
-.nav h1 {
+.nav .title-a{
     font-family: "Playfair Display Variable";
+    text-decoration: none;
+    font-weight: 700;
+    color: #2D3138;
+}
+
+.nav .title-a:hover{
+    font-family: "Playfair Display Variable";
+    text-decoration: none;
+    font-weight: 700;
+    color: #4D535E;
+}
+
+.nav .button-login {
+    background-color: #018CD4;
+    border-color: #015887;
+    
+}
+
+.nav .button-login:hover {
+    background-color: #3e9ece;
+    border-color: #015887;
+    
+}
+
+.nav .button-login a {
+    text-decoration: none;
+    color: #F0F1F3;
 }
 
 /* Estilos generales para la página */
@@ -117,9 +174,9 @@ p {
 .top_left,
 .top_right {
     padding: 10px;
-    -webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
-    -moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
-    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    -webkit-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
+    -moz-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
 }
 
 .top_left p,
@@ -187,9 +244,9 @@ p {
 .post {
     background-color: #D4D4D4;
     /* color: black; */
-    -webkit-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
-    -moz-box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
-    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.78);
+    -webkit-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
+    -moz-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
 }
 
 .post_head {
@@ -321,17 +378,15 @@ p {
     width: 40%;
     margin: 0 auto;
 
-    
+
 }
-
-
-
 
 .register_title {
     font-family: "Playfair Display Variable";
     color: black;
     font-size: 40px;
     font-style: italic;
+    margin-bottom: 0px;
 }
 
 .register_parrafo {
