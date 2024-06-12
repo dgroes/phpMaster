@@ -4,29 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Large</title>
+    <script src="https://kit.fontawesome.com/335ff06f37.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url ?>assets/css/style.css">
 </head>
 
 <body>
     <main class="container-fluid">
         <nav class="nav">
-            <ul>
-                <li><a href="#" class="secondary"><button class="outline">Primary</button></a></li>
-            </ul>
-            <ul>
-                <li><strong>
-                        <h1>Large</h1>
-                    </strong></li>
-            </ul>
+
             <ul>
                 <li>
-                    <form role="search" class="principal_search" s>
+                    <button class="button-login">
+                        <a href="<?= base_url ?>user/login" class="">Login</a>
+                    </button>
+                </li>
+
+            </ul>
+
+            <ul>
+                <li>
+                    <h1 class="title"><a href="<?= base_url ?>" class="title-a">Large</a></h1>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <form role="search" class="principal_search">
                         <input type="search" name="search" placeholder="Search" aria-label="Search" />
                     </form>
                 </li>
             </ul>
+
         </nav>
         <article class="category">
             <ul class="category-list">

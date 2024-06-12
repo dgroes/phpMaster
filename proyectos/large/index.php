@@ -1,37 +1,51 @@
 <?php
-
+session_start();
 /*  
     Este fichero actúa como putnode entrada principal de la app. Tiene como proposito gestionar las 
     solicitudes HTTP y redirigirlas al contorlador y acción acorrespondientes.
 */
 require_once 'autoload.php';
+require_once 'config/db.php';
+require_once 'config/parameters.php';
+require_once 'helpers/utils.php';
 require_once 'views/layout/header.php';
 
+
+
+
+function show_error()
+{
+    $error = new ErrorController();
+    $error->index();
+}
 
 //Concatenación de contralor (nombreDeControlaro + Controller)
 if (isset($_GET['controller'])) {
     $name_controller = $_GET['controller'] . 'Controller';
+} elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
+    $name_controller = controller_default;
 } else {
-    echo "La página que buscas no existe";
+    show_error();
     exit();
 }
 
 //Verificar la clase del controlador existetente y crear una instancia si existe
 if (class_exists($name_controller)) {
-    $controller = new $name_controller();
+    $controller = new $name_controller();   
 
     //Verifica si existe el parámetro 'action' en URL y el método correspondiente en el controlador
     if (isset($_GET['action']) && method_exists($controller, $_GET['action'])) {
         $action = $_GET['action']; //El $action será el nombre del metodo de las clases, por ejemplo si la clase tiene le metodo getAll, dentro de $action estará guardado 'getAll'
         $controller->$action(); //$name_controller es una variable que contiene el nombre del controlador, concatenando el nombre del controlador pasado por la URL con la palabra Controller. Por ejemplo, si $_GET['controller'] es user, entonces $name_controller será UserController.
+    } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
+        $action_default = action_default;
+        $controller->$action_default();
     } else {
-        echo "La página que buscas no existe";
+        show_error();
     }
 } else {
-    echo "La página que buscas no existe";
+    show_error();
 }
-
-
 
 require_once 'views/layout/sidebar.php';
 
