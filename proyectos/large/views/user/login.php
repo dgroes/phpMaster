@@ -5,6 +5,14 @@
         <h3 class="register_title">Iniciar sesión</h3>
     </header>
 
+    <!-- MOSTRAR MENSAJES DE ERROR -->
+    <?php if (isset($_SESSION['error_login'])) : ?>
+        <div class="alert alert-error">
+            <i class="fa-solid fa-ban"></i><?= $_SESSION['error_login'] ?> 
+        </div>
+        <?php unset($_SESSION['error_login']); ?> <!-- //Eliminar mensaje de sesión_error -->
+        <?php endif; ?>
+
     <p class="register_parrafo">
         Al continuar, aceptas nuestro <a href="">Acuerdo del usuario</a> y confirmas que has entendido la <a href="">Política de privacidad</a>.
     </p>
