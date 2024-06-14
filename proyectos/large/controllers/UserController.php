@@ -35,16 +35,18 @@ class UserController
                 if ($identity->rol == 'admin') {
                     $_SESSION['admin'] = true;
                 }
+                header("Location:" . base_url);
+                exit();
             } else {
-                $_SESSION['error_login'] = "Identificación fallida";
+                $_SESSION['error_login'] = " Identificación fallida";
+                header("Location:" . base_url . 'user/log');
+                exit();
             }
-
-
-            //crear una sesión para el usuario logeado
-
+        } else {
+            $_SESSION['error_login'] = "Correo electónico y contraseña son requeridos";
+            header("Location:"  . base_url . 'user/log');
+            exit();
         }
-        header("Location:"  . base_url);
-        exit();
     }
 
     public function save()
@@ -84,19 +86,25 @@ class UserController
                 $user->setUsername($username);
                 $user->setPassword($password);
                 $user->setEmail($email);
-                $user->setRol('user'); // Aquí puedes definir el rol predeterminado, si es necesario
+                $user->setRol('user'); // por defecto, se deja en user, y en la BD se puede cambiar por un admin una cuanta a 'admin'
 
                 // Guardar los datos a la BD gracias al método save() del modelo user
                 $save = $user->save();
-                if ($save) {
+                if ($save === true) {
                     $_SESSION['register'] = "complete";
                 } else {
                     $_SESSION['register'] = "failed";
+                    if ($save === 'username') {
+                        $errors[] = "El nombre de usuario ya existe.";
+                    } elseif ($save === 'email') {
+                        $errors[] = "El correo electrónico ya existe.";
+                    }
                 }
             } else {
                 $_SESSION['register'] = "failed";
-                $_SESSION['errors'] = $errors;
             }
+
+            $_SESSION['errors'] = $errors;
         } else {
             $_SESSION['register'] = "failed";
         }
