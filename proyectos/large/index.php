@@ -31,7 +31,7 @@ if (isset($_GET['controller'])) {
 
 //Verificar la clase del controlador existetente y crear una instancia si existe
 if (class_exists($name_controller)) {
-    $controller = new $name_controller();   
+    $controller = new $name_controller();
 
     //Verifica si existe el parámetro 'action' en URL y el método correspondiente en el controlador
     if (isset($_GET['action']) && method_exists($controller, $_GET['action'])) {
@@ -47,9 +47,11 @@ if (class_exists($name_controller)) {
     show_error();
 }
 
-require_once 'views/layout/sidebar.php';
-
-require_once 'views/layout/footer.php';
+// Incluir sidebar y footer solo si la acción no es 'category'
+if (!isset($_GET['controller']) || $_GET['controller'] !== 'category') {
+    require_once 'views/layout/sidebar.php';
+    require_once 'views/layout/footer.php';
+}
 
 
 
