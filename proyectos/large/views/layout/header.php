@@ -67,7 +67,7 @@
             </ul>
         </nav>
 
-        <article class="category">
+       <!--  <article class="category">
             <ul class="category-list">
                 <li class="lista"><a href="">World</a></li>
                 <li><a href="">U.S.</a></li>
@@ -82,4 +82,4 @@
                 <li><a href="">Style</a></li>
                 <li><a href="">Travel</a></li>
             </ul>
-        </article>
+        </article> -->
