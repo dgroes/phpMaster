@@ -40,7 +40,8 @@
     border: 1px solid #9B2318;
 }
 
-.alert-error ul, .alert-error li {
+.alert-error ul,
+.alert-error li {
     padding-left: 0px;
     list-style: none;
     margin-bottom: 0px;
@@ -56,14 +57,14 @@
     border-bottom: 1px solid #e5e5e5;
 }
 
-.nav .title-a{
+.nav .title-a {
     font-family: "Playfair Display Variable";
     text-decoration: none;
     font-weight: 700;
     color: #2D3138;
 }
 
-.nav .title-a:hover{
+.nav .title-a:hover {
     font-family: "Playfair Display Variable";
     text-decoration: none;
     font-weight: 700;
@@ -73,13 +74,13 @@
 .nav .button-login {
     background-color: #018CD4;
     border-color: #015887;
-    
+
 }
 
 .nav .button-login:hover {
     background-color: #3e9ece;
     border-color: #015887;
-    
+
 }
 
 .nav .button-login a {
@@ -101,9 +102,10 @@
     border: solid 1px #EFF1F4;
     width: 100%;
 }
-    /* Gestión de admin */
 
-.admin-management{
+/* Gestión de admin */
+
+.admin-management {
     background-color: #D8D0F1;
 }
 
@@ -433,3 +435,25 @@ p {
     align-items: center;
     font-weight: 600;
 }
+
+
+
+/* __CATEGORIAS__ */
+.outline {
+    font-family: 'Roboto';
+    background-color: #CBFCE1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title-category {
+    font-family: "Playfair Display Variable";
+    font-size: 40px;
+}
+
+.crear-categoria {
+    /* padding: 20px; */
+    text-decoration: none;
+    font-size: 22px
+}
+

@@ -76,14 +76,34 @@ class User
         $email = $this->db->real_escape_string($this->getEmail());
         $rol = $this->db->real_escape_string($this->getRol());
 
-        $sql = "INSERT INTO users (username, password, email, rol) VALUES ('$username', '$password', '$email', '$rol');";
-        $save = $this->db->query($sql);
+        //Verificación si el username ya existen en la BD
+        $sql_check_username = "SELECT id FROM users WHERE username = '$username'";
+        $result_check_username = $this->db->query($sql_check_username);
 
-        $result = false;
-        if ($save) {
-            $result = true;
+        if ($result_check_username && $result_check_username->num_rows > 0) {
+            return 'username'; //Indicar que ya existe un usuario con el mismo username o email
         }
-        return $result;
+
+        //Verificación si el email ya existe en la BD
+        $sql_check_email = "SELECT id FROM users WHERE email = '$email'";
+        $result_check_email = $this->db->query($sql_check_email);
+
+        if ($result_check_email && $result_check_email->num_rows > 0) {
+            return 'email'; //Indicar que ya existe un usuario con el mismo email
+        }
+
+        if (empty($errors)) {
+            $sql = "INSERT INTO users (username, password, email, rol) VALUES ('$username', '$password', '$email', '$rol')";
+            $save = $this->db->query($sql);
+
+            if ($save) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return $errors;
     }
 
     public function login()
