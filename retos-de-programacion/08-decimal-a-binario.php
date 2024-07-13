@@ -16,13 +16,26 @@
  *
  */
 
- echo "<h1>Decimal a binario</h1>";
- echo decbin(13);
- echo "<br>";
- 
+echo "<h1>Decimal a binario</h1>";
+echo decbin(13);
+echo "<br>";
 
-while ($n > 0){
-    $numero = $n % 2;
-    $n = $n / 2;
-    
+
+echo "<hr>";
+
+$number = 13;
+$binario = array(); // Aquí irán los números binarios, el resto de la división
+
+while ($number > 0) {
+    $rest = $number % 2; // Calcula el resto
+    $binario[] = $rest; // Almacena el resto en el array
+    $number = intdiv($number, 2); // Actualiza el número con la división entera por 2
 }
+
+// Invierte el array para obtener el binario correcto
+$binario = array_reverse($binario);
+
+// Concatena los elementos del array para formar el número binario final
+$binaryString = implode('', $binario);
+
+echo $binaryString;
