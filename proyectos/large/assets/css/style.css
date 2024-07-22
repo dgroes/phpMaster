@@ -451,6 +451,12 @@ p {
     font-size: 40px;
 }
 
+.subtitle-category{
+    font-family: "Playfair Display Variable";
+    font-style: italic;
+    font-size: 34px;
+}
+
 .crear-categoria {
     /* padding: 20px; */
     text-decoration: none;
