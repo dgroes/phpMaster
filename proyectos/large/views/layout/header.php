@@ -36,7 +36,7 @@
                                 <hr class="line-ul">
                                 <li><a href="#">Profile</a></li>
                                 <?php if (isset($_SESSION['admin'])) : ?>
-                                    <li><a href="#" class="admin-management">Categorías</a></li>
+                                    <li><a href="<?= base_url?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
                                     <li><a href="#" class="admin-management">Posts</a></li>
                                 <?php endif; ?>
