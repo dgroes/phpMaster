@@ -36,7 +36,7 @@
                                 <hr class="line-ul">
                                 <li><a href="#">Profile</a></li>
                                 <?php if (isset($_SESSION['admin'])) : ?>
-                                    <li><a href="<?= base_url?>category/index" class="admin-management">Categorías</a></li>
+                                    <li><a href="<?= base_url ?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
                                     <li><a href="#" class="admin-management">Posts</a></li>
                                 <?php endif; ?>
@@ -67,19 +67,13 @@
             </ul>
         </nav>
 
-       <!--  <article class="category">
-            <ul class="category-list">
-                <li class="lista"><a href="">World</a></li>
-                <li><a href="">U.S.</a></li>
-                <li><a href="">Technology</a></li>
-                <li><a href="">Design</a></li>
-                <li><a href="">Culture</a></li>
-                <li><a href="">Business</a></li>
-                <li><a href="">Politics</a></li>
-                <li><a href="">Opinion</a></li>
-                <li><a href="">Science</a></li>
-                <li><a href="">Health</a></li>
-                <li><a href="">Style</a></li>
-                <li><a href="">Travel</a></li>
+        <?php $categories = Utils::showCategories(); ?>
+        <article class="category overflow-auto">
+
+            <ul class="category-list ">
+                <?php while ($cat = $categories->fetch_object()) : ?>
+                    <li class="lista"><a href=""><?= $cat->name ?></a></li>
+                <?php endwhile; ?>
             </ul>
-        </article> -->
+
+        </article>
