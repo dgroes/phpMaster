@@ -23,14 +23,31 @@ class CategoryController
     {
         Utils::isAdmin();
 
-        //Guardar la categoría a la BD
-        if (isset($_POST) && isset($_POST['name'])) {
+        // Guardar la categoría a la BD
+        if (isset($_POST) && isset($_POST['name']) && !empty($_POST['name'])) {
             $category = new Category();
             $category->setName($_POST['name']);
-            $save = $category->save();
+
+            if ($category->nameExists()) {
+                $_SESSION['register-category'] = "duplicate"; // Mensaje de alerta
+            } else {
+                $save = $category->save();
+
+                // Mensajes de alerta
+                if ($save) {
+                    $_SESSION['register-category'] = "complete";
+                } else {
+                    $_SESSION['register-category'] = "failed_save";
+                }
+            }
+        } else {
+            $_SESSION['register-category'] = "empty_name";
         }
+
         header("Location:" . base_url . "category/index");
+        exit();
     }
+
 
     public function delete()
     {
@@ -41,10 +58,18 @@ class CategoryController
             $category->setId($id);
             $delete = $category->delete();
 
-            //Mensajes de alerta
+            // Mensajes de alerta
+            if ($delete) {
+                $_SESSION['delete-category'] = "complete";
+            } else {
+                $_SESSION['delete-category'] = "falied_delete";
+            }
+        } else {
+            $_SESSION['delete-category'] = "falied";
         }
 
         header("Location:" . base_url . "category/index");
+        exit();
     }
 
     public function edit()
@@ -58,13 +83,14 @@ class CategoryController
             require_once 'views/category/edit.php';
         } else {
             header("Location:" . base_url . "category/index");
+            exit();
         }
     }
 
     public function update()
     {
         Utils::isAdmin();
-        if (isset($_POST) && isset($_POST['id']) && isset($_POST['name'])) {
+        if (isset($_POST) && isset($_POST['id']) && isset($_POST['name']) && !empty($_POST['name'])) {
             $id = $_POST['id'];
             $name = $_POST['name'];
 
@@ -72,16 +98,20 @@ class CategoryController
             $category->setId($id);
             $category->setName($name);
 
-            $update = $category->update();
-
-            // Mensajes de alerta
-            if ($update) {
-                $_SESSION['update'] = "complete";
+            if ($category->nameExists()) {
+                $_SESSION['update-category'] = "duplicate";
             } else {
-                $_SESSION['update'] = "failed";
+                $update = $category->update();
+
+                // Mensajes de alerta
+                if ($update) {
+                    $_SESSION['update-category'] = "complete";
+                } else {
+                    $_SESSION['update-category'] = "failed";
+                }
             }
         } else {
-            echo "No hay datos para actualizar.";
+            $_SESSION['update-category'] = "failed";
         }
 
         header("Location:" . base_url . "category/index");
