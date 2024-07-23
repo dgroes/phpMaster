@@ -35,13 +35,18 @@
     border: 1px solid #398712;
 }
 
-.alert-error {
+.alert-warning {
+    background-color: #fafbc1;
+    border: 1px solid #878512;
+}
+
+.alert-danger {
     background-color: #F17961;
     border: 1px solid #9B2318;
 }
 
-.alert-error ul,
-.alert-error li {
+.alert-danger ul,
+.alert-danger li {
     padding-left: 0px;
     list-style: none;
     margin-bottom: 0px;
@@ -138,14 +143,17 @@ article {
 }
 
 .category-list {
-    list-style: none;
-    /* Elimina los estilos de lista */
+    list-style: none; /* Elimina los estilos de lista */
     padding: 0;
     margin: 0;
-    display: flex;
-    /* Cambia la dirección del flujo a horizontal */
+    display: flex; /* Cambia la dirección del flujo a horizontal */
+    flex-flow: row wrap;
+    /* justify-content: space-around; */
+    justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+.overflow-auto {
     justify-content: center;
-    /* Centra los elementos horizontalmente */
 }
 
 .category-list li {
