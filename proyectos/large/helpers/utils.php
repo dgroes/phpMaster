@@ -20,4 +20,12 @@ class Utils
             return true;
         }
     }
+
+    public static function showCategories()
+    {
+        require_once 'models/category.php';
+        $category = new Category();
+        $categories = $category->getSome();
+        return $categories;
+    }
 }
