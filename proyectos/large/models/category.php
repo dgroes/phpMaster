@@ -39,6 +39,11 @@ class Category
         return $categories;
     }
 
+    public function getSome(){
+        $categories = $this->db->query("SELECT * FROM categories ORDER BY id DESC LIMIT 8");
+        return $categories;
+    }
+
     public function getOne()
     {
         $category = $this->db->query("SELECT * FROM categories WHERE id = {$this->getId()};");
@@ -80,5 +85,12 @@ class Category
             $result = true;
         }
         return $result;
+    }
+
+    public function nameExists()
+    {
+        $sql = "SELECT * FROM categories WHERE name = '{$this->getName()}'";
+        $result = $this->db->query($sql);
+        return $result->num_rows > 0;
     }
 }
