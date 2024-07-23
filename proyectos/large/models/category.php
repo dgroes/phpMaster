@@ -30,11 +30,55 @@ class Category
     // Setter for name
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = $this->db->real_escape_string($name);
     }
 
-    public function getAll(){
-        $categories = $this->db->query("SELECT * FROM categories;");
+    public function getAll()
+    {
+        $categories = $this->db->query("SELECT * FROM categories ORDER BY id DESC;");
         return $categories;
+    }
+
+    public function getOne()
+    {
+        $category = $this->db->query("SELECT * FROM categories WHERE id = {$this->getId()};");
+        return $category->fetch_object();
+    }
+
+    public function save()
+    {
+        //Escapar los datos antes de introducirlos a la BD
+        $name = $this->db->real_escape_string($this->getName());
+
+        $sql = "INSERT INTO categories VALUES (NULL, '$name')";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM categories WHERE id = '{$this->getId()}';";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function update()
+    {
+        $sql = "UPDATE categories SET name = '{$this->getName()}' WHERE id = {$this->getId()};";
+        $update = $this->db->query($sql);
+        $result = false;
+        if ($update) {
+            $result = true;
+        }
+        return $result;
     }
 }
