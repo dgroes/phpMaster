@@ -6,7 +6,7 @@ session_start();
 */
 require_once 'autoload.php';
 require_once 'config/db.php';
-require_once 'config/parameters.php';
+require_once 'config/parameters.php'; //Importante el orden de este require, si está bajo los require de view no funcionará
 require_once 'helpers/utils.php';
 require_once 'views/layout/header.php';
 
