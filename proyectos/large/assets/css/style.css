@@ -143,13 +143,16 @@ article {
 }
 
 .category-list {
-    list-style: none; /* Elimina los estilos de lista */
+    list-style: none;
+    /* Elimina los estilos de lista */
     padding: 0;
     margin: 0;
-    display: flex; /* Cambia la dirección del flujo a horizontal */
+    display: flex;
+    /* Cambia la dirección del flujo a horizontal */
     flex-flow: row wrap;
     /* justify-content: space-around; */
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
 }
 
 .overflow-auto {
@@ -306,6 +309,24 @@ p {
     color: black;
 }
 
+/* post colores */
+
+.post.games {
+    background-color: #00B478;
+    color: white;
+}
+
+.post.games .post_head{
+    background-color: #00B478;
+    color: white;
+}
+
+.post.music, .post.music .post_head{
+    background-color: #B7D9FC;
+}
+
+
+
 
 /* _____SIDEBAR_____ */
 
@@ -459,7 +480,7 @@ p {
     font-size: 40px;
 }
 
-.subtitle-category{
+.subtitle-category {
     font-family: "Playfair Display Variable";
     font-style: italic;
     font-size: 34px;
@@ -471,3 +492,6 @@ p {
     font-size: 22px
 }
 
+
+
+/* ESTILOS DE LOS POSTS */
