@@ -38,7 +38,7 @@
                                 <?php if (isset($_SESSION['admin'])) : ?>
                                     <li><a href="<?= base_url ?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
-                                    <li><a href="#" class="admin-management">Posts</a></li>
+                                    <li><a href="<?= base_url ?>post/management" class="admin-management">Mis Posts</a></li>
                                 <?php endif; ?>
 
                                 <?php if (isset($_SESSION['identity'])) : ?>
