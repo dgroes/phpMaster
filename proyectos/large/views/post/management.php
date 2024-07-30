@@ -1,0 +1,41 @@
+<h2 class="title-category ">Crear Post </h2>
+<section class="post-create">
+    <form action="<?= base_url . "post/save"; ?>" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Titulo" aria-label="Text">
+        <textarea name="content" placeholder="Write a professional short bio..." aria-label="Professional short bio"></textarea>
+
+        <?php $categories = Utils::showAllCategories(); ?>
+        <select name="category_id" aria-label="Select your favorite cuisine..." required>
+            <?php while ($cat = $categories->fetch_object()) : ?>
+                <option value="<?= $cat->id ?>" <?= isset($post) && is_object($post) && $cat->id == $post->getCategoryId() ? 'selected' : ''; ?>>
+                    <?= $cat->name ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
+        <input type="file" name="image">
+        <input type="submit" value="Publicar">
+    </form>
+</section>
+
+
+<h2 class="title-category">Mis Posts</h2>
+<?php if ($myPosts && $myPosts->num_rows > 0) : ?>
+    <?php while ($post = $myPosts->fetch_object()) : ?>
+        <?php $categoryClass = strtolower($post->category_name); ?>
+        <article class="post <?= $categoryClass ?>">
+            <section class="post_head">
+                <p class="category_post"><?= $post->category_name ?></p>
+                <h3><?= $post->title ?></h3>
+                <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?></p>
+            </section>
+            <p><?= $post->content ?></p>
+            <?php if ($post->image != null) : ?>
+                <img src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
+            <?php endif; ?>
+
+
+        </article>
+    <?php endwhile; ?>
+<?php else : ?>
+    <p>No tienes posts.</p>
+<?php endif; ?>
