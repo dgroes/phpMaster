@@ -30,6 +30,7 @@ class PostController
             $post->setTitle($_POST['title']);
             $post->setContent($_POST['content']);
             $post->setCategoryId($_POST['category_id']);
+            $post->setSubTitle($_POST['sub_title']);
 
             if (isset($_FILES['image']) && $_FILES['image']['tmp_name'] != '') {
                 // Guardar la imagen
