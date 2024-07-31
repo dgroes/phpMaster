@@ -309,6 +309,10 @@ p {
     color: black;
 }
 
+.post_sub_title {
+   font-style: italic;
+}
+
 /* post colores */
 
 .post.games {
@@ -324,6 +328,16 @@ p {
 .post.music, .post.music .post_head{
     background-color: #B7D9FC;
 }
+
+.post.technology, .post.technology .post_head{
+    background-color: #EDC9F1;
+}
+
+.post.tvseries, .post.tvseries .post_head{
+    background-color: #FDDEA6;
+}
+
+
 
 
 
