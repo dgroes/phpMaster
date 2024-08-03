@@ -304,6 +304,11 @@ p {
     margin: 0px;
 }
 
+.post_image{
+    border-radius: 4.5px;
+    width: 100%;
+}
+
 .post p,
 .post h3 {
     color: black;
@@ -492,6 +497,18 @@ p {
 .title-category {
     font-family: "Playfair Display Variable";
     font-size: 40px;
+}
+
+details{
+    padding: 2px;
+}
+
+.contrast{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Playfair Display Variable";
+    font-size: 30px;
+    align-items: center;
 }
 
 .subtitle-category {
