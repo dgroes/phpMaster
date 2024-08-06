@@ -119,6 +119,7 @@
 body {
     margin: 0;
     padding: 0;
+    /* background-color: blue; */
 }
 
 main {
@@ -128,7 +129,8 @@ main {
     /* Centra el contenido horizontalmente */
     padding: 0 20px;
     /* Añade márgenes a los costados del contenido */
-    background-color: #ffffff;
+    /* background-color: red; */
+    /* background-color: transparent; */
 }
 
 /* Estilos para la lista de categorías */
@@ -276,12 +278,20 @@ p {
 }
 
 .post {
-    background-color: #D4D4D4;
-    /* color: black; */
+    transition: box-shadow 0.3s ease;
     -webkit-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
     -moz-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
     box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
+    margin-bottom: 30px;
+    /* width: 500px; */
 }
+
+/* .post:hover {
+    -webkit-box-shadow: 0px 0px 37px 4px rgba(255, 0, 255, 1);
+    -moz-box-shadow: 0px 0px 37px 4px rgba(255, 0, 255, 1);
+    box-shadow: 0px 0px 37px 4px rgba(255, 0, 255, 1);
+
+} */
 
 .post_head {
     background-color: #D4D4D4;
@@ -304,26 +314,80 @@ p {
     margin: 0px;
 }
 
+.post_image {
+    border-radius: 4.5px;
+    width: 100%;
+    
+}
+
 .post p,
 .post h3 {
     color: black;
 }
 
+.post_sub_title {
+    font-style: italic;
+}
+
+.post_link {
+    text-decoration: none;
+}
+
+.post_link:hover {}
+
 /* post colores */
 
-.post.games {
-    background-color: #00B478;
+.post.games,
+.post_link.games:hover .post {
+    background-color: #95FB62;
     color: white;
 }
 
-.post.games .post_head{
-    background-color: #00B478;
+.post.games .post_head,
+.post_link.games:hover .post_head {
+    background-color: #95FB62;
     color: white;
 }
 
-.post.music, .post.music .post_head{
+.post.games:hover {
+    -webkit-box-shadow: 0px 0px 33px 19px rgba(215, 251, 193, 1);
+    -moz-box-shadow: 0px 0px 33px 19px rgba(215, 251, 193, 1);
+    box-shadow: 0px 0px 33px 19px rgba(215, 251, 193, 1);
+}
+
+.post.music,
+.post.music .post_head {
     background-color: #B7D9FC;
 }
+
+.post.music:hover {
+    -webkit-box-shadow: 0px 0px 33px 19px rgba(209, 229, 251, 1);
+    -moz-box-shadow: 0px 0px 33px 19px rgba(209, 229, 251, 1);
+    box-shadow: 0px 0px 33px 19px rgba(209, 229, 251, 1);
+}
+
+.post.technology,
+.post.technology .post_head {
+    background-color: #EDC9F1;
+}
+
+.post.tvseries,
+.post.tvseries .post_head {
+    background-color: #FDDEA6;
+}
+
+.post.health,
+.post.health .post_head {
+    background-color: #F8DCD6;
+}
+
+.post.opinion,
+.post.opinion .post_head {
+    background-color: #C3FCFA;
+}
+
+
+
 
 
 
@@ -478,6 +542,18 @@ p {
 .title-category {
     font-family: "Playfair Display Variable";
     font-size: 40px;
+}
+
+details {
+    padding: 2px;
+}
+
+.contrast {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Playfair Display Variable";
+    font-size: 30px;
+    align-items: center;
 }
 
 .subtitle-category {
