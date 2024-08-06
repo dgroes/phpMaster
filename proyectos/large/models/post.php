@@ -110,6 +110,15 @@ class Post
         $this->category_id = $category_id;
     }
 
+    public function getOne()
+    {
+        $post = $this->db->query("SELECT posts.*, categories.name as category_name, users.username AS creator
+                FROM posts 
+                INNER JOIN categories ON posts.category_id = categories.id 
+                INNER JOIN users ON posts.user_id = users.id 
+                WHERE posts.id = {$this->getId()};");
+        return $post->fetch_object();
+    }
 
     //Obtener todas los post por rusuario
     public function getAllByUser($user_id)
@@ -118,6 +127,32 @@ class Post
         $sql = "SELECT posts.*, categories.name as category_name FROM posts LEFT JOIN categories on posts.category_id = categories.id WHERE posts.user_id = {$user_id} ORDER BY posts.created_at DESC;";
         $posts = $this->db->query($sql);
         return $posts;
+    }
+
+    //Se utilizó esta manera, ya que así se pueden manejar los datos si existen o no, por ejemplo si solo quiero actualizar el campo title esto ayuda que pueda hacer de manera correcta el UPDATE
+    public function update()
+    {
+        $fields = [];
+        if ($this->getTitle()) $fields[] = "title = '{$this->db->real_escape_string($this->getTitle())}'";
+        if ($this->getSubTitle()) $fields[] = "sub_title = '{$this->db->real_escape_string($this->getSubTitle())}'";
+        if ($this->getContent()) $fields[] = "content = '{$this->db->real_escape_string($this->getContent())}'";
+        if ($this->getCategoryId()) $fields[] = "category_id = '{$this->db->real_escape_string($this->getCategoryId())}'";
+        if ($this->getImage()) $fields[] = "image = '{$this->db->real_escape_string($this->getImage())}'";
+
+        if (!empty($fields)) {
+            $sql = "UPDATE posts SET " . implode(', ', $fields) . " WHERE id = '{$this->db->real_escape_string($this->getId())}'";
+            $update = $this->db->query($sql);
+
+            if (!$update) {
+                // Log or debug the SQL error for further inspection
+                echo "SQL Error: " . $this->db->error;
+                return false;
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -136,6 +171,17 @@ class Post
         exit(); */
         $result = true;
         if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM posts WHERE id = '{$this->getId()}';";
+        $delete = $this->db->query($sql);
+        $result = false;
+        if ($delete) {
             $result = true;
         }
         return $result;
