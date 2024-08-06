@@ -31,20 +31,22 @@
     <?php while ($post = $myPosts->fetch_object()) : ?>
         <?php $categoryClass = strtolower(str_replace(' ', '', $post->category_name)); ?><!--  utilizar str_replace -->
 
-        <article class="post <?= $categoryClass ?>">
-            <section class="post_head">
-                <p class="category_post"><?= $post->category_name ?></p>
-                <h3><?= $post->title ?></h3>
-                <p class="post_sub_title"><?= $post->sub_title ?></p>
-                <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?></p>
-            </section>
-            <p><?= nl2br(htmlspecialchars(substr($post->content, 0, 300))) ?>...</p>
-            <?php if ($post->image != null) : ?>
-                <img class="post_image" src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
-            <?php endif; ?>
+        <a href="<?= base_url ?>post/see&id=<?= $post->id ?>" class="post_link <?= $categoryClass ?>">
+            <article class="post <?= $categoryClass ?>">
+                <section class="post_head">
+                    <p class="category_post"><?= $post->category_name ?></p>
+                    <h3><?= $post->title ?></h3>
+                    <p class="post_sub_title"><?= $post->sub_title ?></p>
+                    <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?></p>
+                </section>
+                <p><?= nl2br(htmlspecialchars(substr($post->content, 0, 300))) ?>...</p>
+                <?php if ($post->image != null) : ?>
+                    <img class="post_image" src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
+                <?php endif; ?>
 
 
-        </article>
+            </article>
+        </a>
     <?php endwhile; ?>
 <?php else : ?>
     <p>No tienes posts.</p>
