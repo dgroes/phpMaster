@@ -2,6 +2,15 @@
     <summary role="button" class="contrast">
         Crear Post
     </summary>
+    <!-- __ALERTA DE CREACIÓN DE UN NUEVO POST__ -->
+    <?php if (isset($_SESSION['regiser-post'])) : ?>
+        <?php if ($_SESSION['register-post'] == 'complete') : ?>
+            <div class="alert alert-success">
+                <i class="fa-regular fa-square-check"></i> Post creado correctamente.
+            </div>
+        <?php endif; ?>
+
+    <?php endif; ?>
     <section class="post-create">
         <form action="<?= base_url . "post/save"; ?>" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Titulo" aria-label="Text">

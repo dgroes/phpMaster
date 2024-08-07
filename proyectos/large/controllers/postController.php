@@ -21,6 +21,15 @@ class PostController
         require_once 'views/post/management.php';
     }
 
+    public function general_management()
+    {
+        Utils::isAdmin();
+        $post = new Post();
+        $allPosts = $post->getAllPosts();
+
+        require_once 'views/post/general_management.php';
+    }
+
     public function see()
     {
         if (isset($_GET['id'])) {
