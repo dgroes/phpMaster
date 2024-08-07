@@ -129,6 +129,17 @@ class Post
         return $posts;
     }
 
+    public function getAllPosts()
+    {
+        $sql = "SELECT posts.*, categories.name as category_name, users.username AS creator
+                FROM posts 
+                INNER JOIN categories ON posts.category_id = categories.id 
+                INNER JOIN users ON posts.user_id = users.id
+                ORDER BY created_at DESC;";
+        $posts = $this->db->query($sql);
+        return $posts;
+    }
+
     //Se utilizó esta manera, ya que así se pueden manejar los datos si existen o no, por ejemplo si solo quiero actualizar el campo title esto ayuda que pueda hacer de manera correcta el UPDATE
     public function update()
     {
