@@ -24,7 +24,7 @@
         <label for="password">Contraseña</label>
         <input type="password" name="password" required>
 
-        <input type="submit" value="Crear usuario">
+        <input type="submit" value="Iniciar Sesión">
     </form>
 
     <br>
