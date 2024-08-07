@@ -1,6 +1,6 @@
 <div role="group">
-    <button><a href="<?= base_url ?>post/edit&id=<?= $post->id?>">Editar</a></button>
-    <button><a href="<?= base_url ?>post/delete&id=<?= $post->id?>">Eliminar</a></button>
+    <button><a class="button-action" href="<?= base_url ?>post/edit&id=<?= $post->id?>">Editar</a></button>
+    <button><a class="button-action" href="<?= base_url ?>post/delete&id=<?= $post->id?>">Eliminar</a></button>
     <button aria-current="true">Visible</button>
     <button>Ocultar</button>
 </div>
@@ -23,6 +23,3 @@
 
 
 </article>
-
-
-<h3><?= $post->title ?></h3>
