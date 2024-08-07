@@ -317,7 +317,7 @@ p {
 .post_image {
     border-radius: 4.5px;
     width: 100%;
-    
+
 }
 
 .post p,
@@ -386,8 +386,28 @@ p {
     background-color: #C3FCFA;
 }
 
+.post.science,
+.post.science .post_head {
+    background-color: #D8D0F1;
+}
+
+.post.science,
+.post.science .post_head {
+    background-color: #D8D0F1;
+}
+
+.post.travel,
+.post.travel .post_head {
+    background-color: #FCCA9B;
+}
 
 
+
+
+.post.business,
+.post.business .post_head {
+    background-color: #F5A390;
+}
 
 
 
@@ -571,3 +591,40 @@ details {
 
 
 /* ESTILOS DE LOS POSTS */
+
+
+
+
+/* ____VISTA DE POST INDIVIDUAL____ */
+
+/* Edición: */
+.button-action {
+    text-decoration: none;
+    color: inherit;
+    /* Asegura que el enlace herede el color del botón */
+}
+
+
+
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    /* Espacio entre los posts */
+}
+
+.post {
+    border: 1px solid #ddd;
+    /* Ejemplo de borde */
+    padding: 10px;
+    /* Espacio interno */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    background-color: #f9f9f9;
+    /* Color de fondo */
+}
+
+.post .title_post {
+    font-size: 30px;
+}
