@@ -294,7 +294,7 @@ p {
 } */
 
 .post_head {
-    background-color: #D4D4D4;
+    /* background-color: #D4D4D4; */
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 0px;
@@ -338,13 +338,7 @@ p {
 /* post colores */
 
 .post.games,
-.post_link.games:hover .post {
-    background-color: #95FB62;
-    color: white;
-}
-
-.post.games .post_head,
-.post_link.games:hover .post_head {
+.post.games .post_head {
     background-color: #95FB62;
     color: white;
 }
@@ -401,7 +395,18 @@ p {
     background-color: #FCCA9B;
 }
 
+.post.ocultar,
+.post.ocultar .post_head {
+    background-color: #d83535;
+    /* color: rgb(185, 27, 27); */
+}
 
+/* .post,oculto h3{
+    font-family: "Playfair Display Variable";
+    font-size: 35px;
+}
+
+ */
 
 
 .post.business,
