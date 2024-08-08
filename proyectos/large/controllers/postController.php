@@ -136,7 +136,7 @@ class PostController
         } else {
             $_SESSION['post-update'] = "failed";
         }
-        header("Location:" . base_url . "post/management");
+        header("Location:" . base_url . "post/see&id=$id");
         exit();
     }
 
@@ -159,6 +159,39 @@ class PostController
             $_SESSION['post-delete'] = "falied";
         }
         header("Location:" . base_url . "post/management");
+        exit();
+    }
+
+    public function status()
+    {
+        Utils::isAdmin();
+        Utils::isIdentity();
+
+        // Verifica si los parámetros 'status' y 'id' están presentes en la URL
+        if (isset($_GET['status']) && isset($_GET['id'])) {
+            $status = $_GET['status'];
+            $id = $_GET['id'];
+
+            // Muestra los valores de 'status' y 'id' recibidos
+           /*  var_dump($status, $id);
+            exit(); */
+
+            $post = new Post();
+            $post->setId($id);
+            $post->setStatus($status);
+            $newStatus = $post->updateStatus();
+
+            if ($newStatus) {
+                $_SESSION['post-status'] = "complete";
+            } else {
+                $_SESSION['post-status'] = "failed";
+            }
+        } else {
+            $_SESSION['post-status'] = "failed";
+        }
+
+        // Redirige a la página de visualización del post
+        header("Location:" . base_url . "post/see&id=$id");
         exit();
     }
 }
