@@ -62,22 +62,30 @@
         <?php $categoryClass = strtolower(str_replace(' ', '', $post->category_name)); ?><!--  utilizar str_replace -->
         <?php $statusClass = strtolower($post->status); ?>
         <a href="<?= base_url ?>post/see&id=<?= $post->id ?>" class="post_link <?= $categoryClass; ?>">
-            <article 
-            <?php if ($post->status == 'Oculto') : ?> 
+            <article
+                <?php if ($post->status == 'Oculto') : ?>
                 class="post <?= $statusClass; ?>">
-            <?php elseif ($post->status == 'Visible') : ?> 
-                    class="post <?= $categoryClass ?>">
+            <?php elseif ($post->status == 'Visible') : ?>
+                class="post <?= $categoryClass ?>">
             <?php endif; ?>
 
             <section class="post_head">
-            <?php if ($post->status == 'Oculto') : ?>
-                    <?php $categoryClass == 'Oculto'; ?>
+                <div class="class_status">
                     <div>
-                        <i class="fa-solid fa-eye-slash"></i> Post Oculto
+                        <p class="category_post"><?= $post->category_name ?></p>
                     </div>
+                    <div>
+                        <?php if ($post->status == 'Oculto') : ?>
+                            <?php $categoryClass == 'Oculto'; ?>
+                            <div>
+                                <i class="fa-solid fa-eye-slash"></i> Post Oculto
+                            </div>
 
-            <?php endif; ?>
-                <p class="category_post"><?= $post->category_name ?></p>
+                        <?php endif; ?> 
+                    </div>
+                </div>
+
+
                 <h3><?= $post->title ?></h3>
                 <p class="post_sub_title"><?= $post->sub_title ?></p>
                 <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?></p>
