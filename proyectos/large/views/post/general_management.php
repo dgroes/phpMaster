@@ -41,4 +41,5 @@
     <?php else : ?>
         <p>No tienes posts.</p>
     <?php endif; ?>
+
 </div>
