@@ -1,25 +1,23 @@
 <div role="group">
     <button><a class="button-action" href="<?= base_url ?>post/edit&id=<?= $post->id ?>">Editar</a></button>
     <button><a class="button-action" href="<?= base_url ?>post/delete&id=<?= $post->id ?>">Eliminar</a></button>
-    <button 
-    <?php if($post->status == 'Visible') :?> 
+    <button
+        <?php if ($post->status == 'Visible') : ?>
         disabled
-    <?php endif; ?>
->
-    <a class="button-action" href="<?= base_url ?>post/status&id=<?= $post->id ?>&status=Visible">
-        Visible
-    </a>
-</button>
+        <?php endif; ?>>
+        <a class="button-action" href="<?= base_url ?>post/status&id=<?= $post->id ?>&status=Visible">
+            Visible
+        </a>
+    </button>
 
-<button 
-    <?php if($post->status == 'Oculto') :?> 
+    <button
+        <?php if ($post->status == 'Oculto') : ?>
         disabled
-    <?php endif; ?>
->
-    <a class="button-action" href="<?= base_url ?>post/status&id=<?= $post->id ?>&status=Oculto">
-        Ocultar
-    </a>
-</button>
+        <?php endif; ?>>
+        <a class="button-action" href="<?= base_url ?>post/status&id=<?= $post->id ?>&status=Oculto">
+            Ocultar
+        </a>
+    </button>
 
 </div>
 
@@ -77,6 +75,38 @@
             <img class="post_image" src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
         <?php endif; ?>
 
+        <!-- <div class="likes_coments">
+            <div>
+                <i class="fa-solid fa-thumbs-up"></i>
+            </div>
+            <div>
+                <i class="fa-solid fa-thumbs-down"></i>
+            </div>
+            <div>
+                <i class="fa-solid fa-comments"></i>
+            </div>
+        </div> -->
 
+        <div role="group" class="post_interaction">
+            <button data-tooltip="Like"><i class="fa-regular fa-thumbs-up"></i> 52</button>
+            <button data-tooltip="Dislike"><i class="fa-regular fa-thumbs-down"></i> 4</button>
+            <button data-tooltip="Comentar"><i class="fa-regular fa-comments"></i> 7</button>
+            <button data-tooltip="Compartir"> <i class="fa-regular fa-share-from-square"></i></button>
+
+        </div>
+
+        <section class="comentarios">
+       
+
+            <?php if (isset($allComments) && $allComments->num_rows > 0): ?>
+                <?php while ($comment = $allComments->fetch_object()): ?>
+                    <div class="comentario">
+                        <p><?= $comment->content ?></p>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No hay comentarios disponibles.</p>
+            <?php endif; ?>
+        </section>
     </article>
 </a>
