@@ -643,3 +643,26 @@ details {
 .post .title_post {
     font-size: 30px;
 }
+
+
+/* __POST INTERACCIONES__ */
+
+.post_interaction {
+   
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+
+.fa-thumbs-up, .fa-thumbs-down, .fa-comments, .fa-share-from-square{
+    font-size: 30px;
+}
+
+/* .likes_coments{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.likes_coments div{
+    padding-right: 20px;
+} */
