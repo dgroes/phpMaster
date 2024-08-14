@@ -197,4 +197,18 @@ class Post
         }
         return $result;
     }
+
+    public function updateStatus()
+    {
+        $sql = "UPDATE posts SET status = '{$this->getStatus()}' WHERE id = '{$this->getId()}';";
+         /* var_dump($sql);
+            exit();
+ */
+        $status = $this->db->query($sql);
+        $result = false;
+        if ($status) {
+            $result = true;
+        }
+        return $result;
+    }
 }
