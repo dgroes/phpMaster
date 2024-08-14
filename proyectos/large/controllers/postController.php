@@ -5,6 +5,8 @@ class PostController
 {
     public function index()
     {
+        $post = new Post();
+        $allPosts = $post->getAllPosts();
 
         //Renderizar Vista de los Posts Destacados
         require_once 'views/post/popular.php';
@@ -39,6 +41,9 @@ class PostController
 
             $post = $post->getOne();
         }
+        $allComments = Utils::showComments();
+        
+
         require_once 'views/post/see_post.php';
     }
 
