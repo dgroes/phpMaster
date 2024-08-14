@@ -47,5 +47,12 @@ class Utils
         }
     }
 
+    public static function showComments(){
+        require_once 'models/comment.php';
+        $comment = new Comment();
+        $allComments = $comment->getAllComments();
+        return $allComments;
+    }
+
     
 }
