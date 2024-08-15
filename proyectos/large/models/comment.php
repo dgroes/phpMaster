@@ -67,7 +67,10 @@ class Comment
 
     public function getAllComments()
     {
-        $comments = $this->db->query("SELECT * FROM comments;");
+        $comments = $this->db->query("SELECT posts.id AS post_id, posts.user_id AS creator_id, comments.content AS comment, comments.id AS comment_id, users.username AS creator, comments.created_at AS created_at
+                                    FROM posts
+                                    INNER JOIN comments ON posts.id = comments.post_id
+                                    INNER JOIN users ON comments.user_id = users.id;");
         return $comments;
     }
 }
