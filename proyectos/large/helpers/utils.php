@@ -54,5 +54,25 @@ class Utils
         return $allComments;
     }
 
+    public static function timeAgo($datetime) {
+        // Asegúrate de que ambas fechas estén en la misma zona horaria
+        $now = new DateTime('now', new DateTimeZone('America/Santiago')); // Ajusta la zona horaria según sea necesario
+        $date = new DateTime($datetime, new DateTimeZone('America/Santiago'));
+
+        $diff = $now->diff($date);
+
+        if ($diff->y > 0) {
+            return $date->format('d M Y');
+        } elseif ($diff->m > 0 || $diff->d > 0) {
+            return $date->format('d M');
+        } elseif ($diff->h > 0) {
+            return 'hace ' . $diff->h . ' horas';
+        } elseif ($diff->i > 0) {
+            return 'hace ' . $diff->i . ' minutos';
+        } else {
+            return 'hace unos momentos';
+        }
+    }
+
     
 }
