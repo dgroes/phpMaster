@@ -54,59 +54,74 @@
 
 <?php $categoryClass = strtolower(str_replace(' ', '', $post->category_name)); ?><!--  utilizar str_replace -->
 <?php $statusClass = strtolower($post->status); ?>
-<a href="<?= base_url ?>post/see&id=<?= $post->id ?>" class="post_link <?= $categoryClass; ?>">
-    <article class="post <?= $post->status == 'Oculto' ? $statusClass : $categoryClass ?>">
+
+<article class="post <?= $post->status == 'Oculto' ? $statusClass : $categoryClass ?>">
 
 
-        <section class="post_head">
-            <?php if ($post->status == 'Ocultar') : ?>
+    <section class="post_head">
+        <?php if ($post->status == 'Ocultar') : ?>
 
-                <div>
-                    <i class="fa-solid fa-eye-slash"></i> Post Oculto
-                </div>
+            <div>
+                <i class="fa-solid fa-eye-slash"></i> Post Oculto
+            </div>
 
-            <?php endif; ?>
-            <p class="category_post"><?= $post->category_name ?></p>
-            <p class="post_sub_title"><?= $post->sub_title ?></p>
-            <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by <?= $post->creator ?></p>
-        </section>
-        <p><?= nl2br(htmlspecialchars($post->content)) ?></p>
-        <?php if ($post->image != null) : ?>
-            <img class="post_image" src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
         <?php endif; ?>
+        <p class="category_post"><?= $post->category_name ?></p>
+        <p class="post_sub_title"><?= $post->sub_title ?></p>
+        <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by <?= $post->creator ?></p>
+    </section>
+    <p><?= nl2br(htmlspecialchars($post->content)) ?></p>
+    <?php if ($post->image != null) : ?>
+        <img class="post_image" src="<?= base_url ?>uploads/images/<?= $post->image ?>" alt="">
+    <?php endif; ?>
 
-        <!-- <div class="likes_coments">
-            <div>
-                <i class="fa-solid fa-thumbs-up"></i>
-            </div>
-            <div>
-                <i class="fa-solid fa-thumbs-down"></i>
-            </div>
-            <div>
-                <i class="fa-solid fa-comments"></i>
-            </div>
-        </div> -->
 
-        <div role="group" class="post_interaction">
-            <button data-tooltip="Like"><i class="fa-regular fa-thumbs-up"></i> 52</button>
-            <button data-tooltip="Dislike"><i class="fa-regular fa-thumbs-down"></i> 4</button>
-            <button data-tooltip="Comentar"><i class="fa-regular fa-comments"></i> 7</button>
-            <button data-tooltip="Compartir"> <i class="fa-regular fa-share-from-square"></i></button>
+    <!-- Botón de Comentar en views/post/see_post.php -->
+    <div role="group" class="post_interaction">
+        <button data-tooltip="Like"><i class="fa-regular fa-thumbs-up"></i> 52</button>
+        <button data-tooltip="Dislike"><i class="fa-regular fa-thumbs-down"></i> 4</button>
+        <button data-target="comment-modal" onclick="toggleModal(event)" data-tooltip="Comentar"><i class="fa-regular fa-comments"></i> 7</button>
+        <button data-tooltip="Compartir"> <i class="fa-regular fa-share-from-square"></i></button>
+    </div>
 
-        </div>
+    <!-- Modal para Comentar -->
+    <dialog id="comment-modal">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" data-target="comment-modal" onclick="toggleModal(event)"></button>
+                <h3>Deja tu comentario</h3>
+            </header>
+            <form action="" method="post">
 
-        <section class="comentarios">
-       
+                <p>
+                    <!-- Aquí puedes agregar un formulario para que el usuario ingrese su comentario -->
+                    <textarea placeholder="Escribe tu comentario aquí..." name="comentario"></textarea>
+                </p>
 
-            <?php if (isset($allComments) && $allComments->num_rows > 0): ?>
-                <?php while ($comment = $allComments->fetch_object()): ?>
-                    <div class="comentario">
-                        <p><?= $comment->content ?></p>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>No hay comentarios disponibles.</p>
-            <?php endif; ?>
-        </section>
-    </article>
-</a>
+                <footer class="modal_footer">
+                    <input type="submit" value="Comentar" data-target="comment-modal" onclick="toggleModal(event)">
+                    <button role="button" class="secondary" data-target="comment-modal" onclick="toggleModal(event)">Cancelar</button>
+                    <!-- <button autofocus data-target="comment-modal" onclick="toggleModal(event)">Comentar</button> -->
+                </footer>
+            </form>
+        </article>
+    </dialog>
+
+
+
+    <section class="container-comments">
+
+
+        <?php if (isset($allComments) && $allComments->num_rows > 0): ?>
+            <?php while ($comment = $allComments->fetch_object()): ?>
+                <div class="comments">
+                    <p class="creator_date"><?= $comment->creator ?> • <?= Utils::timeAgo($comment->created_at) ?></p>
+
+                    <p class="comment"><?= $comment->comment ?></p>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No hay comentarios disponibles.</p>
+        <?php endif; ?>
+    </section>
+</article>
