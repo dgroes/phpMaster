@@ -29,7 +29,8 @@ class Utils
         return $categories;
     }
 
-    public static function showAllCategories(){
+    public static function showAllCategories()
+    {
         require_once 'models/category.php';
         $category = new Category();
         $categories = $category->getAll();
@@ -47,14 +48,18 @@ class Utils
         }
     }
 
-    public static function showComments(){
+    public static function showComments()
+    {
         require_once 'models/comment.php';
+        $postId = $_GET['id']; // Asegúrate de que 'id' está en la URL y contiene el ID correcto
         $comment = new Comment();
-        $allComments = $comment->getAllComments();
+        $comment->setPostId($postId);
+        $allComments = $comment->getAllCommentByPost();
         return $allComments;
     }
 
-    public static function timeAgo($datetime) {
+    public static function timeAgo($datetime)
+    {
         // Asegúrate de que ambas fechas estén en la misma zona horaria
         $now = new DateTime('now', new DateTimeZone('America/Santiago')); // Ajusta la zona horaria según sea necesario
         $date = new DateTime($datetime, new DateTimeZone('America/Santiago'));
@@ -73,6 +78,4 @@ class Utils
             return 'hace unos momentos';
         }
     }
-
-    
 }
