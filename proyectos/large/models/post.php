@@ -130,13 +130,31 @@ class Post
     }
 
     public function getAllPosts()
-    {
+    {   
+        $idUser = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
         $sql = "SELECT posts.*, categories.name as category_name, users.username AS creator
                 FROM posts 
                 INNER JOIN categories ON posts.category_id = categories.id 
-                INNER JOIN users ON posts.user_id = users.id
-                ORDER BY created_at DESC;";
+                INNER JOIN users ON posts.user_id = users.id ";
+
+                //Si el user es Administrador
+                if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+
+                    //NO Hay condición adicional, se muestran todos los posts existentes
+                
+                } elseif($idUser){
+                
+                    //Si el user está logeado, se muestran los posts visibles y los suyos ocultos
+                    $sql .= "WHERE (posts.status = 'Visible' OR posts.user_id = $idUser)";
+                
+                } else {
+
+                    //Si el usuario no está logeado, se muestran solo los posts visibles
+                    $sql .= "WHERE posts.status = 'Visible'";
+                }               
+                $sql .= " ORDER BY created_at DESC;";
         $posts = $this->db->query($sql);
+
         return $posts;
     }
 

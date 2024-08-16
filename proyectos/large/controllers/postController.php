@@ -40,9 +40,16 @@ class PostController
             $post->setId($id);
 
             $post = $post->getOne();
+            // Obtener los comentarios del post
+            $allComments = Utils::showComments();
+
+            // Contar el número de comentarios
+            $commentCount = $allComments->num_rows;
+        } else {
+            $post = null;
+            $allComments = null;
+            $commentCount = 0;
         }
-        $allComments = Utils::showComments();
-        
 
         require_once 'views/post/see_post.php';
     }
@@ -178,7 +185,7 @@ class PostController
             $id = $_GET['id'];
 
             // Muestra los valores de 'status' y 'id' recibidos
-           /*  var_dump($status, $id);
+            /*  var_dump($status, $id);
             exit(); */
 
             $post = new Post();

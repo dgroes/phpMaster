@@ -69,7 +69,7 @@
 
                         <h3><?= $post->title ?></h3>
                         <p class="post_sub_title"><?= $post->sub_title ?></p>
-                        <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?></p>
+                        <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by <?= $post->creator ?></p>
                     </section>
                     <p><?= nl2br(htmlspecialchars(substr($post->content, 0, 300))) ?>...</p>
                     <?php if ($post->image != null) : ?>

@@ -283,7 +283,7 @@ p {
     -moz-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
     box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.78);
     margin-bottom: 30px;
-    
+
     /* width: 500px; */
 }
 
@@ -297,7 +297,7 @@ p {
 .post_head {
     /* background-color: #D4D4D4; */
     padding-left: 10px;
-    padding-right   : 10px;
+    padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 0px;
 }
@@ -308,7 +308,7 @@ p {
     font-size: 35px;
 }
 
-.class_status{
+.class_status {
     display: flex;
     justify-content: space-between;
 }
@@ -342,7 +342,6 @@ p {
     text-decoration: none;
 }
 
-.post_link:hover {}
 
 /* post colores */
 
@@ -648,21 +647,48 @@ details {
 /* __POST INTERACCIONES__ */
 
 .post_interaction {
-   
+
     margin-top: 6px;
     margin-bottom: 6px;
 }
 
 
-.fa-thumbs-up, .fa-thumbs-down, .fa-comments, .fa-share-from-square{
+.fa-thumbs-up,
+.fa-thumbs-down,
+.fa-comments,
+.fa-share-from-square {
     font-size: 30px;
 }
 
-/* .likes_coments{
-    display: flex;
-    justify-content: flex-start;
+/* .comentarios {
+    border: 1px solid black;
+} */
+
+.comments {
+    /* border: 1px solid blue; */
+    border-radius: 4.5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+    background-color: #23262C;
+    padding: 4px;
 }
 
-.likes_coments div{
-    padding-right: 20px;
-} */
+.comments .creator_date {
+    /* border: 1px solid red; */
+    margin-bottom: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: rgb(219, 219, 219);
+}
+
+.comments .comment {
+    color: rgb(219, 219, 219);
+}
+
+.comment {
+    /* border: 1px solid rgb(0, 225, 255); */
+    margin-left: 4px;
+    margin-right: 4px;
+
+}
