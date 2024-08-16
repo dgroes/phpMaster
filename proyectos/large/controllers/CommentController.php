@@ -13,28 +13,25 @@ class CommentController
         Utils::isIdentity();
 
         // Guardar la categoría a la BD
-        if (isset($_POST) && isset($_POST['comentario']) && !empty($_POST['comentario'])) {
-            $comment = new Category();
-            $comment->setName($_POST['comentario']);
-
-            if ($comment->nameExists()) {
-                $_SESSION['register-comment'] = "duplicate"; // Mensaje de alerta
+        if (isset($_POST) && isset($_POST['content']) && !empty($_POST['content'])) {
+            $comment = new Comment();
+            // $postId = $_GET['id'];
+            $postId = $_POST['post_id'];
+            $comment->setPostId($postId); 
+            $comment->setUserId($_SESSION['identity']->id);
+            $comment->setContent($_POST['content']);
+            $save = $comment->save();
+            if ($save) {
+                $_SESSION['register-comment'] = "complete";
             } else {
-                $save = $comment->save();
-
-                // Mensajes de alerta
-                if ($save) {
-                    $_SESSION['register-comment'] = "complete";
-                } else {
-                    $_SESSION['register-comment'] = "failed_save";
-                }
+                $_SESSION['register-comment'] = "failed";
             }
         } else {
-            $_SESSION['register-comment'] = "empty_name";
+            $_SESSION['register-comment'] = "failed";
         }
-
-        header("Location:" . base_url . "comment/index");
+        header("Location:" . base_url . "post/see&id=$postId");
         exit();
     }
+
 
 }
