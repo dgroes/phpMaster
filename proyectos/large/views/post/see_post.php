@@ -1,6 +1,6 @@
 <!-- __<DIV> DE BOTONES DE EDITAR, ELIMINAR, VISIBLE Y OCULTAR__ -->
 <!-- _ESTE <DIV> INTERACTIVO SOLO SE MOSTRARÁ SI SE ESTÁ LOGEADO Y EL POST PERTENECE AL USUARIO REGISTRADO_ -->
-<?php if (isset($_SESSION['identity']) && $_SESSION['identity']->id == $post->user_id): ?>
+<?php if (isset($_SESSION['identity']) && $_SESSION['identity']->id == $post->user_id && $_SESSION['admin']): ?>
     <div role="group">
 
         <button><a class="button-action" href="<?= base_url ?>post/edit&id=<?= $post->id ?>">Editar</a></button>
@@ -91,9 +91,22 @@
     <!-- Botón de Comentar en views/post/see_post.php -->
     <div role="group" class="post_interaction">
 
-        <button data-tooltip="Like"><i class="fa-regular fa-thumbs-up"></i> 52</button>
 
-        <button data-tooltip="Dislike"><i class="fa-regular fa-thumbs-down"></i> 4</button>
+        <form action="<?= base_url ?>like/add" method="POST" class="form_like">
+            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['identity']->id ?>">
+            <button type="submit" data-tooltip="Like" class="button_likes">
+                <i class="fa-regular fa-thumbs-up"></i> <?= $likeCount ?>
+            </button>
+        </form>
+
+        <form action="<?= base_url ?>dislike/add" method="POST" class="form_like">
+            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+            <input type="hidden" name="user_id_dislike" value="<?= $_SESSION['identity']->id ?>">
+            <button type="submit" data-tooltip="Dislike" class="button_dislikes">
+                <i class="fa-regular fa-thumbs-down"></i> <?= $dislikeCount ?>
+            </button>
+        </form>
 
         <button data-target="comment-modal" onclick="toggleModal(event)" data-tooltip="Comentar">
             <i class="fa-regular fa-comments"></i>
