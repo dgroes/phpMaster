@@ -8,6 +8,8 @@ class PostController
         $post = new Post();
         $allPosts = $post->getAllPosts();
 
+        $mostComments = $post->getPostMostComment();
+
         //Renderizar Vista de los Posts Destacados
         require_once 'views/post/popular.php';
     }
@@ -61,6 +63,16 @@ class PostController
         }
 
         require_once 'views/post/see_post.php';
+    }
+
+    public function seeByCategories()
+    {
+        if (isset($_GET['category'])) {
+            $category = $_GET['category'];
+            $post = new Post();
+            $allPostsByCategory = $post->getPostsByCategory($category);
+        }
+        require_once 'views/post/postCategory.php';
     }
 
     public function save()
@@ -163,47 +175,57 @@ class PostController
 
     public function delete()
     {
-        Utils::isIdentity();
-        Utils::isAdmin();
+        Utils::isIdentity(); // Verifica si el usuario está logueado
+
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $post = new Post();
             $post->setId($id);
-            $delete = $post->delete();
+            $currentPost = $post->getOne(); // Obtén el post actual para verificar el user_id
 
-            if ($delete) {
-                $_SESSION['post-delete'] = "complete";
+            // Verifica si el usuario es el creador del post o un administrador
+            if ($_SESSION['identity']->id == $currentPost->user_id || isset($_SESSION['admin'])) {
+                $delete = $post->delete();
+
+                if ($delete) {
+                    $_SESSION['post-delete'] = "complete";
+                } else {
+                    $_SESSION['post-delete'] = "failed";
+                }
             } else {
-                $_SESSION['post-delete'] = "falied";
+                $_SESSION['post-delete'] = "failed";
             }
         } else {
-            $_SESSION['post-delete'] = "falied";
+            $_SESSION['post-delete'] = "failed";
         }
+
         header("Location:" . base_url . "post/management");
         exit();
     }
 
+
     public function status()
     {
-        Utils::isAdmin();
-        Utils::isIdentity();
+        Utils::isIdentity(); // Verifica si el usuario está logueado
 
-        // Verifica si los parámetros 'status' y 'id' están presentes en la URL
         if (isset($_GET['status']) && isset($_GET['id'])) {
             $status = $_GET['status'];
             $id = $_GET['id'];
 
-            // Muestra los valores de 'status' y 'id' recibidos
-            /*  var_dump($status, $id);
-            exit(); */
-
             $post = new Post();
             $post->setId($id);
-            $post->setStatus($status);
-            $newStatus = $post->updateStatus();
+            $currentPost = $post->getOne(); // Obtén el post actual para verificar el user_id
 
-            if ($newStatus) {
-                $_SESSION['post-status'] = "complete";
+            // Verifica si el usuario es el creador del post o un administrador
+            if ($_SESSION['identity']->id == $currentPost->user_id || isset($_SESSION['admin'])) {
+                $post->setStatus($status);
+                $newStatus = $post->updateStatus();
+
+                if ($newStatus) {
+                    $_SESSION['post-status'] = "complete";
+                } else {
+                    $_SESSION['post-status'] = "failed";
+                }
             } else {
                 $_SESSION['post-status'] = "failed";
             }
@@ -211,7 +233,6 @@ class PostController
             $_SESSION['post-status'] = "failed";
         }
 
-        // Redirige a la página de visualización del post
         header("Location:" . base_url . "post/see&id=$id");
         exit();
     }
