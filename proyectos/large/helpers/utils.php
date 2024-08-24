@@ -16,6 +16,7 @@ class Utils
     {
         if (!isset($_SESSION['admin'])) {
             header("Location:" . base_url);
+            exit();
         } else {
             return true;
         }
@@ -79,23 +80,23 @@ class Utils
         }
     }
 
-    public static function showLikes(){
+    public static function showLikes()
+    {
         require_once 'models/like.php';
         $postId = $_GET['id'];
         $like = new Like();
         $like->setPostId($postId);
         $allLikes = $like->countLikesByPost($postId);
         return $allLikes;
-
     }
 
-    public static function showDislikes(){
+    public static function showDislikes()
+    {
         require_once 'models/dislike.php';
         $postId = $_GET['id'];
         $dislike = new Dislike();
         $dislike->setPostId($postId);
         $allDislikes = $dislike->countDislikesByPost($postId);
         return $allDislikes;
-
     }
 }

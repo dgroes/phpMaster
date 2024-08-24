@@ -8,31 +8,32 @@ class LikeController
     {
         Utils::isIdentity();
 
-        // Verificar que el usuario esté logueado
         if (isset($_SESSION['identity'])) {
-            // Crear una instancia del modelo Like
-            $like = new Like();
-
-            // Asignar el ID del post y el ID del usuario al modelo
-
+            $userId = $_SESSION['identity']->id;
             $postId = $_POST['post_id'];
-            $like->setPostId($_POST['post_id']); // ID del post desde la URL
-            $like->setUserId($_SESSION['identity']->id); // ID del usuario desde la sesión
 
-            // Llamar al método add() para guardar el like en la base de datos
-            $save = $like->add();
+            $like = new Like();
+            $dislike = new Dislike();
 
-            // Comprobar si la operación fue exitosa
-            if ($save) {
-                $_SESSION['like'] = "complete";
+            if ($like->userHasLiked($postId, $userId)) {
+                // Si el usuario ya ha dado "Like", eliminar el "Like"
+                $like->removeLike($postId, $userId);
+                $_SESSION['like'] = "removed";
             } else {
-                $_SESSION['like'] = "failed";
-            }
-        } else {
-            $_SESSION['like'] = "failed";
-        }
+                // Si el usuario ha dado "Dislike", eliminar el "Dislike"
+                if ($dislike->userHasDisliked($postId, $userId)) {
+                    $dislike->removeDislike($postId, $userId);
+                }
+                // Añadir el "Like"
+                $like->setPostId($postId);
+                $like->setUserId($userId);
+                $save = $like->add();
 
-        // Redirigir de vuelta al post o a donde consideres adecuado
-        header("Location:" . base_url . "post/see&id=$postId");
+                $_SESSION['like'] = $save ? "complete" : "failed";
+            }
+
+            header("Location:" . base_url . "post/see&id=$postId");
+            exit();
+        }
     }
 }

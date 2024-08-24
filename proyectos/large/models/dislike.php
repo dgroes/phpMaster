@@ -76,4 +76,15 @@ class Dislike
         $result = $this->db->query("SELECT COUNT(*) AS total FROM dislikes WHERE post_id = $postId;");
         return $result->fetch_object()->total;
     }
+
+    public function userHasDisliked($postId, $userId)
+    {
+        $result = $this->db->query("SELECT * FROM dislikes WHERE post_id = $postId AND user_id = $userId;");
+        return $result->num_rows > 0;
+    }
+    
+    public function removeDislike($postId, $userId)
+    {
+        $this->db->query("DELETE FROM dislikes WHERE post_id = $postId AND user_id = $userId;");
+    }
 }

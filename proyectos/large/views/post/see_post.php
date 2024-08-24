@@ -1,6 +1,6 @@
 <!-- __<DIV> DE BOTONES DE EDITAR, ELIMINAR, VISIBLE Y OCULTAR__ -->
 <!-- _ESTE <DIV> INTERACTIVO SOLO SE MOSTRARÁ SI SE ESTÁ LOGEADO Y EL POST PERTENECE AL USUARIO REGISTRADO_ -->
-<?php if (isset($_SESSION['identity']) && $_SESSION['identity']->id == $post->user_id && $_SESSION['admin']): ?>
+<?php if (isset($_SESSION['identity']) && $_SESSION['identity']->id == $post->user_id || isset($_SESSION['admin'])): ?>
     <div role="group">
 
         <button><a class="button-action" href="<?= base_url ?>post/edit&id=<?= $post->id ?>">Editar</a></button>
@@ -92,21 +92,37 @@
     <div role="group" class="post_interaction">
 
 
-        <form action="<?= base_url ?>like/add" method="POST" class="form_like">
-            <input type="hidden" name="post_id" value="<?= $post->id ?>">
-            <input type="hidden" name="user_id" value="<?= $_SESSION['identity']->id ?>">
-            <button type="submit" data-tooltip="Like" class="button_likes">
+        <?php if (isset($_SESSION['identity'])) : ?>
+            <form action="<?= base_url ?>like/add" method="POST" class="form_like">
+                <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                <input type="hidden" name="user_id" value="<?= $_SESSION['identity']->id ?>">
+
+                <button type="submit" data-tooltip="Like" class="button_likes">
+                    <i class="fa-regular fa-thumbs-up"></i> <?= $likeCount ?>
+                </button>
+            </form>
+        <?php else : ?>
+            <button type="submit" data-tooltip="Logear para dar Like">
                 <i class="fa-regular fa-thumbs-up"></i> <?= $likeCount ?>
             </button>
-        </form>
+        <?php endif; ?>
 
-        <form action="<?= base_url ?>dislike/add" method="POST" class="form_like">
-            <input type="hidden" name="post_id" value="<?= $post->id ?>">
-            <input type="hidden" name="user_id_dislike" value="<?= $_SESSION['identity']->id ?>">
-            <button type="submit" data-tooltip="Dislike" class="button_dislikes">
+
+        <?php if (isset($_SESSION['identity'])) : ?>
+            <form action="<?= base_url ?>dislike/add" method="POST" class="form_like">
+                <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                <input type="hidden" name="user_id_dislike" value="<?= $_SESSION['identity']->id ?>">
+
+                <button type="submit" data-tooltip="Dislike" class="button_dislikes">
+                    <i class="fa-regular fa-thumbs-down"></i> <?= $dislikeCount ?>
+                </button>
+            </form>
+        <?php else : ?>
+            <button type="submit" data-tooltip="Logear para dar Dislike">
                 <i class="fa-regular fa-thumbs-down"></i> <?= $dislikeCount ?>
             </button>
-        </form>
+        <?php endif; ?>
+
 
         <button data-target="comment-modal" onclick="toggleModal(event)" data-tooltip="Comentar">
             <i class="fa-regular fa-comments"></i>
@@ -132,7 +148,7 @@
     <?php else : ?>
 
         <div>
-            Si deseas comentar este post, es necesario iniciar sesión.
+            Si deseas comentar, dar like o dislike a este post, es necesario iniciar sesión.
         </div>
 
     <?php endif; ?>

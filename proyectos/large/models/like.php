@@ -76,4 +76,15 @@ class Like
         $result = $this->db->query("SELECT COUNT(*) AS total FROM likes WHERE post_id = $postId;");
         return $result->fetch_object()->total;
     }
+
+    public function userHasLIked($postId, $userId)
+    {
+        $result = $this->db->query("SELECT * FROM likes WHERE post_id = '$postId' AND user_id = '$userId'; ");
+        return $result->num_rows > 0;
+    }
+
+    public function removeLike($postId, $userId)
+    {
+        $this->db->query("DELETE FROM likes WHERE post_id = '$postId' AND user_id = '$userId';");
+    }
 }

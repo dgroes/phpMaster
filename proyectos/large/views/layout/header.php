@@ -34,7 +34,7 @@
                                     <?php endif; ?>
                                 </li>
                                 <hr class="line-ul">
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="<?= base_url ?>user/perfilPrivate">Profile</a></li>
                                 <?php if (isset($_SESSION['admin'])) : ?>
                                     <li><a href="<?= base_url ?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
@@ -75,8 +75,8 @@
         <article class="category overflow-auto">
 
             <ul class="category-list ">
-                <?php while ($cat = $categories->fetch_object()) : ?>
-                    <li class="lista"><a href=""><?= $cat->name ?></a></li>
+                <?php while ($cat = $categories->fetch_object()) : ?> <!-- El urlencode es importante para las categorías que tienen espacios entremedio de su nombre -->
+                    <li class="lista"><a href="<?= base_url?>post/seeByCategories&category=<?=urlencode($cat->name)?>"> <?= $cat->name ?> </a></li> 
                 <?php endwhile; ?>
             </ul>
 

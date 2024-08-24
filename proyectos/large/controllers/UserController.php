@@ -18,6 +18,19 @@ class UserController
         require_once 'views/user/login.php';
     }
 
+    public function perfilPrivate()
+    {
+        require_once 'views/user/perfilPrivate.php';
+    }
+
+    public function perfilPublic()
+    {
+        $user_id = $_GET['id'];
+        $postsUser = new Post();
+        $usernamePerfil = $postsUser->getAllByUser($user_id);
+        require_once 'views/user/perfilPublic.php';
+    }
+
     public function login()
     {
 

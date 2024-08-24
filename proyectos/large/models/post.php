@@ -130,33 +130,76 @@ class Post
     }
 
     public function getAllPosts()
-    {   
+    {
         $idUser = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
         $sql = "SELECT posts.*, categories.name as category_name, users.username AS creator
                 FROM posts 
                 INNER JOIN categories ON posts.category_id = categories.id 
                 INNER JOIN users ON posts.user_id = users.id ";
 
-                //Si el user es Administrador
-                if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+        //Si el user es Administrador
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 
-                    //NO Hay condición adicional, se muestran todos los posts existentes
-                
-                } elseif($idUser){
-                
-                    //Si el user está logeado, se muestran los posts visibles y los suyos ocultos
-                    $sql .= "WHERE (posts.status = 'Visible' OR posts.user_id = $idUser)";
-                
-                } else {
+            //NO Hay condición adicional, se muestran todos los posts existentes
 
-                    //Si el usuario no está logeado, se muestran solo los posts visibles
-                    $sql .= "WHERE posts.status = 'Visible'";
-                }               
-                $sql .= " ORDER BY created_at DESC;";
+        } elseif ($idUser) {
+
+            //Si el user está logeado, se muestran los posts visibles y los suyos ocultos
+            $sql .= "WHERE (posts.status = 'Visible' OR posts.user_id = $idUser)";
+        } else {
+
+            //Si el usuario no está logeado, se muestran solo los posts visibles
+            $sql .= "WHERE posts.status = 'Visible'";
+        }
+        $sql .= " ORDER BY created_at DESC;";
         $posts = $this->db->query($sql);
 
         return $posts;
     }
+
+    public function getPostMostComment()
+    {
+        $result = $this->db->query("SELECT comments.post_id, COUNT(comments.content) as contador, categories.name AS category_name, users.username AS creator, posts.status, posts.title AS title, posts.content AS content, posts.created_at AS created_at, posts.id as id
+                                    FROM comments
+                                    INNER JOIN posts ON posts.id = comments.post_id
+                                    INNER JOIN categories ON categories.id = posts.category_id
+                                    INNER JOIN users ON users.id = posts.user_id
+                                    WHERE posts.status = 'Visible'
+                                    GROUP BY post_id
+                                    ORDER BY contador DESC
+                                    LIMIT 2;");
+
+        return $result;
+    }
+
+    public function getPostsByCategory($category)
+    {
+        $idUser = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
+        $sql = "SELECT posts.id AS id, posts.user_id AS user_id, posts.title AS title, posts.sub_title AS sub_title, posts.content AS content, posts.image AS image, posts.status AS status, posts.created_at AS created_at, posts.category_id AS category_id, categories.name AS category_name, users.username AS creator
+            FROM posts
+            INNER JOIN categories ON categories.id = posts.category_id
+            INNER JOIN users ON users.id = posts.user_id ";
+
+        // Siempre aplicar la condición de categoría
+        $sql .= "WHERE categories.name = '$category' ";
+
+        // Si el user es Administrador
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+            // No hay condición adicional, se muestran todos los posts de la categoría
+        } elseif ($idUser) {
+            // Si el user está logeado, se muestran los posts visibles y los suyos ocultos
+            $sql .= "AND (posts.status = 'Visible' OR posts.user_id = $idUser) ";
+        } else {
+            // Si el usuario no está logeado, se muestran solo los posts visibles
+            $sql .= "AND posts.status = 'Visible' ";
+        }
+
+        $sql .= "ORDER BY posts.created_at DESC;";
+        $posts = $this->db->query($sql);
+
+        return $posts;
+    }
+
 
     //Se utilizó esta manera, ya que así se pueden manejar los datos si existen o no, por ejemplo si solo quiero actualizar el campo title esto ayuda que pueda hacer de manera correcta el UPDATE
     public function update()
@@ -219,7 +262,7 @@ class Post
     public function updateStatus()
     {
         $sql = "UPDATE posts SET status = '{$this->getStatus()}' WHERE id = '{$this->getId()}';";
-         /* var_dump($sql);
+        /* var_dump($sql);
             exit();
  */
         $status = $this->db->query($sql);
