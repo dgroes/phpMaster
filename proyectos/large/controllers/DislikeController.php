@@ -3,36 +3,36 @@ require_once 'models/dislike.php';
 
 class DislikeController
 {
-
     public function add()
     {
         Utils::isIdentity();
 
-        // Verificar que el usuario esté logueado
         if (isset($_SESSION['identity'])) {
-            // Crear una instancia del modelo Like
-            $dislike = new Dislike();
-
-            // Asignar el ID del post y el ID del usuario al modelo
-
+            $userId = $_SESSION['identity']->id;
             $postId = $_POST['post_id'];
-            $dislike->setPostId($_POST['post_id']); // ID del post desde la URL
-            $dislike->setUserId($_SESSION['identity']->id); // ID del usuario desde la sesión
 
-            // Llamar al método add() para guardar el dislike en la base de datos
-            $save = $dislike->add();
+            $dislike = new Dislike();
+            $like = new Like();
 
-            // Comprobar si la operación fue exitosa
-            if ($save) {
-                $_SESSION['dislike'] = "complete";
+            if ($dislike->userHasDisliked($postId, $userId)) {
+                // Si el usuario ya ha dado "Dislike", eliminar el "Dislike"
+                $dislike->removeDislike($postId, $userId);
+                $_SESSION['dislike'] = "removed";
             } else {
-                $_SESSION['dislike'] = "failed";
-            }
-        } else {
-            $_SESSION['dislike'] = "failed";
-        }
+                // Si el usuario ha dado "Like", eliminar el "Like"
+                if ($like->userHasLiked($postId, $userId)) {
+                    $like->removeLike($postId, $userId);
+                }
+                // Añadir el "Dislike"
+                $dislike->setPostId($postId);
+                $dislike->setUserId($userId);
+                $save = $dislike->add();
 
-        // Redirigir de vuelta al post o a donde consideres adecuado
-        header("Location:" . base_url . "post/see&id=$postId");
+                $_SESSION['dislike'] = $save ? "complete" : "failed";
+            }
+
+            header("Location:" . base_url . "post/see&id=$postId");
+            exit();
+        }
     }
 }
