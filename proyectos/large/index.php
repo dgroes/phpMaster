@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 /*  
     Este fichero actúa como putnode entrada principal de la app. Tiene como proposito gestionar las 
@@ -53,6 +54,7 @@ if (!isset($_GET['controller']) || $_GET['controller'] !== 'category') {
     require_once 'views/layout/footer.php';
 }
 
+ob_end_flush();
 
 
 /* 
@@ -72,3 +74,4 @@ if (!isset($_GET['controller']) || $_GET['controller'] !== 'category') {
     Si la clase userController existe y tiene un método login, se llamará a ese método.
 
 */
+
