@@ -45,10 +45,19 @@ class PostController
 
             // Contar el número de comentarios
             $commentCount = $allComments->num_rows;
+
+
+            // Obtener el número de likes
+            $likeCount = Utils::showLikes(); // Aquí no se necesita num_rows
+
+            // Obtener el número de Dislikes
+            $dislikeCount = Utils::showDislikes(); // Aquí no se necesita num_rows
         } else {
             $post = null;
             $allComments = null;
             $commentCount = 0;
+            $likeCount = 0;
+            $dislikeCount = 0;
         }
 
         require_once 'views/post/see_post.php';
