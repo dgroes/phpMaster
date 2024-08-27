@@ -129,7 +129,7 @@ class Post
         return $posts;
     }
 
-    public function getAllPosts()
+    public function getAllPosts($search = null)
     {
         $idUser = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
         $sql = "SELECT posts.*, categories.name as category_name, users.username AS creator
@@ -142,6 +142,9 @@ class Post
 
             //NO Hay condición adicional, se muestran todos los posts existentes
 
+
+        } elseif (!empty($search)) {
+            $sql .= "WHERE posts.title LIKE '%$search%' OR posts.content LIKE '%$search%' OR posts.sub_title LIKE '%$search%'";
         } elseif ($idUser) {
 
             //Si el user está logeado, se muestran los posts visibles y los suyos ocultos
