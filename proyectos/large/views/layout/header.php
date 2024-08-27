@@ -64,7 +64,7 @@
 
             <ul>
                 <li>
-                    <form role="search" class="principal_search">
+                    <form role="search" class="principal_search" action="<?= base_url ?>post/search" method="POST">
                         <input type="search" name="search" placeholder="Search" aria-label="Search" />
                     </form>
                 </li>
@@ -76,7 +76,7 @@
 
             <ul class="category-list ">
                 <?php while ($cat = $categories->fetch_object()) : ?> <!-- El urlencode es importante para las categorías que tienen espacios entremedio de su nombre -->
-                    <li class="lista"><a href="<?= base_url?>post/seeByCategories&category=<?=urlencode($cat->name)?>"> <?= $cat->name ?> </a></li> 
+                    <li class="lista"><a href="<?= base_url ?>post/seeByCategories&category=<?= urlencode($cat->name) ?>"> <?= $cat->name ?> </a></li>
                 <?php endwhile; ?>
             </ul>
 
