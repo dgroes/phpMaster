@@ -4,6 +4,7 @@ class User
 {
     private $id;
     private $username;
+    private $bio;
     private $password;
     private $email;
     private $rol;
@@ -34,6 +35,17 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
+    }
+
+    // Getter and setter for bio
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
     }
 
     // Getter and setter for password
