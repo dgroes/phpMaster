@@ -142,4 +142,37 @@ class User
         return $result;
     }
 
+    public function update()
+    {
+        $fields = [];
+        if ($this->getBio()) {
+            $fields[] = "bio = '{$this->db->real_escape_string($this->getBio())}'";
+        }
+
+        if (!empty($fields)) { // Cambiado a !empty
+            $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = '{$this->db->real_escape_string($this->getId())}'";
+            $update = $this->db->query($sql);
+
+            if (!$update) {
+                // Mostrar el error SQL para depuración
+                echo "SQL Error: " . $this->db->error;
+                return false;
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getOneUser()
+    {
+        $user = $this->db->query("SELECT * FROM users WHERE id = {$this->getId()};");
+        return $user->fetch_object();
+    }
+
+    public function getPerfilByUser($user_id){
+
+    }
 }
