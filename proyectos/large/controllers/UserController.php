@@ -1,5 +1,6 @@
 <?php
 require_once 'models/user.php';
+require_once 'models/post.php';
 
 class UserController
 {
@@ -18,16 +19,59 @@ class UserController
         require_once 'views/user/login.php';
     }
 
-    public function perfilPrivate()
+    public function Perfil()
     {
-        require_once 'views/user/perfilPrivate.php';
+        Utils::isIdentity();
+
+        $user = new User();
+        $user->setId($_SESSION['identity']->id);
+
+        $user = $user->getOneUser();
+
+        $user_id = $_SESSION['identity']->id;
+        $post = new Post();
+        $myPosts = $post->getAllByUser($user_id);
+
+        require_once 'views/user/perfil.php';
     }
 
-    public function perfilPublic()
+
+    public function edit()
     {
-        $user_id = $_GET['id'];
-        $postsUser = new Post();
-        $usernamePerfil = $postsUser->getAllByUser($user_id);
+        require_once 'views/user/edit.php';
+    }
+
+    public function update()
+    {
+        Utils::isIdentity();
+        if (isset($_POST) && isset($_POST['bio'])) {
+            $bio = $_POST['bio'];
+
+            $user = new User();
+            $user->setId($_SESSION['identity']->id);
+            $user->setBio($bio);
+
+            $update = $user->update();
+
+            if ($update) {
+                $_SESSION['user-update'] = "complete";
+            } else {
+                $_SESSION['user-update'] = "failed";
+            }
+        } else {
+            $_SESSION['user-update'] = "failed";
+        }
+        header("Location:" . base_url . "user/perfil");
+    }
+
+
+    public function seePerfil()
+    {
+        if (isset($_GET['id'])) {
+            $user_id = $_GET['id'];
+            $user = new User();
+            $perfilByUser = $user->getPerfilByUser($user_id);
+        }
         require_once 'views/user/perfilPublic.php';
     }
 
