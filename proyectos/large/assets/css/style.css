@@ -716,3 +716,38 @@ details {
     margin-right: 4px;
 
 }
+
+
+/* __PERFIL DE USUARIO__ */
+
+.private_perfil_title{
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edition_perfil_button{
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+
+textarea{
+    /* background-color: red; */
+    field-sizing: content;
+    min-height: 100px;
+}
+
+
+.biography {
+    /* background-color: black; */
+    color: rgb(255, 252, 246);
+}
+
+.section_biography {
+    background-color: #30353f;
+    
+    padding: 10px;
+    border-radius: 4.5px;
+}
