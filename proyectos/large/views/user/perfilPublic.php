@@ -1,1 +1,0 @@
-<h2 class="title-category"> <?= $usernamePerfil->name ?> </h2>

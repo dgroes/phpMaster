@@ -123,13 +123,31 @@ class Post
     //Obtener todas los post por rusuario
     public function getAllByUser($user_id)
     {
+        $current_user_id = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
+        $isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] == true;
+
+        // Asegúrate de escapar la entrada para prevenir SQL Injection
         $user_id = $this->db->real_escape_string($user_id);
-        $sql = "SELECT posts.*, categories.name as category_name FROM posts LEFT JOIN categories on posts.category_id = categories.id WHERE posts.user_id = {$user_id} ORDER BY posts.created_at DESC;";
+
+        $sql = "SELECT posts.*, categories.name as category_name 
+            FROM posts 
+            LEFT JOIN categories ON posts.category_id = categories.id 
+            WHERE posts.user_id = {$user_id} ";
+
+        if ($isAdmin || $current_user_id == $user_id) {
+            // Si es administrador o está viendo su propio perfil, mostrar todos los posts
+            $sql .= "ORDER BY posts.created_at DESC;";
+        } else {
+            // Si es otro usuario, mostrar solo los posts visibles
+            $sql .= "AND posts.status = 'Visible' ORDER BY posts.created_at DESC;";
+        }
+
         $posts = $this->db->query($sql);
         return $posts;
     }
 
-    public function getAllPosts()
+
+    public function getAllPosts($search = null)
     {
         $idUser = isset($_SESSION['identity']) ? $_SESSION['identity']->id : null;
         $sql = "SELECT posts.*, categories.name as category_name, users.username AS creator
@@ -142,6 +160,9 @@ class Post
 
             //NO Hay condición adicional, se muestran todos los posts existentes
 
+
+        } elseif (!empty($search)) {
+            $sql .= "WHERE posts.title LIKE '%$search%' OR posts.content LIKE '%$search%' OR posts.sub_title LIKE '%$search%'";
         } elseif ($idUser) {
 
             //Si el user está logeado, se muestran los posts visibles y los suyos ocultos

@@ -1,1 +1,0 @@
-<h2 class="title-category"> <?= $_SESSION['identity']->username ?></h2>

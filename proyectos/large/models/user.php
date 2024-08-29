@@ -4,6 +4,7 @@ class User
 {
     private $id;
     private $username;
+    private $bio;
     private $password;
     private $email;
     private $rol;
@@ -34,6 +35,17 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
+    }
+
+    // Getter and setter for bio
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
     }
 
     // Getter and setter for password
@@ -130,4 +142,47 @@ class User
         return $result;
     }
 
+    public function update()
+    {
+        $fields = [];
+        if ($this->getBio()) {
+            $fields[] = "bio = '{$this->db->real_escape_string($this->getBio())}'";
+        }
+
+        if (!empty($fields)) { // Cambiado a !empty
+            $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = '{$this->db->real_escape_string($this->getId())}'";
+            $update = $this->db->query($sql);
+
+            if (!$update) {
+                // Mostrar el error SQL para depuración
+                echo "SQL Error: " . $this->db->error;
+                return false;
+            }
+
+            return true;    
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getOneUser($username)
+    {
+        $username = $this->db->real_escape_string($username); // Asegúrate de que el nombre de usuario esté definido
+        $query = "SELECT * FROM users WHERE username = '{$username}'";
+        
+        $result = $this->db->query($query);
+       
+
+        if (!$result) {
+            throw new mysqli_sql_exception("Error en la consulta SQL: " . $this->db->error);
+        }
+
+        return $result->fetch_object();
+    }
+
+
+
+
+    public function getPerfilByUser($user_id) {}
 }

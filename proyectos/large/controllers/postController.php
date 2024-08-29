@@ -236,4 +236,34 @@ class PostController
         header("Location:" . base_url . "post/see&id=$id");
         exit();
     }
+
+    public function search()
+    {
+        if (isset($_POST['search']) && !empty($_POST['search'])) {
+            // Guardar la búsqueda en la sesión
+            $_SESSION['last_search'] = $_POST['search'];
+            // Redirigir para evitar el reenvío del formulario
+            header("Location: " . base_url . "post/search?search=" . urlencode($_SESSION['last_search']));
+            exit();
+        }
+
+        // Verificar si hay una búsqueda almacenada en la sesión o en la URL
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+        } elseif (isset($_SESSION['last_search'])) {
+            $search = $_SESSION['last_search'];
+        } else {
+            $search = ''; // No hay búsqueda previa
+        }
+
+        // Realizar la búsqueda si hay un término
+        if (!empty($search)) {
+            $post = new Post();
+            $allPosts = $post->getAllPosts($search);
+        } else {
+            $allPosts = null;
+        }
+
+        require_once 'views/post/search.php';
+    }
 }

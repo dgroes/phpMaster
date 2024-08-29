@@ -34,7 +34,7 @@
                                     <?php endif; ?>
                                 </li>
                                 <hr class="line-ul">
-                                <li><a href="<?= base_url ?>user/perfilPrivate">Profile</a></li>
+                                <li><a href="<?= base_url ?>user/perfil&creator=<?= $_SESSION['identity']->username; ?>">Profile</a></li>
                                 <?php if (isset($_SESSION['admin'])) : ?>
                                     <li><a href="<?= base_url ?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
@@ -64,7 +64,7 @@
 
             <ul>
                 <li>
-                    <form role="search" class="principal_search">
+                    <form role="search" class="principal_search" action="<?= base_url ?>post/search" method="POST">
                         <input type="search" name="search" placeholder="Search" aria-label="Search" />
                     </form>
                 </li>
@@ -76,7 +76,7 @@
 
             <ul class="category-list ">
                 <?php while ($cat = $categories->fetch_object()) : ?> <!-- El urlencode es importante para las categorías que tienen espacios entremedio de su nombre -->
-                    <li class="lista"><a href="<?= base_url?>post/seeByCategories&category=<?=urlencode($cat->name)?>"> <?= $cat->name ?> </a></li> 
+                    <li class="lista"><a href="<?= base_url ?>post/seeByCategories&category=<?= urlencode($cat->name) ?>"> <?= $cat->name ?> </a></li>
                 <?php endwhile; ?>
             </ul>
 

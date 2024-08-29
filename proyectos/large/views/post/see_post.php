@@ -77,7 +77,9 @@
         <?php endif; ?>
         <p class="category_post"><?= $post->category_name ?></p>
         <p class="post_sub_title"><?= $post->sub_title ?></p>
-        <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by <?= $post->creator ?></p>
+        <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by
+            <a href="<?= base_url ?>user/perfil&creator=<?= $post->creator ?>"><?= $post->creator ?></a>
+        </p>
 
     </section>
 
