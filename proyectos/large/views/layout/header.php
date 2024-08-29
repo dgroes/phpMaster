@@ -34,7 +34,7 @@
                                     <?php endif; ?>
                                 </li>
                                 <hr class="line-ul">
-                                <li><a href="<?= base_url ?>user/perfil">Profile</a></li>
+                                <li><a href="<?= base_url ?>user/perfil&creator=<?= $_SESSION['identity']->username; ?>">Profile</a></li>
                                 <?php if (isset($_SESSION['admin'])) : ?>
                                     <li><a href="<?= base_url ?>category/index" class="admin-management">Categorías</a></li>
                                     <li><a href="#" class="admin-management">Usuarios</a></li>
