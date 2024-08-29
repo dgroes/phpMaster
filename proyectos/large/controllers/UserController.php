@@ -21,19 +21,28 @@ class UserController
 
     public function Perfil()
     {
-        Utils::isIdentity();
+        if (isset($_GET['creator'])) {
+            $username = $_GET['creator'];
+            $user = new User();
+            $user->getUsername($username);
 
-        $user = new User();
-        $user->setId($_SESSION['identity']->id);
+            $perfil = $user->getOneUser($username);
+           
+            $user_id = $perfil->id;
+            if (!$perfil) {
+                echo "Usuario no encontrado.";
+                return;
+            }
 
-        $user = $user->getOneUser();
+            // Traer los posts del usuario utilizando su ID
+            $post = new Post();
+            $myPosts = $post->getAllByUser($user_id);
 
-        $user_id = $_SESSION['identity']->id;
-        $post = new Post();
-        $myPosts = $post->getAllByUser($user_id);
-
-        require_once 'views/user/perfil.php';
+            require_once 'views/user/perfil.php';
+        }
     }
+
+
 
 
     public function edit()
@@ -65,15 +74,6 @@ class UserController
     }
 
 
-    public function seePerfil()
-    {
-        if (isset($_GET['id'])) {
-            $user_id = $_GET['id'];
-            $user = new User();
-            $perfilByUser = $user->getPerfilByUser($user_id);
-        }
-        require_once 'views/user/perfilPublic.php';
-    }
 
     public function login()
     {
