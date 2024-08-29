@@ -159,20 +159,30 @@ class User
                 return false;
             }
 
-            return true;
+            return true;    
         } else {
             return false;
         }
     }
 
 
-    public function getOneUser()
+    public function getOneUser($username)
     {
-        $user = $this->db->query("SELECT * FROM users WHERE id = {$this->getId()};");
-        return $user->fetch_object();
+        $username = $this->db->real_escape_string($username); // Asegúrate de que el nombre de usuario esté definido
+        $query = "SELECT * FROM users WHERE username = '{$username}'";
+        
+        $result = $this->db->query($query);
+       
+
+        if (!$result) {
+            throw new mysqli_sql_exception("Error en la consulta SQL: " . $this->db->error);
+        }
+
+        return $result->fetch_object();
     }
 
-    public function getPerfilByUser($user_id){
 
-    }
+
+
+    public function getPerfilByUser($user_id) {}
 }
