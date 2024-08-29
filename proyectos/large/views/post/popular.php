@@ -114,7 +114,9 @@
                         <h3><?= $post->title ?></h3>
                         <p class="post_sub_title"><?= $post->sub_title ?></p>
                         <p class="post_detail">Publicado el: <?= date('Y-m-d H:i', strtotime($post->created_at)) ?> by </p>
-                        <p><a href="<?= base_url ?>user/perfilPublic&id=<?= $post->user_id ?>" class="perfil_creator"><?= $post->creator ?></a></p>
+                        <p>
+                            <a href="<?= base_url ?>user/perfil&creator=<?= $post->creator ?>" class="perfil_creator"><?= $post->creator ?></a>
+                        </p>
                     </section>
                     <p><?= nl2br(htmlspecialchars(substr($post->content, 0, 300))) ?>...</p>
                     <?php if ($post->image != null) : ?>
