@@ -42,4 +42,6 @@ agregando comodidad y de dispensar el uso de papel y libros, manteniendo un regi
   - Se deberá tener un registro de las quejas y sugerencias de los residentes del edifico
   - En este aspecto por la dificultad que le resulta a algunos residentes se deberá transcribir dichas quejas y sugerencias escritas en el libro al sistema
  
-
+- Gestión de bodega y estacionamiento
+  - Gestión de bodegas acorde al depto
+  - Gestión de estacionamientos de residentes acorde al depto
