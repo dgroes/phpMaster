@@ -13,9 +13,8 @@ CREATE TABLE personas(
 -- Tabla de cargos laboral de trabajdores del edificio, ejemplo: (Mayordomo, Conserje Partime, Conserje Día, Auxiliar de Aseo, etc.) ######Listo
 CREATE TABLE cargos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    persona_id INT NOT NULL,
+    cargo VARCHAR (70) NOT NULL,
     descripcion VARCHAR (70) NOT NULL,
-    CONSTRAINT fk_cargo_persona FOREIGN KEY (persona_id) REFERENCES personas(id)
 ) ENGINE = InnoDB;
 
 -- Tabla de trabajdores  ######Listo

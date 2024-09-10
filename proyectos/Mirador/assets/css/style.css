@@ -18,22 +18,41 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
  /* __ ELEMENTOS PRINCIPALES__  */
-.container .title_header {
+.nav__title {
     font-family: 'DM Serif Display';
     font-size: 40px;
 }
 
 
 /* __ INICIO PRINCIPAL DE LA PÁGINA __ */
-.desctription_start .sub_title {
+.management__subtitle {
     font-family: 'DM Serif Display';
     font-size: 30px;
 }
 
-.desctription_start .standard_paragraph {
+.management_paragraph {
     font-family: 'Fira Mono';
     font-size: 22px;
 }
+
+
+
+/* __ INICIO DE SESIÓN DE USUARIO __ */
+
+.login__label {
+    font-size: 24px;
+    font-family: 'Fira Mono';
+}
+
+.login__submit {
+    font-size: 18px;
+    /* padding-bottom: 10px; */
+    font-family: 'Fira Mono';
+    /* text-align: center; */
+    /* align-items: center; */
+
+}
+
 
 
 

@@ -22,9 +22,9 @@
 
 <body>
     <main class="container">
-        <nav>
+        <nav class="nav">
             <ul>
-                <li class="title_header"><strong>Mirador de los Andes</strong></li>
+                <li class="nav__title"><strong>Mirador de los Andes</strong></li>
             </ul>
             <ul>
                 <li><a href="<?= base_url ?>Usuario/log" class="secondary">Iniciar Sesión</a></li>

@@ -1,16 +1,16 @@
 <article class="login">
-    <form>
+    <form action="<?= base_url ?>usuario/login" method="POST">
         <fieldset>
-            <label>
+            <label class="login__label">
                 Correo
                 <input type="email" name="email" placeholder="Ejemplo: mirador@gmail.com" required />
             </label>
-            <label>
+            <label class="login__label">
                 Contraseña
-                <input type="password" name="password" id=""  placeholder="Ejemplo: papimiperro" required>
+                <input type="password" name="password" id="" placeholder="Ejemplo: papimiperro" required>
             </label>
         </fieldset>
 
-        <input type="submit" value="Subscribe" />
+        <input class="login__submit" type="submit" value="Iniciar Sesión" />
     </form>
 </article>
