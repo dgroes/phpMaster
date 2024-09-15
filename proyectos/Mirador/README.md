@@ -21,6 +21,7 @@ agregando comodidad y de dispensar el uso de papel y libros, manteniendo un regi
   - Crear, editar, visualizar y eliminar registro de vehiculos
   - Gestonar tanto los vehiculos residentes como los de visitas
   - Los vehiculos de visitas se deberá gestionar su horario de entrada y de salida, además de los datos del vehiculo, como patente, marca, color, etc.
+  - Gesión de los vehiculos que se quedan de un día a otro, es decir, vehiculos que incumplen el limite de horas, quedandose por ejemplo de un día completo al día siguiente.
 
 - Gestión de Personal
   - Crear, editar, visualizar y eliminar registros de personal
@@ -50,4 +51,5 @@ agregando comodidad y de dispensar el uso de papel y libros, manteniendo un regi
   - Gestionar y registar los eventos en ambas torres
 
 - Gestion de encargos 
-  
+  - Administar encargos tales como pedios de comida, paquetes.
+  - Datos de la residencia, personal que lo recibe, personal que lo entrega, hora de entrega y recibida.
