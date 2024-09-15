@@ -45,3 +45,9 @@ agregando comodidad y de dispensar el uso de papel y libros, manteniendo un regi
 - Gestión de bodega y estacionamiento
   - Gestión de bodegas acorde al depto
   - Gestión de estacionamientos de residentes acorde al depto
+
+- Gestion de eventos
+  - Gestionar y registar los eventos en ambas torres
+
+- Gestion de encargos 
+  
