@@ -23,7 +23,7 @@ CREATE TABLE trabajadores (
     persona_id INT NOT NULL,
     cargo_id INT NOT NULL,
     email VARCHAR(70) NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     rol VARCHAR(20) NOT NULL,
     CONSTRAINT fk_trabajador_persona FOREIGN KEY (persona_id) REFERENCES personas(id),
     CONSTRAINT fk_trabajador_cargo FOREIGN KEY (cargo_id) REFERENCES cargos(id)
