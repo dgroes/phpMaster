@@ -1,24 +1,31 @@
-<?php 
+<?php
 
-// require_once 'models/usuario.php';
+require_once 'models/trabajador.php';
 
-class UsuarioController {
+class UsuarioController
+{
     public function index()
     {
         require_once 'views/usuario/inicio.php';
     }
 
-    public function log(){
+    public function log()
+    {
         require_once 'views/usuario/login.php';
     }
 
-    public function login(){
-        if(isset($_POST['email']) && isset($_POST['password'])){
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    public function login()
+    {
+        if (isset($_POST)) {
+           
+            $trabajador = new Trabajador();
+            $trabajador->setEmail($_POST['email']);
+            $trabajador->setPassword($_POST['password']);
+            $identity = $trabajador->login();
 
-            $persona = new Trabajador();
-            $persona->save();
+            if($identity && is_object($identity)){
+                
+            }
         }
     }
 }
