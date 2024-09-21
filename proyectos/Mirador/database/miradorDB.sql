@@ -14,7 +14,7 @@ CREATE TABLE personas(
 CREATE TABLE cargos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cargo VARCHAR (70) NOT NULL,
-    descripcion VARCHAR (70) NOT NULL,
+    descripcion VARCHAR (70) NOT NULL
 ) ENGINE = InnoDB;
 
 -- Tabla de trabajdores  ######Listo
@@ -135,7 +135,7 @@ CREATE TABLE notaResidentes (
 CREATE TABLE apuntes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     turno_id INT NOT NULL,
-    detalle VARCHAR(255) NOT NULL,
+    detalle TEXT NOT NULL,
     creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_apuntes_turno FOREIGN KEY (turno_id) REFERENCES turnos(id)
 ) ENGINE = InnoDB;
@@ -164,4 +164,36 @@ CREATE TABLE casillas(
     residencia_id INT NOT NULL,
     detalle VARCHAR(255),
     CONSTRAINT fk_casilla_residencia FOREIGN KEY (residencia_id) REFERENCES residencias(id)
+) ENGINE = InnoDB;
+
+-- Tabla de tipos de encargo, encargos tales como paquetes, pedidos, etc.
+CREATE TABLE encargosTipo(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(20),
+    detalle VARCHAR(100)
+) ENGINE = InnoDB;
+
+-- Tabla de encargos (paquetes, pedidos, bultos, etc) que deberán tener su podrio registro 
+CREATE TABLE encargos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    encargosTipo_id INT NOT NULL,
+    residencia_id INT NOT NULL,
+    turno_id INT NOT NULL,
+    horaRecibido DATETIME,
+    horaEntregado DATETIME,
+    CONSTRAINT fk_encargo_encargoTipo FOREIGN KEY (encargosTipo_id) REFERENCES encargosTipo(id),
+    CONSTRAINT fk_encargo_residencia FOREIGN KEY (residencia_id) REFERENCES residencias(id),
+    CONSTRAINT fk_encargo_turno FOREIGN KEY (turno_id) REFERENCES turnos(id)
+) ENGINE = InnoDB;
+
+-- Tabla de gestión del salon de eventos
+CREATE TABLE eventos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    residencia_id INT NOT NULL,
+    torre_id INT NOT NULL,
+    horaInicio DATETIME,
+    horaTermino DATETIME,
+    detalle TEXT NOT NULL,
+    CONSTRAINT fk_evento_residencia FOREIGN KEY (residencia_id) REFERENCES residencias(id),
+    CONSTRAINT fk_evento_torre FOREIGN KEY (torre_id) REFERENCES torres(id)
 ) ENGINE = InnoDB;
