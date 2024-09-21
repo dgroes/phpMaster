@@ -27,12 +27,11 @@ if (isset($_GET['controller'])) {
 if (isset($nameController) && class_exists($nameController)) {
     $controller = new $nameController();
 
-    if(isset($_GET['action']) && method_exists($controller, $_GET['action'])){
+    if (isset($_GET['action']) && method_exists($controller, $_GET['action'])) {
         $action = $_GET['action'];
 
         $controller->$action();
-
-    } elseif (!isset($_GET['controller']) && !isset($_GET['action'])){
+    } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
         $action_default = action_default;
         $controller->$action_default();
     } else {
@@ -41,5 +40,8 @@ if (isset($nameController) && class_exists($nameController)) {
 } else {
     show_eror();
 }
-
+// Incluir el SideBar solo si un usuario está logeado
+if (isset($_SESSION['identity'])) {
+    require_once 'views/layout/sidebar.php';
+}
 require_once 'views/layout/footer.php';
