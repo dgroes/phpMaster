@@ -23,9 +23,30 @@
     font-size: 40px;
 }
 
+.main_content{
+    width: 100%;
+    display:flex;
+    /* flex-wrap: nowrap; */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* __SIDEBAR__ */
+.aside {
+    flex: 20%;
+    
+}
+
+textarea{
+    /* background-color: red; */
+    field-sizing: content;
+    min-height: 152px;
+}
+
 
 /* __ INICIO PRINCIPAL DE LA PÁGINA __ */
-.management__subtitle {
+.management__subtitle, .logbook__subtitle, .notes__subtitle {
     font-family: 'DM Serif Display';
     font-size: 30px;
 }
@@ -56,6 +77,20 @@
 
 
 
+/* __ LIBRO DE BITACORA __ */
+
+.logbook{
+    flex: 70%;
+}
+
+.logbook_date{
+    width: 20px;
+}
+
+
+
+
+
 /* __ FOOTER __ */
 .footer {
     display: flex;
@@ -69,4 +104,12 @@
 
 a {
     text-decoration: none;
+    color: #f7708e;
 }
+
+a:hover{
+    color: #f192a7;
+}
+
+
+
