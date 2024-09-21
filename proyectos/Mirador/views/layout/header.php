@@ -27,8 +27,34 @@
                 <li class="nav__title"><strong>Mirador de los Andes</strong></li>
             </ul>
             <ul>
-                <li><a href="<?= base_url ?>Usuario/log" class="secondary">Iniciar Sesión</a></li>
-                <!--  <li>
+                <?php if (!isset($_SESSION['identity'])) : ?>
+                    <li><a href="<?= base_url ?>Usuario/log" class="secondary">Iniciar Sesión</a></li>
+                <?php else : ?>
+                    <li>
+                        <details class="dropdown">
+                            <summary>
+                                Servicios
+                            </summary>
+                            <ul dir="rtl">
+                                <li><a href="#">Bitáctora</a></li>
+                                <li><a href="#">Estacionamiento de visitas</a></li>
+                                <li><a href="#">Visitas</a></li>
+                                <li><a href="#">Recidencias</a></li>
+                                <li><a href="#">Gimnacio</a></li>
+                                <li><a href="#">Quejas y Sujerencias</a></li>
+                                <li><a href="#">Eventos</a></li>
+                                <li><a href="#">Encargos</a></li>
+                                <li><a href="#">Bedegas y Estacionamientos</a></li>
+                                <li><a href="#">Personal</a></li>
+                                <li><a href="#">Perfil</a></li>
+                                <li><a href="#">Cerrar Sesión</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                <?php endif; ?>
+            </ul>
+            <!--  <ul>
+                <li>
                     <details class="dropdown">
                         <summary>
                             Account
@@ -40,8 +66,8 @@
                             <li><a href="#">Logout</a></li>
                         </ul>
                     </details>
-                </li> -->
-            </ul>
+                </li>
+            </ul> -->
         </nav>
 
         <section class="main_content">
