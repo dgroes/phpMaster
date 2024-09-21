@@ -75,7 +75,7 @@ class Trabajador
 
     public function setPassword($password)
     {
-        $this->$password = $password;
+        $this->password = $password;
     }
 
     public function setRol($rol)
@@ -86,23 +86,27 @@ class Trabajador
     public function login()
     {
         $result = false;
-        $email = $this->getEmail();
-        $password = $this->getPassword();
+        $email = $this->email;
+        $password = $this->password;
+
 
         //Comprobar si existe el usuario logeado
         $sql = "SELECT * FROM trabajadores WHERE email = '$email';";
         $login = $this->db->query($sql);
 
-        if($login && $login->num_rows == 1){
+        if ($login && $login->num_rows == 1) {
             //Transformar la consulta como objeto y almacenarla en $user
-            $user = $login->fetch_object();
+            $trabajador = $login->fetch_object();
 
-            //Verificación de la constraseña
-            $verify = password_verify($password, $user->password);
-
-            if($verify){
-                $result = $user;
+            //Verificar la contraseña
+            // $verify = password_verify($password, $trabajador->password);
+            if ($password === $trabajador->password) {
+                $result = $trabajador;
             }
+
+           /*  if ($verify) {
+                $result = $trabajador;
+            } */
         }
 
         return $result;
