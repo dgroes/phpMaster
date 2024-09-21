@@ -1,4 +1,15 @@
 <article class="login">
+
+    <!-- __ Mensajes de alerte de error al inciar sesión __ -->
+    <?php if (isset($_SESSION['error_login'])) : ?>
+        <div class="alert aler-error">
+            <?= $_SESSION['error_login'] ?>
+        </div>
+        <?php unset($_SESSION['error_login']); ?>
+    <?php endif; ?>
+    <?php echo $_SESSION['identity']; ?>
+
+
     <form action="<?= base_url ?>usuario/login" method="POST">
         <fieldset>
             <label class="login__label">
