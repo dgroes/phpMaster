@@ -26,16 +26,23 @@
                 <th>Cedula</th>
                 <th>Cargo</th>
             </tr>
-            <?php while ($tra = $trabajadores->fetch_object()): ?>
+            <?php if (isset($trabajadores)): ?>
+                <?php while ($tra = $trabajadores->fetch_object()): ?>
+                    <tr>
+                        <td><?= $tra->id ?></td>
+                        <td><?= $tra->nombres ?></td>
+                        <td><?= $tra->apellidos ?></td>
+                        <td><?= $tra->cedula ?></td>
+                        <td><?= $tra->cargo ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
                 <tr>
-                    <td><?= $tra->id ?></td>
-                    <td><?= $tra->nombres ?></td>
-                    <td><?= $tra->apellidos ?></td>
-                    <td><?= $tra->cedula ?></td>
-                    <td><?= $tra->cargo ?></td>
+                    <td colspan="5">No hay trabajadores disponibles</td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endif; ?>
         </table>
+
 
         <br>
 
@@ -66,19 +73,26 @@
                 <th>Apellido</th>
                 <th>Cedula</th>
             </tr>
-            <?php while ($per = $personas->fetch_object()) : ?>
+            <?php if (isset($personas) && $personas != null): ?>
+                <?php while ($per = $personas->fetch_object()): ?>
+                    <tr>
+                        <td><?= $per->id ?></td>
+                        <td><?= $per->nombres ?></td>
+                        <td><?= $per->apellidos ?></td>
+                        <td><?= $per->cedula ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
                 <tr>
-                    <td><?= $per->id?></td>
-                    <td><?= $per->nombres?></td>
-                    <td><?= $per->apellidos?></td>
-                    <td><?= $per->cedula?></td>
+                    <td colspan="4">No hay personas disponibles</td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endif; ?>
         </table>
+
 
         <br>
 
-        <form action="<?= base_url ?>persona/guardar">
+        <form action="<?= base_url ?>persona/guardar" method="POST">
             <h4>Crear Persona</h4>
             <label for="nombres">Nombres: </label>
             <input type="text" name="nombres">
