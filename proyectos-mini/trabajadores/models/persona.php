@@ -65,4 +65,16 @@ class Persona
         $personas = $this->db->query($sql);
         return $personas;
     }
+
+    public function guardar()
+    {
+        $sql = "INSERT INTO personas VALUES (NULL, '{$this->getNombres()}', '{$this->getApellidos()}', '{$this->getCedula()}')";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
 }
