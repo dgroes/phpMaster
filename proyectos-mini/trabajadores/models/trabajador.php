@@ -96,4 +96,8 @@ class Trabajador extends Persona
         $trabajadores = $this->db->query($sql);
         return $trabajadores;
     }
+
+    public function guardar(){
+        $sql = "INSERT INTO trabajadores VALUES (NULL, {})";
+    }
 }
