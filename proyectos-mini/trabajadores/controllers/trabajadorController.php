@@ -9,23 +9,32 @@ class TrabajadorController
         $trabajador = new Trabajador();
         $trabajadores = $trabajador->listarTodos();
 
-        $persona = new Persona();
-        $personas = $persona->listarTodos();  // También carga los datos de las personas
+        // Inicializamos $personas como null si no estamos en el controlador de personas
+        $personas = null;
 
-        require_once 'views/gestion.php';  // Pasas la vista después de obtener los datos
+        require_once 'views/gestion.php';
     }
+
 
     public function guardar()
     {
         if (isset($_POST) && isset($_POST['nombres']) && isset($_POST['apellidos']) && isset($_POST['cedula']) && isset($_POST['cargo'])) {
-            $trabajador = new Trabajador();
-        }
-    }
+            $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : false;
+            $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
+            $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : false;
+            $cargo = isset($_POST['cargo']) ? $_POST['cargo'] : false;
 
-    public function listar()
-    {
-        $trabajador = new Trabajador();
-        $trabajadores = $trabajador->listarTodos();
-        require_once 'views/gestion.php';
+            if ($nombres && $apellidos && $cedula && $cargo) {
+                $trabajador = new Trabajador();
+                $trabajador->setNombres($nombres);
+                $trabajador->setApellidos($apellidos);
+                $trabajador->setCedula($cedula);
+                $trabajador->setCargoId($cargo);
+
+                $save = $trabajador->guardar();
+            }
+        }
+        header("Location:" . base_url . 'trabajador/gestion');
+        exit();
     }
 }
