@@ -1,0 +1,178 @@
+/* _FUENTES_ */
+@font-face {
+    font-family: 'Fira Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/fira-mono@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/fira-mono@latest/latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'DM Serif Display';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/dm-serif-display@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/dm-serif-display@latest/latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* __SECCIONES GLOBALES__ */
+html {
+    font-family: "Fira Mono";
+    background-color: #d8c2d5;
+}
+
+.container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+/* ___SECCIÓN NAV___ */
+.nav {
+    border: 1px solid black;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 13px;
+    align-items: center;
+}
+
+.nav__items {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    /* border: 1px solid green; */
+}
+
+.nav__items--right {
+    margin-left: auto; /* Para alinear el segundo bloque de links a la derecha */
+}
+
+.nav__item {
+    list-style: none;
+    padding-left: 12px; /* Espaciado entre los elementos */
+    font-size: 18px;
+}
+
+.nav__item--title{
+    padding: 0px;
+}
+
+.nav__link {
+    all: unset;
+    cursor: pointer;
+}
+
+.nav__title {
+    /* border: 1px solid red; */
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown__toggle {
+    cursor: pointer;
+}
+
+.dropdown__menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    list-style: none;
+    background-color: white;
+    padding: 10px;
+}
+
+.dropdown__item {
+    margin-bottom: 10px;
+}
+
+.dropdown__item a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Mostrar el menú al activar el dropdown */
+details[open] .dropdown__menu {
+    display: block;
+    background-color: #d8c2d5;
+    border: 1px solid black;
+}
+
+
+
+
+/* ___SECCIÓN DE BUSQUEDA NOTAS Y SU TITULO___ */
+.search{
+    border: 1px solid black;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.search__input {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.search__input:hover{
+    background-color: white;
+    color: black;
+}
+
+.search__submit{
+    border-radius: 0px;
+    background-color: transparent;
+    border: 1px solid;
+}
+
+.search__submit:hover {
+    background-color: rgb(49, 45, 45);
+    color: #d8c2d5;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+.notes {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Espacio entre los bloques */
+}
+
+.notes__note {
+    border: 1px solid black;
+    flex: 1 1 calc(33.33% - 50px);
+    /* Ocupa el 33.33% del ancho menos el gap */
+    box-sizing: border-box;
+    /* Incluye padding en el cálculo del ancho */
+    height: 400px;
+}
+
+.note_content {
+    padding: 2px;
+}
+
+.note__title {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+}
