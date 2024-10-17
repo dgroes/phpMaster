@@ -1,10 +1,20 @@
 <IfModule mod_rewrite.c>
-# Activar rewrite
-RewriteEngine on
-ErrorDocument 404 http://localhost/master-php/proyectos/notas/error/index
+    # Activar el módulo rewrite
+    RewriteEngine on
 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+    # Configurar la página de error 404
+    ErrorDocument 404 http://localhost/master-php/proyectos/notas/error/index
 
-RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+    # Evitar que se apliquen las reglas de reescritura a directorios y archivos existentes
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteCond %{SCRIPT_FILENAME} !-f
+
+    # Reescribir la URL para los controladores y acciones
+    RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2 [L]
+
+    # Permitir el acceso a archivos estáticos como CSS, JS e imágenes
+    <FilesMatch "\.(css|js|jpg|png|gif)$">
+        Require all granted
+    </FilesMatch>
+
 </IfModule>
