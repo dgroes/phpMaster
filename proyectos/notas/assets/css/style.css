@@ -50,16 +50,18 @@ html {
 }
 
 .nav__items--right {
-    margin-left: auto; /* Para alinear el segundo bloque de links a la derecha */
+    margin-left: auto;
+    /* Para alinear el segundo bloque de links a la derecha */
 }
 
 .nav__item {
     list-style: none;
-    padding-left: 12px; /* Espaciado entre los elementos */
+    padding-left: 12px;
+    /* Espaciado entre los elementos */
     font-size: 18px;
 }
 
-.nav__item--title{
+.nav__item--title {
     padding: 0px;
 }
 
@@ -113,7 +115,7 @@ details[open] .dropdown__menu {
 
 
 /* ___SECCIÓN DE BUSQUEDA NOTAS Y SU TITULO___ */
-.search{
+.search {
     border: 1px solid black;
     margin-bottom: 14px;
     display: flex;
@@ -128,12 +130,12 @@ details[open] .dropdown__menu {
     border: 1px solid black;
 }
 
-.search__input:hover{
+.search__input:hover {
     background-color: white;
     color: black;
 }
 
-.search__submit{
+.search__submit {
     border-radius: 0px;
     background-color: transparent;
     border: 1px solid;
@@ -175,4 +177,52 @@ details[open] .dropdown__menu {
     padding-left: 3px;
     border-bottom: 1px solid black;
     font-weight: 500;
+}
+
+
+
+/* ___REGISTRO DE USUARIOS___ */
+.register {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.register__form {
+    padding: 40px;
+    /* border: 1px solid green; */
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+
+.form__fielset{
+    display:grid;
+    border: none;
+}
+
+.form__legend {
+    /* border: 1px solid red; */
+    font-size: 20px;
+}
+
+.form__label {
+    padding-top: 6px;
+    font-size: 18px;
+}
+
+.form__input {
+    /* flex-direction: column; */
+}
+
+.form__submit {
+    margin-top: 6px;
+    border-radius: 0px;
+    background-color: transparent;
+    border: 1px solid;
+}
+
+.form__submit:hover {
+    background-color: rgb(49, 45, 45);
+    color: #d8c2d5;
+    border: 1px solid black;
+    cursor: pointer;
 }
