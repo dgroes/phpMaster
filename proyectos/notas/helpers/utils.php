@@ -2,12 +2,22 @@
 
 class Utils
 {
-    public static function deleteSession($name)
+    public static function deleteSession($user)
     {
-        if (isset($_SESSION[$name])) {
-            $_SESSION[$name] = null;
-            unset($_SESSION[$name]);
+        if (isset($_SESSION[$user])) {
+            $_SESSION[$user] = null;
+            unset($_SESSION[$user]);
         }
-        return $name;
+        return $user;
+    }
+
+    public static function isIdentity()
+    {
+        if (!isset($_SESSION['identity'])) {
+            header('Location:' . base_url);
+            exit();
+        } else {
+            return true;
+        }
     }
 }
