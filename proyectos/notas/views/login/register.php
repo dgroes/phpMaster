@@ -27,5 +27,11 @@
         </fieldset>
     </form>
 
+    <div class="register__login">
+        <p>
+            ¿Ya tienes una cuenta? Inicia sesión desde aquí! => <a href="<?= base_url ?>user/loginForm">Iniciar sesión</a>
+        </p>
+    </div>
+
 
 </section>
