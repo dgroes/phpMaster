@@ -182,13 +182,13 @@ details[open] .dropdown__menu {
 
 
 /* ___REGISTRO DE USUARIOS___ */
-.register {
+.register, .login {
     border: 1px solid black;
-    padding: 20px;
+    padding: 60px;
 }
 
 .register__form {
-    padding: 40px;
+    /* padding: 40px; */
     /* border: 1px solid green; */
     flex-wrap: wrap;
     /* flex-direction: column; */
@@ -197,6 +197,7 @@ details[open] .dropdown__menu {
 .form__fielset{
     display:grid;
     border: none;
+    padding: 0px;
 }
 
 .form__legend {
@@ -225,4 +226,8 @@ details[open] .dropdown__menu {
     color: #d8c2d5;
     border: 1px solid black;
     cursor: pointer;
+}
+
+.register__login{
+   justify-content: center;
 }
