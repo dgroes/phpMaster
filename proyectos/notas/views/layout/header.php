@@ -28,9 +28,15 @@
                             <li class="dropdown__item"><a href="#">Profile</a></li>
                             <li class="dropdown__item"><a href="#">Settings</a></li>
                             <li class="dropdown__item"><a href="#">Security</a></li>
-                            <li class="dropdown__item"><a href="#">Logout</a></li>
+                            <li class="dropdown__item"><a href="<?= base_url ?>user/logout" class="">Logout</a></li>
                         </ul>
                     </details>
                 </li>
             </ul>
+            <?php if (isset($_SESSION['identity'])) : ?>
+                <p class="username"><?= $_SESSION['identity']->username ?></p>
+            <?php else : ?>
+                <p class="username">Usuario desconocido</p>
+            <?php endif; ?>
+
         </nav>
