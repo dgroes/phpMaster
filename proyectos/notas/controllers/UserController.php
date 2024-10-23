@@ -14,7 +14,7 @@ class UserController
         require_once 'views/login/login.php';
     }
 
-    public function save()
+   /*  public function save()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = isset($_POST['username']) ? trim($_POST['username']) : false;
@@ -80,9 +80,38 @@ class UserController
         header("Location:" . base_url . 'user/register');
         exit();
     }
+ */
 
+ public function save()
+    {
+        if (isset($_POST)) {
+
+            $username = isset($_POST['username']) ? $_POST['username'] : false;
+            $email = isset($_POST['email']) ? $_POST['email'] : false;
+            $password = isset($_POST['password']) ? $_POST['password'] : false;
+
+            if ($username && $email && $password) {
+                $user = new User();
+                $user->setUsername($username);
+                $user->setEmail($email);
+                $user->setPassword($password);
+
+                $save = $user->save();
+                if ($save) {
+                    $_SESSION['register'] = "complete";
+                } else {
+                    $_SESSION['register'] = "failed";
+                }
+            } else {
+                $_SESSION['register'] = "failed";
+            }
+        } else {
+            $_SESSION['register'] = "failed";
+        }
+        header("Location:" . base_url . 'user/register');
+    }
     //Verificación de login e inicio de usuario
-    public function verifyLogin()
+    /*  public function verifyLogin()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset($_POST['password'])) {
             $user = new User();
@@ -95,24 +124,46 @@ class UserController
             if ($identity && is_object($identity)) {
                 $_SESSION['identity'] = $identity;
 
-                // Descomentar para depurar y verificar el contenido de $_SESSION['identity']
-                /* var_dump($_SESSION['identity']); */ // Esto imprimirá el objeto del usuario en la salida
-                exit(); // Asegúrate de que esto no cause problemas, es solo para depurar
+                
+                exit(); 
 
-                header("Location:" . base_url); // Redirigir si el login fue exitoso
+                header("Location:" . base_url);
                 exit();
             } else {
                 $_SESSION['error_login'] = "Identificación Fallida";
-                header("Location:" . base_url . 'user/loginForm'); // Redirigir si el login falló
+                header("Location:" . base_url . 'user/loginForm');
                 exit();
             }
         } else {
             $_SESSION['error_login'] = "Correo electrónico y contraseña son requeridos";
-            header("Location:" . base_url . 'user/loginForm'); // Redirigir si no se enviaron datos
+            header("Location:" . base_url . 'user/loginForm'); 
             exit();
         }
     }
+ */
+    public function log()
+    {
+        if (isset($_POST)) {
+            // Identificar al usuario
+            // Consultar a la BD
+            $user = new User();
+            $user->setEmail($_POST['email']);
+            $user->setPassword($_POST['password']);
+            $identity = $user->login();
 
+            if($identity && is_object($identity)){
+                $_SESSION['identity'] = $identity;
+
+               
+            }else{
+                $_SESSION['error_login'] = 'Identificación fallida';
+            }
+
+
+            //Crear sesión
+        }
+        header("Location:" . base_url);
+    }
 
 
     public function logout()
