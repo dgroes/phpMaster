@@ -41,31 +41,31 @@ class User
         $this->username = $this->db->real_escape_string($username);
     }
 
-    //Get y Set para email
-    public function getEmail(): string
+    // Getter y Setter para email
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $this->db->real_escape_string($email);
     }
 
     // Getter y Setter para password
-    public function getPassword(): string
+    public function getPassword()
     {
         return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
-    public function setPassword(string $password)
+    public function setPassword($password)
     {
         $this->password = $password;
     }
 
 
     //Insertar los valores recogidos en la BD
-    public function save()
+    /*  public function save()
     {
         // Obtener y limpiar los datos
         $username = $this->db->real_escape_string($this->getUsername());
@@ -101,9 +101,20 @@ class User
             return false; // Fallo en el guardado
         }
     }
+ */
 
+    public function save()
+    {
+        $sql = "INSERT INTO users VALUES(NULL, '{$this->getUsername()}', '{$this->getPassword()}', '{$this->getEmail()}');";
+        $save = $this->db->query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
 
-    public function login()
+        return $result;
+    }
+    /*   public function login()
     {
         $result = false;
         $username = $this->getUsername();
@@ -120,7 +131,6 @@ class User
             $verify = password_verify($password, $user->password);
 
             // Depurar: Verificar si la contraseña es válida
-            /* var_dump("Resultado de password_verify: " . $verify); die(); */
 
             if ($verify) {
                 $result = $user; // Aquí asignamos el objeto usuario
@@ -128,5 +138,29 @@ class User
         }
 
         return $result; // Retorna el objeto usuario o false
+    } */
+
+    public function login()
+    {
+        $result = false;
+        $email = $this->email;
+        $password = $this->password;
+
+        //Comprobar si existe el usuario
+        $sql = "SELECT * FROM users WHERE email = '$email';";
+        $login = $this->db->query($sql);
+
+        if ($login && $login->num_rows == 1) {
+            $usuario = $login->fetch_object();
+            //Verificar la contraseña
+            $verify = password_verify($password, $usuario->password);
+           /*  var_dump($verify);
+            die(); */
+
+            if ($verify) {
+                $result = $usuario;
+            }
+        }
+        return $result;
     }
 }
