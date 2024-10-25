@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?= base_url ?>assets/css/style.css">
+    <script src="https://kit.fontawesome.com/335ff06f37.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,9 +22,9 @@
 
                 <?php if (isset($_SESSION['identity'])) : ?>
                     <li class="username"><?= $_SESSION['identity']->username ?></p>
-                <?php endif; ?>
+                    <?php endif; ?>
 
-                <?php if (isset($_SESSION['identity'])): ?>
+                    <?php if (isset($_SESSION['identity'])): ?>
                     <li class="nav__item">
                         <details class="dropdown">
                             <summary class="dropdown__toggle">
@@ -38,15 +39,15 @@
                         </details>
                     </li>
                 <?php else : ?>
-                    
                     <?php $currentUrl = $_SERVER['REQUEST_URI']; ?>
-
                     <?php if (strpos($currentUrl, 'user/loginForm') !== false) : ?>
                         <a href="<?= base_url ?>user/register" class="">Registrarse</a></li>
+                    <?php elseif (strpos($currentUrl, 'note/index') !== false) : ?>
+                        <a href="<?= base_url ?>user/loginForm" class="">Iniciar Sesión</a></li>
                     <?php elseif (strpos($currentUrl, 'user/register') !== false) : ?>
                         <a href="<?= base_url ?>user/loginForm" class="">Iniciar Sesión</a></li>
                     <?php endif; ?>
-                    
+
                 <?php endif; ?>
                 <!-- <a href="javascript:history.back()">Go Back</a> -->
             </ul>
