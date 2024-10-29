@@ -64,81 +64,41 @@ class User
     }
 
 
-    //Insertar los valores recogidos en la BD
-    /*  public function save()
+    public function save()
     {
-        // Obtener y limpiar los datos
-        $username = $this->db->real_escape_string($this->getUsername());
-        $email = $this->db->real_escape_string($this->getEmail());
-        $password = $this->db->real_escape_string($this->getPassword());
 
-        // Verificación si el username ya existe en la BD
+        $username = $this->db->real_escape_string($this->getUsername());
+        $password = $this->db->real_escape_string($this->getPassword());
+        $email = $this->db->real_escape_string($this->getEmail());
+
+        //Verificación si el username ya existen en la BD
         $sql_check_username = "SELECT id FROM users WHERE username = '$username'";
         $result_check_username = $this->db->query($sql_check_username);
 
         if ($result_check_username && $result_check_username->num_rows > 0) {
-            return 'username'; // Indicar que ya existe un usuario con el mismo username
+            return 'username'; //Indicar que ya existe un usuario con el mismo username
         }
 
-        // Verificación si el email ya existe en la BD
+        //Verificación si el email ya existe en la BD
         $sql_check_email = "SELECT id FROM users WHERE email = '$email'";
         $result_check_email = $this->db->query($sql_check_email);
 
         if ($result_check_email && $result_check_email->num_rows > 0) {
-            return 'email'; // Indicar que ya existe un usuario con el mismo email
+            return 'email'; //Indicar que ya existe un usuario con el mismo email
         }
 
-        // Hashear la contraseña antes de guardar
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Realizar la inserción en la base de datos
-        $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$hashed_password', '$email')";
-        $save = $this->db->query($sql);
-
-        if ($save) {
-            return true; // Guardado exitoso
-        } else {
-            return false; // Fallo en el guardado
+        if (empty($errors)) {
+            $sql = "INSERT INTO users VALUES(NULL, '$username', '$password', '{$this->getEmail()}');";
+            $save = $this->db->query($sql);
         }
-    }
- */
-
-    public function save()
-    {
-        $sql = "INSERT INTO users VALUES(NULL, '{$this->getUsername()}', '{$this->getPassword()}', '{$this->getEmail()}');";
-        $save = $this->db->query($sql);
         $result = false;
+
         if ($save) {
             $result = true;
         }
 
         return $result;
     }
-    /*   public function login()
-    {
-        $result = false;
-        $username = $this->getUsername();
-        $password = $this->password; // Obtener la contraseña en texto plano
-
-        // Comprobar si existe el usuario en la BD
-        $sql = "SELECT * FROM users WHERE username = '$username';";
-        $login = $this->db->query($sql);
-
-        if ($login && $login->num_rows == 1) {
-            $user = $login->fetch_object();
-
-            // Verificar la contraseña usando password_verify
-            $verify = password_verify($password, $user->password);
-
-            // Depurar: Verificar si la contraseña es válida
-
-            if ($verify) {
-                $result = $user; // Aquí asignamos el objeto usuario
-            }
-        }
-
-        return $result; // Retorna el objeto usuario o false
-    } */
 
     public function login()
     {
@@ -154,7 +114,7 @@ class User
             $usuario = $login->fetch_object();
             //Verificar la contraseña
             $verify = password_verify($password, $usuario->password);
-           /*  var_dump($verify);
+            /*  var_dump($verify);
             die(); */
 
             if ($verify) {
