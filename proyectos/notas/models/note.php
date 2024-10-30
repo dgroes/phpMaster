@@ -2,7 +2,7 @@
 
 class Note
 {
-    private $id, $user_id, $title, $content, $color, $created_at, $db;
+    private $id, $user_id, $color_id, $title, $content, $created_at, $db;
 
     public function __construct()
     {
@@ -31,6 +31,17 @@ class Note
         $this->user_id = $user_id;
     }
 
+    // Getter y Setter para color_id
+    public function getColorId(): int
+    {
+        return $this->color_id;
+    }
+
+    public function setColorId(int $color_id)
+    {
+        $this->color_id = $color_id;
+    }
+
     // Getter y Setter para title
     public function getTitle(): string
     {
@@ -53,17 +64,6 @@ class Note
         $this->content = $content;
     }
 
-    // Getter y Setter para color
-    public function getColor(): string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color)
-    {
-        $this->color = $color;
-    }
-
     // Getter y Setter para created_at
     public function getCreatedAt(): string
     {
@@ -79,11 +79,12 @@ class Note
     {
         //Escapado de datos de entrada
         $user_id = $this->db->real_escape_string($user_id);
-        $sql = "SELECT n.id, n.title, n.content, n.color, n.created_at, u.username
+        $sql = "SELECT n.id, n.title, n.content, c.detail as color, n.created_at, u.username
                 FROM notes n
-                INNER JOIN users u ON n.user_id = {$user_id}
+                INNER JOIN users u ON n.user_id = u.id
+                INNER JOIN colors c ON n.color_id = c.id
+                WHERE n.user_id = {$user_id}
                 ORDER BY n.created_at DESC;";
-
         $notes = $this->db->query($sql);
         return $notes;
     }
