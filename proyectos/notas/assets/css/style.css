@@ -113,9 +113,31 @@ details[open] .dropdown__menu {
 
 
 
+/* __ SECCIÓN DE BIENVENIDA DE INICIO (USUARIO SIN LOGEARSE) __ */
+
+.welcome {
+    /* display: flex; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.welcome__star {
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome__image {
+    border-radius: 34px;
+    max-width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
 
 /* ___SECCIÓN DE BUSQUEDA NOTAS Y SU TITULO___ */
-.search {
+.search,
+.welcome {
     border: 1px solid black;
     margin-bottom: 14px;
     display: flex;
@@ -148,54 +170,107 @@ details[open] .dropdown__menu {
     cursor: pointer;
 }
 
+.notes_create {
+    padding: 3px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid black;
+    text-decoration: none;
+
+}
 
 .notes {
-    /* border: 1px solid black; */
-    display: flex;
-    flex-wrap: wrap;
+    margin-top: 16px;
+    width: 100%;
+    display: grid;
     gap: 20px;
-    /* Espacio entre los bloques */
+
+    /* Diseño de 3 columnas en pantallas grandes */
+    grid-template-columns: repeat(3, 1fr);
 }
 
+/* Ajuste para pantallas medianas (tablets, pantallas más pequeñas) */
+@media (max-width: 1024px) {
+    .notes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Ajuste para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .notes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilo para cada "layout" */
 .notes__note {
     border: 1px solid black;
-    flex: 1 1 calc(33.33% - 50px);
-    /* Ocupa el 33.33% del ancho menos el gap */
-    box-sizing: border-box;
-    /* Incluye padding en el cálculo del ancho */
-    height: 400px;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "note__titled"
+        "note__contentd"
+        "note__footerd";
+    gap: 10px;
 }
 
-.note_content {
-    padding: 2px;
-}
-
-.note__title {
-    font-size: 20px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 3px;
+.note__titled {
+    grid-area: note__titled;
     border-bottom: 1px solid black;
+    font-size: 20px;
     font-weight: 500;
+    padding-left: 3px;
 }
 
+.note__contentd {
+    grid-area: note__contentd;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.note__footerd {
+    grid-area: note__footerd;
+    padding-top: 3px;
+    border-top: 1px solid black;
+    padding-left: 3px;
+}
+
+
+
+/* __ CREACIÓN DE NOTAS __ */
+.create__content {
+    /* background-color: red; */
+    field-sizing: content;
+    min-height: 100px;
+    font-size: 17px;
+}
+
+
+.create__title{
+    font-size: 17px;
+}
 
 
 /* ___REGISTRO DE USUARIOS___ */
-.register, .login {
+.register,
+.login,
+.create {
     border: 1px solid black;
     padding: 60px;
 }
 
-.register__form {
+.register__form,
+.create__form {
     /* padding: 40px; */
     /* border: 1px solid green; */
     flex-wrap: wrap;
     /* flex-direction: column; */
 }
 
-.form__fielset{
-    display:grid;
+.form__fielset,
+.create__fielset {
+    display: grid;
     border: none;
     padding: 0px;
 }
@@ -210,24 +285,42 @@ details[open] .dropdown__menu {
     font-size: 18px;
 }
 
-.form__input {
-    /* flex-direction: column; */
-}
 
-.form__submit {
+.form__submit, .create__submit {
     margin-top: 6px;
     border-radius: 0px;
     background-color: transparent;
     border: 1px solid;
 }
 
-.form__submit:hover {
+.form__submit:hover, .create__submit:hover {
     background-color: rgb(49, 45, 45);
     color: #d8c2d5;
     border: 1px solid black;
     cursor: pointer;
 }
 
-.register__login{
-   justify-content: center;
+.register__login {
+    justify-content: center;
+}
+
+.register__disclaimer {
+    font-style: italic;
+}
+
+
+
+/* __ MENSAJES __ */
+.alert {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+
+.alert-success {
+    background-color: rgb(177, 245, 156);
+}
+
+.alert-error {
+    background-color: rgb(245, 156, 156);
 }
