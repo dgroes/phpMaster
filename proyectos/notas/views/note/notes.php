@@ -17,51 +17,27 @@
  <a class="notes_create" href="<?= base_url ?>/note/create">Nueva Nota +</a>
  <section class="notes">
 
-     <section class="notes__note">
-         <div class="note__titled">mi corneta</div>
-         <div class="note__contentd">Laavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. ecar bien pelo y o</div>
-         <div class="note__footerd">
-             <a href="">ver</a>
-             <a href="">eliminar</a>
-             <a href="">editar</a>
+     <?php if ($myNotes && $myNotes->num_rows > 0) : ?>
+         <?php while ($note = $myNotes->fetch_object()) : ?>
+             <?php $noteColor = $note->color; ?>
+             <section class="notes__note">
+                 <div class="note__titled"><?= $note->title ?></div>
+                 <div class="note__contentd"><?= $note->content ?></div>
+                 <div class="note__footerd">
+                     <a href="">ver</a>
+                     <a href="">eliminar</a>
+                     <a href="">editar</a>
+                 </div>
+             </section>
+         <?php endwhile; ?>
+
+     <?php else:  ?>
+         <div>
+             Aun no has creado notas
          </div>
-     </section>
-     <section class="notes__note">
-         <div class="note__titled">mi corneta</div>
-         <div class="note__contentd">Laavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. ecar bien pelo y o</div>
-         <div class="note__footerd">
-             <a href="">ver</a>
-             <a href="">eliminar</a>
-             <a href="">editar</a>
-         </div>
-     </section>
-     <section class="notes__note">
-         <div class="note__titled">mi corneta</div>
-         <div class="note__contentd">Laavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. ecar bien pelo y o</div>
-         <div class="note__footerd">
-             <a href="">ver</a>
-             <a href="">eliminar</a>
-             <a href="">editar</a>
-         </div>
-     </section>
-     <section class="notes__note">
-         <div class="note__titled">mi corneta</div>
-         <div class="note__contentd">Laavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. ecar bien pelo y o</div>
-         <div class="note__footerd">
-             <a href="">ver</a>
-             <a href="">eliminar</a>
-             <a href="">editar</a>
-         </div>
-     </section>
-     <section class="notes__note">
-         <div class="note__titled">mi corneta</div>
-         <div class="note__contentd">Laavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. Importante secar bien pelo y oLaavar perras Poppy y Canela, con shampo y agua. ecar bien pelo y o</div>
-         <div class="note__footerd">
-             <a href="">ver</a>
-             <a href="">eliminar</a>
-             <a href="">editar</a>
-         </div>
-     </section>
+
+     <?php endif; ?>
+
 
 
 
