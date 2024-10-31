@@ -20,4 +20,12 @@ class Utils
             return true;
         }
     }
+
+    public static function showColors()
+    {
+        require_once 'models/color.php';
+        $color = new Color();
+        $colors = $color->getAll();
+        return $colors;
+    }
 }
