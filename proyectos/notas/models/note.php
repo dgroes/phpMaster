@@ -88,4 +88,22 @@ class Note
         $notes = $this->db->query($sql);
         return $notes;
     }
+
+    public function save()
+    {
+        $user_id = $this->db->real_escape_string($this->getUserId());
+        $color_id = $this->db->real_escape_string($this->getColorId());
+        $title = $this->db->real_escape_string($this->getTitle());
+        $content = $this->db->real_escape_string($this->getContent());
+
+        $sql = "INSERT INTO notes (id, user_id, color_id, title, content, created_at)
+        VALUES (NULL, '$user_id', '$color_id', '$title', '$content', NOW());";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
 }
