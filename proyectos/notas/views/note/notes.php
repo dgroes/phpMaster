@@ -19,8 +19,8 @@
 
      <?php if ($myNotes && $myNotes->num_rows > 0) : ?>
          <?php while ($note = $myNotes->fetch_object()) : ?>
-             <?php $noteColor = $note->color; ?>
-             <section class="notes__note <??>">
+             <?php $noteColor = strtolower(str_replace(' ', '', $note->color)); ?>
+             <section class="notes__note note__<?= $noteColor; ?>">
                  <div class="note__titled"><?= $note->title ?></div>
                  <div class="note__contentd"><?= $note->content ?></div>
                  <div class="note__footerd">
