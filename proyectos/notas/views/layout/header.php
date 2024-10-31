@@ -46,6 +46,8 @@
                         <a href="<?= base_url ?>user/loginForm" class="">Iniciar Sesión</a></li>
                     <?php elseif (strpos($currentUrl, 'user/register') !== false) : ?>
                         <a href="<?= base_url ?>user/loginForm" class="">Iniciar Sesión</a></li>
+                    <?php else : ?>
+                        <a href="<?= base_url ?>user/loginForm" class="">Iniciar Sesión</a></li>    
                     <?php endif; ?>
 
                 <?php endif; ?>
