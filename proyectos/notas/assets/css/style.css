@@ -237,6 +237,27 @@ details[open] .dropdown__menu {
 }
 
 
+/* COLORES DE LAS NOTAS */
+.note__pink {
+    background-color: #F8889E;
+}
+
+.note__red {
+    background-color: #F38F79;
+}
+
+.note__fuchsia {
+    background-color: #F983C7;
+}
+
+.note__purple {
+    background-color: #DB90E8;
+}
+
+.note__blue {
+    background-color: #9CA7FA;
+}
+
 
 /* __ CREACIÓN DE NOTAS __ */
 .create__content {
@@ -247,9 +268,13 @@ details[open] .dropdown__menu {
 }
 
 
-.create__title{
+.create__title {
     font-size: 17px;
 }
+
+
+
+
 
 
 /* ___REGISTRO DE USUARIOS___ */
@@ -286,14 +311,16 @@ details[open] .dropdown__menu {
 }
 
 
-.form__submit, .create__submit {
+.form__submit,
+.create__submit {
     margin-top: 6px;
     border-radius: 0px;
     background-color: transparent;
     border: 1px solid;
 }
 
-.form__submit:hover, .create__submit:hover {
+.form__submit:hover,
+.create__submit:hover {
     background-color: rgb(49, 45, 45);
     color: #d8c2d5;
     border: 1px solid black;
