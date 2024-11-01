@@ -10,7 +10,7 @@
                 <input type="hidden" name="user_id" value="<?= $_SESSION['identity']->id ?>">
 
                 <label for="title">Titulo</label>
-                <input type="text" name="title " class="create__title">
+                <input type="text" name="title" class="create__title">
 
                 <label for="content">Contendio</label>
                 <textarea name="content" class="create__content"></textarea>
