@@ -106,4 +106,14 @@ class Note
         }
         return $result;
     }
+
+    public function getOne()
+    {
+        // $note_id = $this->db->real_escape_string($this->getId());
+        $note = $this->db->query("SELECT n.id AS id, n.title AS title, n.content AS content, c.detail AS color, n.created_at AS created_at
+                FROM notes n
+                INNER JOIN colors c ON n.color_id = c.id
+                WHERE n.id = {$this->getId()};");
+        return $note->fetch_object();
+    }
 }

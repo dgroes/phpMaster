@@ -29,10 +29,10 @@ class NoteController
         Utils::isIdentity();
         if (isset($_POST['title']) && isset($_POST['content']) && isset($_POST['user_id'])) {
             $note = new Note();
-            $note->setUserId($_SESSION['identity']->id);
-            $note->setTitle($_SESSION['title']);
-            $note->setContent($_SESSION['content']);
-            $note->setColorId($_SESSION['color_id']);
+            $note->setUserId($_POST['user_id']);
+            $note->setTitle($_POST['title']);
+            $note->setContent($_POST['content']);
+            $note->setColorId($_POST['color_id']);
 
             $save = $note->save();
             if ($save) {
@@ -45,5 +45,17 @@ class NoteController
         }
         header("Location:" . base_url . "note/index");
         exit();
+    }
+
+    public function see()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $note = new Note();
+            $note->setId($id);
+            
+            $note = $note->getOne();
+        }
+        require_once 'views/note/see.php';
     }
 }
