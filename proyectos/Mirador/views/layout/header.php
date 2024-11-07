@@ -23,14 +23,18 @@
 <body>
     <main class="container">
         <nav class="nav">
-            <ul>
-                <li class="nav__title"><strong>Mirador de los Andes</strong></li>
+            <ul class="nav__first_ul">
+                <li class="nav__title"><strong>Mirador de los Andes</strong>
+                    <?php if (isset($trabajador)) : ?>
+                        <?= $trabajador->nombre ?>
+                    <?php endif; ?>
+                </li>
             </ul>
-            <ul>
+            <ul class="nav__second_ul">
                 <?php if (!isset($_SESSION['identity'])) : ?>
-                    <li><a href="<?= base_url ?>Usuario/log" class="secondary">Iniciar Sesión</a></li>
+                    <li><a href="<?= base_url ?>auth/showLoginForm" class="secondary">Iniciar Sesión</a></li>
                 <?php else : ?>
-                    <li>
+                    <li class="nav__login">
                         <details class="dropdown">
                             <summary>
                                 Servicios
@@ -47,7 +51,7 @@
                                 <li><a href="#">Bedegas y Estacionamientos</a></li>
                                 <li><a href="#">Personal</a></li>
                                 <li><a href="#">Perfil</a></li>
-                                <li><a href="#">Cerrar Sesión</a></li>
+                                <li><a href="<?= base_url ?>auth/logout">Cerrar Sesión</a></li>
                             </ul>
                         </details>
                     </li>
@@ -70,4 +74,4 @@
             </ul> -->
         </nav>
 
-        <section class="main_content">
+        <section class="mainContent">
