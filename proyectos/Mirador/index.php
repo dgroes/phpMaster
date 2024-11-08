@@ -42,6 +42,7 @@ if (isset($nameController) && class_exists($nameController)) {
 }
 // Incluir el SideBar solo si un usuario está logeado
 if (isset($_SESSION['identity'])) {
+    if(!isset($_GET['controller']) || $_GET['controller'] !== 'management')
     require_once 'views/layout/sidebar.php';
 }
 require_once 'views/layout/footer.php';
