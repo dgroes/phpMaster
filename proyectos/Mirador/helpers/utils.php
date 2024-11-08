@@ -23,4 +23,8 @@ class Utils
             return true;
         }
     }
+
+    public static function showBuilding(){
+        
+    }
 }
