@@ -1,5 +1,5 @@
 <section class="aside">
-    <article class="notes">
+    <article class="aside__notes">
         <header class="notes__subtitle">Notas rapidas</header>
         <form action="">
             <label for="notes"></label>
@@ -10,7 +10,7 @@
             <input type="submit" value="Guardar">
         </form>
     </article>
-    <article>
+    <article class="aside__chat">
         <header class="notes__subtitle">Mensajes a la conserjería Norte</header>
         <form action="">
             <label for="notes"></label>
