@@ -40,7 +40,7 @@
                                 Servicios
                             </summary>
                             <ul dir="rtl">
-                                <li><a href="#">Bitáctora</a></li>
+                                <li><a href="<?= base_url?>log/logbook">Bitáctora</a></li>
                                 <li><a href="#">Estacionamiento de visitas</a></li>
                                 <li><a href="#">Visitas</a></li>
                                 <li><a href="#">Recidencias</a></li>
@@ -50,6 +50,7 @@
                                 <li><a href="#">Encargos</a></li>
                                 <li><a href="#">Bedegas y Estacionamientos</a></li>
                                 <li><a href="#">Personal</a></li>
+                                <li><a href="<?= base_url?>management/showShift">Turnos</a></li>
                                 <li><a href="#">Perfil</a></li>
                                 <li><a href="<?= base_url ?>auth/logout">Cerrar Sesión</a></li>
                             </ul>
