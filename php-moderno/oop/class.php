@@ -2,17 +2,17 @@
 
 //Para que tenga tipado estricto
 declare(strict_types=1);
-
+/* 
 $sale = new Sale(200.4, date('d-m-Y'));
 $sale = new Sale(200.4, date('d-m-Y'));
-$sale = new Sale(200.4, date('d-m-Y'));
+$sale = new Sale(200.4, date('d-m-Y')); */
 echo Sale::$count;
 
 
 echo " / ";
 
 Sale::reset();
-$sale = new Sale(123.3, date('d-m-Y'));
+$sale = new Sale(date('d-m-Y'));
 echo Sale::$count;
 
 echo "<br>";
@@ -29,27 +29,35 @@ echo $sale->createInvioce();
 echo "<br>";
 
 $concept = new Concept("Cerveza", 10.2);
+$concept2 = new Concept("Cerveza Escudo", 5.2);
 $sale->addConcept($concept);
+$sale->addConcept($concept2);
 print_r($sale->concepts);
-
+$sale->addConcept($concept);
+echo "<br>";
+echo $sale->getTotal();
+echo "<br>";
+echo $sale->getDate();
 
 echo "<br>";
 echo "Herencia";
-$onlineSale = new OnlineSale(14, date('d-m-Y'), "Tarjeta");
+$onlineSale = new OnlineSale(date('d-m-Y'), "Tarjeta");
 echo $onlineSale->createInvioce();
 echo $onlineSale->showInfo();
 
 class Sale
 {
     protected float $total;
-    public string $date;
+    private string $date;
     public array $concepts;
     public static $count;
 
-    public function __construct(float $total, string $date)
+
+
+    public function __construct(string $date)
     {
-        $this->total = $total;
         $this->date = $date;
+        $this->total = 0;
         $this->concepts = [];
         self::$count++;
     }
@@ -59,6 +67,22 @@ class Sale
     {
         $this->concepts[] = $concepts;
         // $this->createInvioce();
+        $this->total += $concepts->amount;
+    }
+
+    public function getTotal(): float
+    {
+        return $this->total;
+    }
+
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date)
+    {
+        $this->date = $date;
     }
 
 
@@ -84,9 +108,9 @@ class OnlineSale extends Sale
 
     public $paymentMethod;
 
-    public function __construct(float $total, string $date, string $paymentMethod)
+    public function __construct(string $date, string $paymentMethod)
     {
-        parent::__construct($total, $date);
+        parent::__construct($date);
         $this->paymentMethod = $paymentMethod;
     }
 
