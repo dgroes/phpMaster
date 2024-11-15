@@ -21,11 +21,23 @@ Route::get('/mostrar-fecha', function () {
     ));
 });
 
-Route::get('/pelicula/{titulo?}/{year?}', function($titulo = 'No hay una pelicula aun :(', $year =  2008){
+Route::get('/pelicula/{titulo}/{year?}', function ($titulo = 'No hay una pelicula aun :(', $year = 2024) {
     return view('pelicula', array(
         'titulo' => $titulo,
         'year' => $year
     ));
 })->where(array(
-    'titulo' => '[a-zA-Z]+'
+    'titulo' => '[a-zA-Z]+',
+    'year' => '[0-9]+'
 ));
+
+
+Route::get('/listado-peliculas', function () {
+
+    $titulo = "Listado de peliculas";
+    $listado = array("BAtman", "spiderman", "iron man");
+
+    return view('peliculas.listado')
+        ->with('titulo', $titulo)
+        ->with('listado', $listado);
+});
