@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\UsuarioController; // Importar el controlador
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,7 +16,13 @@ PUT Actualizar recursos
 DELETE: Eliminar recursos */
 
 
-Route::get('/visualizar-fecha', function () {
+// Rutas para el controlador PeliculaController
+Route::get('/peliculas/{pagina?}', [PeliculaController::class, 'index'])->name('peliculas.index');
+Route::get('/detalle/{year?}', [PeliculaController::class, 'detalle'])->name('peliculas.detalle');
+Route::get('/redirigir', [PeliculaController::class, 'redirigir'])->name('peliculas.redirigir');
+
+Route::resource('usuario', UsuarioController::class);
+/* Route::get('/visualizar-fecha', function () {
     $variable = "Ejemplod de variable para la view";
     return view('visualizar-fecha', array(
         'variable' => $variable
@@ -41,3 +49,9 @@ Route::get('/listado-peliculas', function () {
         ->with('titulo', $titulo)
         ->with('listado', $listado);
 });
+
+
+Route::get('pagina-generica', function () {
+    return view('pagina');
+});
+ */

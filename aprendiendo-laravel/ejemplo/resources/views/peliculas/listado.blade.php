@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    @include('includes.header')
+    
     {{-- Imprimir variables --}}
     <h1>{{ $titulo }}</h1>
     <h3>{{ $listado[2] }}</h3>
@@ -40,9 +42,9 @@
 
     {{-- BUCLES --}}
     @for ($i = 0; $i <= 8; $i++)
-    El número es: {{ $i }} <br>
+        El número es: {{ $i }} <br>
     @endfor
-    
+
     <br>
     <?php $contador = 1; ?>
     @while ($contador < 25)
@@ -53,10 +55,12 @@
     @endwhile
 
     <br>
-    @foreach($listado as $pelicula)
-        <p>{{$pelicula}}</p>
+    @foreach ($listado as $pelicula)
+        <p>{{ $pelicula }}</p>
     @endforeach
 
+
+    @include('includes.footer')
 
 </body>
 
