@@ -27,8 +27,9 @@ if (isset($_GET['controller'])) {
     $name_controller = controller_default;
 } else {
     show_error();
-    exit();
+    exit(); 
 }
+
 
 //Verificar la clase del controlador existetente y crear una instancia si existe
 if (class_exists($name_controller)) {
