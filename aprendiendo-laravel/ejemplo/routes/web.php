@@ -14,9 +14,9 @@ PUT Actualizar recursos
 DELETE: Eliminar recursos */
 
 
-Route::get('/mostrar-fecha', function () {
+Route::get('/visualizar-fecha', function () {
     $variable = "Ejemplod de variable para la view";
-    return view('mostrar-fecha', array(
+    return view('visualizar-fecha', array(
         'variable' => $variable
     ));
 });
