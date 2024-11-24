@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+    <h1>Aaquí se mostrarán todos los posts 🍅</h1>
+    <article>
+        <a href="/posts/create">Nuevo Post</a>
+    </article>
+    <ul>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel 11 | Posts</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css">
-
-    {{-- fontawesome
-    tipografia --}}
-</head>
-
-<body>
-    <main class="container-fluid">
-        <header></header>
-        <h1>Aaquí se mostrarán todos los posts 🍅</h1>
-    </main>
-    <footer></footer>
-</body>
-
-</html>
+        @foreach ($posts as $post)
+            <li>
+                <a href="/posts/{{ $post->id }}">
+                    {{ $post->title }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</x-app-layout>
