@@ -18,12 +18,19 @@ Route::get('/posts', [PostController::class, 'index']);
 
 Route::get('/posts/create', [PostController::class, 'create']);
 
+Route::post('posts/', [PostController::class, 'store']);
+
 Route::get('/posts/{post}', [PostController::class, 'show']);
 
 Route::get('prueba', function () {
 
+
+    //Prueba de Casteo
+    $post = Post::find(1);
+    dd($post->is_active);
+
     // CREACÍON DE UN REGISTRO post
-   /*  $post = new Post;
+    /*  $post = new Post;
     $post->title = 'TiTulo dE pRueba N-06';
     $post->content = 'COntenido DE pureba N-06';
     $post->category = 'CATegorÍa de pureba N-06';
@@ -33,8 +40,8 @@ Route::get('prueba', function () {
     return $post; */
 
     // VISUZALIZAR UN REGISTRO post
-    $post = Post::find(1);
-    return $post->created_at->format('d-m-Y');
+    /*  $post = Post::find(1);
+    return $post->published_at->format('d-m-Y'); */
 
     /*  $post = Post::where('title', 'Titulo de prueba N-02')
         ->first();
@@ -58,7 +65,7 @@ Route::get('prueba', function () {
 
 
     // VISUALIAR ALGUNOS CAMPOS
-   /*   $posts = Post::orderBy('id', 'desc')
+    /*   $posts = Post::orderBy('id', 'desc')
         ->select('id', 'title', 'created_at')
         ->take(2) 
         ->get();
@@ -66,7 +73,7 @@ Route::get('prueba', function () {
 
 
     //ELIMINAR REGISTRO
-   /*  $post = Post::find(1);
+    /*  $post = Post::find(1);
     $post->delete();
 
     return "Registro eliminado 😙"; */
