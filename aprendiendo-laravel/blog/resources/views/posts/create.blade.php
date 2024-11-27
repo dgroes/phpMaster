@@ -5,13 +5,16 @@
             <h1>Creación de Nuevo Post</h1>
         </head>
 
-        <form action="/posts" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST">
 
             {{-- Token oculto dentro del formulario --}}
             @csrf
-            
+
             <label for="title">Titulo:</label>
             <input type="text" name="title">
+
+            <label for="slug">Slug:</label>
+            <input type="text" name="slug">
 
             <label for="category">Categoría:</label>
             <input type="text" name="category">
