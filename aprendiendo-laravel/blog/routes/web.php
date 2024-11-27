@@ -13,14 +13,42 @@ use App\Models\Post;
 //Cuando se utilizan controladores de acción unica, esta irá sin corchetes
 Route::get('/', HomeController::class);
 
+/* Route::resource('articulos', PostController::class)
+    ->parameters(['articulos' => 'post'])
+    ->names('posts'); */
 
-Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/create', [PostController::class, 'create']);
+Route::resource('posts', PostController::class);
 
-Route::post('posts/', [PostController::class, 'store']);
+//     ->except(['create', 'edit']);
 
-Route::get('/posts/{post}', [PostController::class, 'show']);
+// Route::apiResource('posts', PostController::class);
+
+
+/* Route::get('/posts', [PostController::class, 'index'])
+    ->name('posts.index');
+
+Route::get('/posts/create', [PostController::class, 'create'])
+    ->name('posts.create');
+
+Route::post('posts/', [PostController::class, 'store'])
+    ->name('posts.store');
+
+Route::get('/posts/{post}', [PostController::class, 'show'])
+    ->name('posts.show');
+
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
+    ->name('posts.edit');
+
+Route::put('/posts/{post}', [PostController::class, 'update'])
+    ->name('posts.update');
+
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])
+    ->name('posts.destroy'); */
+
+
+
+
 
 Route::get('prueba', function () {
 
