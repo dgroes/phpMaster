@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Mail\PostCreateMail;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -21,16 +24,40 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $post = new Post();
+
+        // return $request->all();
+
+        //Se movieron las validaciones a StoreRequest.php
+        /*  $request->validate([
+            'title' => ['required', 'min:5', 'max:255'],
+            'slug' => 'required|unique:post',
+            'category' => 'required',
+            'content' => 'required',
+
+        ]); */
+
+        //Cons asignación masiva:
+        $post = Post::create($request->all());
+
+        Mail::to('pepito@prueba.com')->send(new PostCreateMail($post));
+
+        return redirect()->route('posts.index');
+
+        /* Post::create([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'category' => $request->category,
+            'content' => $request->title,
+        ]); */
+
+        /* $post = new Post();
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category = $request->category;
         $post->content = $request->content;
-        $post->save();
-
-        return redirect()->route('posts.index');
+        $post->save(); */
     }
 
     public function show(Post $post)
@@ -56,13 +83,23 @@ class PostController extends Controller
     {
         // $post = Post::find($post);
 
-        $post->title = $request->title;
+        $request->validate([
+            'title' => ['required', 'min:5', 'max:255'],
+            'slug' => "required|unique:post,slug,{$post->id}",
+            'category' => 'required',
+            'content' => 'required',
+
+        ]);
+
+        //Con asignación masiva:
+        $post->update($request->all());
+        return redirect()->route('posts.show', $post);
+
+        /* $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category = $request->category;
         $post->content = $request->content;
-        $post->save();
-
-        return redirect()->route('posts.show', $post);
+        $post->save(); */
     }
 
     public function destroy(Post $post)
