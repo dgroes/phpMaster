@@ -13,7 +13,7 @@ class ChirpController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(): View
     {
         return view('chirps.index', [
             'chirps' => Chirp::with('user')->latest()->get(),
@@ -36,9 +36,9 @@ class ChirpController extends Controller
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
- 
+
         $request->user()->chirps()->create($validated);
- 
+
         return redirect(route('chirps.index'));
     }
 
@@ -56,7 +56,7 @@ class ChirpController extends Controller
     public function edit(Chirp $chirp): View
     {
         Gate::authorize('update', $chirp);
- 
+
         return view('chirps.edit', [
             'chirp' => $chirp,
         ]);
@@ -68,21 +68,25 @@ class ChirpController extends Controller
     public function update(Request $request, Chirp $chirp): RedirectResponse
     {
         Gate::authorize('update', $chirp);
- 
+
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
- 
+
         $chirp->update($validated);
- 
+
         return redirect(route('chirps.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chirp $chirp)
+    public function destroy(Chirp $chirp): RedirectResponse
     {
-        //
+        Gate::authorize('delete', $chirp);
+
+        $chirp->delete();
+
+        return redirect(route('chirps.index'));
     }
 }
