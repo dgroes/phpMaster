@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            
+            $table->usingnedBigInteger('user_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('text');
             $table->timestamps();
         });
