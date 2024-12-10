@@ -16,8 +16,10 @@ class Task extends Model
     protected $fillable = [
         'title',
         'description',
+        'user_id',
         'completed',
     ];
+    
 
     //Establecer las relaciones con otra tabla (Modelo)
     //Con Belongs To especificamos que una Task pertenece a un Usuario

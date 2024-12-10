@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 // use Illuminate\View\View;
@@ -16,10 +17,24 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
-    //Creación de una Task
+    //Ir a la view de creación 
     public function create()
     {
         return view('tasks.create');
+    }
+
+    //
+    public function store(StoreTaskRequest $request)
+    {
+        // Agregar el user_id del usuario autenticado
+        $task = Task::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'user_id' => auth()->id(), // Obtiene el ID del usuario autenticado
+            'completed' => false, // Si quieres un valor predeterminado para 'completed'
+        ]);
+    
+        return redirect()->route('tasks.index');
     }
 
     //Visualización de las Task para mostrar en tasks/index.blade
