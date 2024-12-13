@@ -33,7 +33,7 @@ class TaskController extends Controller
             'user_id' => auth()->id(), // Obtiene el ID del usuario autenticado
             'completed' => false, // Si quieres un valor predeterminado para 'completed'
         ]);
-    
+
         return redirect()->route('tasks.index');
     }
 
@@ -41,5 +41,24 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));
+    }
+    
+
+    //Dirigir a la view del Task Edit
+    public function edit(Task $task)
+    {
+        return view('tasks.edit', compact('task'));
+    }
+
+    //Edición de una task
+    public function update(Request $request, Task $task)
+    {
+        $request->validate([
+            'title' => ['require', 'min:5', 'max:100'],
+            'desctiption' => 'required',
+        ]);
+
+        $task->update($request->all());
+        return redirect()->route('tasks.index');
     }
 }
