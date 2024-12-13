@@ -6,10 +6,10 @@
     </x-slot>
 
 
-    
+
     {{-- {{dd(auth()->id());}} --}}
 
-    
+    {{-- 
     <form class="max-w-xl mx-auto p-10" method="POST" action="{{ route('tasks.store')}}">
         @csrf
         <div class="mb-5">
@@ -25,10 +25,12 @@
             Crear Tarea
         </button>
         
-    </form>
-    
-  
-      
-  
-      
+    </form> --}}
+    <x-form-task :method="'POST'" :action="route('tasks.store')" :buttonText="'Crear'" />
+
+
+
+
+
+
 </x-app-layout>
