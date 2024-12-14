@@ -28,11 +28,18 @@
                                 {{ $task->description ?? 'Sin descripción' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $task->status ?? 'Pendiente' }}
+                                {{ $task->completed ? 'Completada' : 'Pendiente' }}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('tasks.show', $task) }}"
-                                    class="font-medium text-blue-600 hover:underline">Cumplida</a>
+                                <form action="{{ route('tasks.update', $task) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="action" value="markAsComplete">
+                                    <button type="submit" class="font-medium text-blue-600 hover:underline">
+                                        Cumplida
+                                    </button>
+                                </form>
+                                
                                 |
                                 <a href="{{ route('tasks.edit', $task) }}"
                                     class="font-medium text-green-600 hover:underline">Editar</a>
@@ -76,11 +83,17 @@
                                 {{ $task->description ?? 'Sin descripción' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $task->status ?? 'Cumplida' }}
+                                {{ $task->completed ? 'Completada' : 'Pendiente' }}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('tasks.show', $task) }}"
-                                    class="font-medium text-blue-600 hover:underline">Pendiente</a>
+                                <form action="{{ route('tasks.update', $task) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="action" value="markAsPendient">
+                                    <button type="submit" class="font-medium text-blue-600 hover:underline">
+                                        Pendiente
+                                    </button>
+                                </form>
                                 |
                                 <a href="{{ route('tasks.edit', $task) }}"
                                     class="font-medium text-green-600 hover:underline">Editar</a>
