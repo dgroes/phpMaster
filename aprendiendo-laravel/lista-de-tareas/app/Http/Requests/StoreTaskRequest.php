@@ -23,7 +23,8 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:5', 'max:30'],
-            'description' => ['required', 'min:5', 'max:100']
+            'description' => ['required', 'min:5', 'max:100'],
+            'action' => 'nullable|in:markAsComplete,markAsPending',
         ];
     }
 

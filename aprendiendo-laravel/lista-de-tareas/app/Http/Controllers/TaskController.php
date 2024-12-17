@@ -12,7 +12,7 @@ class TaskController extends Controller
     //Mostrar Lista de tareas creadas por el usuario
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'desc')
+        $tasks = Task::orderBy('created_at', 'desc')->where('user_id', auth()->id())
             ->paginate(20);
         return view('tasks.index', compact('tasks'));
     }
@@ -25,17 +25,17 @@ class TaskController extends Controller
 
     //
     public function store(StoreTaskRequest $request)
-{
-    // Los datos ya están validados automáticamente por el Form Request
-    Task::create([
-        'title' => $request->input('title'), 
-        'description' => $request->input('description'),
-        'user_id' => auth()->id(), // Usuario autenticado
-        'completed' => false, // Por defecto la tarea no está completada
-    ]);
+    {
+        // Los datos ya están validados automáticamente por el Form Request
+        Task::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'user_id' => auth()->id(), // Usuario autenticado
+            'completed' => false, // Por defecto la tarea no está completada
+        ]);
 
-    return redirect()->route('tasks.index')->with('success', 'Tarea creada exitosamente.');
-}
+        return redirect()->route('tasks.index')->with('success', 'Tarea creada exitosamente.');
+    }
 
 
 
@@ -55,26 +55,26 @@ class TaskController extends Controller
 
     //Edición de una task
     public function update(StoreTaskRequest $request, Task $task)
-{
-    // Verificar la acción enviada desde el formulario
-    if ($request->input('action') === 'markAsComplete') {
-        $task->update(['completed' => 1]);
-        return redirect()->route('tasks.index')->with('success', 'Tarea marcada como completada.');
+    {
+        // Verificar la acción enviada desde el formulario
+        if ($request->input('action') === 'markAsComplete') {
+            $task->update(['completed' => 1]);
+            return redirect()->route('tasks.index')->with('success', 'Tarea marcada como completada.');
+        }
+
+        if ($request->input('action') === 'markAsPending') {
+            $task->update(['completed' => 0]);
+            return redirect()->route('tasks.index')->with('success', 'Tarea marcada como pendiente.');
+        }
+
+        // Actualizar los demás campos de la tarea
+        $task->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('tasks.index')->with('success', 'Tarea actualizada correctamente.');
     }
-
-    if ($request->input('action') === 'markAsPending') {
-        $task->update(['completed' => 0]);
-        return redirect()->route('tasks.index')->with('success', 'Tarea marcada como pendiente.');
-    }
-
-    // Actualizar los demás campos de la tarea
-    $task->update([
-        'title' => $request->input('title'),
-        'description' => $request->input('description'),
-    ]);
-
-    return redirect()->route('tasks.index')->with('success', 'Tarea actualizada correctamente.');
-}
 
 
 

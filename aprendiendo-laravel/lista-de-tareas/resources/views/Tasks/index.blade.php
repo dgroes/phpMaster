@@ -89,7 +89,7 @@
                                 <form action="{{ route('tasks.update', $task) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="action" value="markAsPendient">
+                                    <input type="hidden" name="action" value="markAsPending">
                                     <button type="submit" class="font-medium text-blue-600 hover:underline">
                                         Pendiente
                                     </button>
