@@ -5,7 +5,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+
+Route::get('/custom-page', function () {
+    return view('custom_page');
+})->name('custom.page');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
