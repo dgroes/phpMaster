@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+    
     {{-- TABLA DE TAREAS POR HACER (PENDIENTES) --}}
     <div class="relative overflow-x-auto p-24 shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
@@ -19,6 +20,8 @@
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
+                <button class="task__toggle-status" data-id="<?= $task->id ?>" data-status="<?= $task->status ?>">Marcar como <?= $task->status == 'pendiente' ? 'completada' : 'pendiente' ?></button>
+
                     @if ($task->completed == 0)
                         <tr class="odd:bg-white even:bg-gray-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
