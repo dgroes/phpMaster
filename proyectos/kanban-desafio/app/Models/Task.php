@@ -10,12 +10,15 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'description',
-        'tags', // Añadir tags a los campos fillable
+        'tags',
+        'status',
+        'priority',
     ];
 
     protected $casts = [
-        'tags' => 'array', // Añadir el cast de tags a array
+        'tags' => 'array',
     ];
 }
