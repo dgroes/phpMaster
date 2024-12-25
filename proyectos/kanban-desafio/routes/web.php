@@ -10,7 +10,11 @@ Route::get('/', function () {
 
 //Ruta resfull con (index, create, store, show edit, update, destroy)
 Route::middleware('auth')->group(function () {
+    //Rutas RESTful
     Route::resource('tasks', TaskController::class);
+
+    //Rutas personalizadas (update Status)
+    Route::patch('tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 });
 
 
