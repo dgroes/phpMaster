@@ -7,7 +7,7 @@
     <!-- Links -->
     <div class="flex-none">
       <ul class="menu menu-horizontal px-4">
-          <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a></li>
+          <li><a href="{{ route('tasks.index') }}" class="{{ request()->routeIs('tasks.index') ? 'active' : '' }}">Lista de tareas</a></li>
         <li><a href="{{ route('tasks.create') }}" class="{{ request()->routeIs('tasks.create') ? 'active' : '' }}">Nueva tarea</a></li>
         <!-- Dropdown -->
         <li>
