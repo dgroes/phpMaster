@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateTaskStatusRequest;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,6 +52,26 @@ class TaskController extends Controller
         ]);
 
     //    Task::create($request->all());
+        return redirect()->route('tasks.index');
+    }
+
+
+    //Editar / Actualizar Tarea
+    public function updateStatus(UpdateTaskStatusRequest $request, Task $task){
+        //Verificar la el 'name' enviiado deesde el form
+        // dd($request->method(), $request->all());
+
+        if($request->input('status') === 'completed'){
+            $task->status = 'completed';
+            $task->save();
+        }
+        return redirect()->route('tasks.index');
+    }
+
+
+    //Eliminar Tarea
+    public function destroy(Task $task){
+        $task->delete();
         return redirect()->route('tasks.index');
     }
 }
