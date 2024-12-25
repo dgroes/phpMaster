@@ -28,9 +28,9 @@
                 </div>
                 <select name="priority" class="select select-bordered text-lg p-4 w-full">
                     <option disabled selected>Selecciona un nivel</option>
-                    <option value="Alta">Alta</option>
-                    <option value="Media">Media</option>
-                    <option value="Baja">Baja</option>
+                    <option value="high">Alta</option>
+                    <option value="medium">Media</option>
+                    <option value="low">Baja</option>
                 </select>
             </label>
 
