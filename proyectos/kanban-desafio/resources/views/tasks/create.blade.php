@@ -44,7 +44,7 @@
                     </span>
                     <span class="badge badge-accent">Opcional</span>
                 </div>
-                <input type="text" name="tags" placeholder="Escribe tags separados por espacio..." class="input input-bordered w-full text-lg p-4" />
+                <input type="text" name="tags[]" placeholder="Escribe tags separados por espacio..." class="input input-bordered w-full text-lg p-4" />
             </label>
 
             <button type="submit" class="btn btn-primary w-full text-lg p-4">Crear tarea</button>
