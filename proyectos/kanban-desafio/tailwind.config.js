@@ -9,6 +9,16 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    safelist: [
+        'bg-violet-300',
+        'bg-teal-200',
+        'bg-indigo-300',
+        'badge-info',
+        'badge-warning',
+        'badge-error',
+        'bg-default',
+    ],
+
     theme: {
         extend: {
             fontFamily: {
@@ -20,7 +30,7 @@ export default {
     plugins: [
         forms,
         // require("@tailwindcss/typography"), 
-        require("daisyui")
+        require("daisyui"),
     ],
 
     daisyui: {
