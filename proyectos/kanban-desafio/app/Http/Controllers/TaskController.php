@@ -13,64 +13,63 @@ class TaskController extends Controller
     //Index del sistema
     public function index()
     {
-        // $tasks = Task::where('user_id', auth()->id());
         $tasks = Task::all();
-
-        // dd($tasks);
-
         return view('tasks.index', compact('tasks'));
-
     }
 
     //View of Create task
     public function create()
     {
-        $tasks = Task::all();
-        /* var_dump($tasks);
-        die(); */
-
         return view('tasks.create');
     }
 
     //Store Task
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'priority' => 'required|string',
             'tags' => 'nullable|array',
         ]);
 
+        $tags = $request->has('tags') ? preg_split('/\s+/', $request->input('tags')[0]) : [];
         Task::create([
-            'user_id' => Auth::id(), // Asegúrate de obtener el ID del usuario autenticado
+            'user_id' => Auth::id(),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'status' => 'pending',
             'priority' => $request->input('priority'),
-            'tags' => $request->input('tags'),
+            'tags' => $tags,
+            // 'tags' => $request->has('tags') ? json_encode($request->input('tags')) : null,
+            // 'tags' => $request->has('tags') ? json_encode(preg_split('/\s+/', $request->input('tags')[0])) : null,
+
         ]);
 
-    //    Task::create($request->all());
         return redirect()->route('tasks.index');
     }
 
-
     //Editar / Actualizar Tarea
-    public function updateStatus(UpdateTaskStatusRequest $request, Task $task){
+    public function updateStatus(UpdateTaskStatusRequest $request, Task $task)
+    {
         //Verificar la el 'name' enviiado deesde el form
         // dd($request->method(), $request->all());
 
-        if($request->input('status') === 'completed'){
-            $task->status = 'completed';
-            $task->save();
-        }
+        $status = $request->input('status');
+
+        $task->status = match ($status) {
+            'completed', 'in_progress', 'pending' => $status,
+            default => $task->status, // Mantén el estado actual si no coincide con las opciones válidas
+        };
+
+        $task->save();
+
         return redirect()->route('tasks.index');
     }
 
-
     //Eliminar Tarea
-    public function destroy(Task $task){
+    public function destroy(Task $task)
+    {
         $task->delete();
         return redirect()->route('tasks.index');
     }
