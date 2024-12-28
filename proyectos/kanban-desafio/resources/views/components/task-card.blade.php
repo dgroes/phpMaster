@@ -52,7 +52,7 @@
         <p>{{ $task->description }}</p>
         <footer>
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
+                <div class="flex flex-wrap gap-2">
                     <div class="badge {{ $badgeClass }}">#{{ $task->priority }}</div>
                     @if (!empty($task->tags) && is_array($task->tags))
                         @foreach ($task->tags as $tag)
@@ -64,6 +64,7 @@
                 </div>
             </div>
         </footer>
+        
         
     </div>
 </li>
