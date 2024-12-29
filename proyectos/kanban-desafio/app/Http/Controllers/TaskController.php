@@ -49,7 +49,7 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    //Editar / Actualizar Tarea
+    //Editar / Actualizar estatus de Tarea
     public function updateStatus(UpdateTaskStatusRequest $request, Task $task)
     {
         //Verificar la el 'name' enviiado deesde el form
@@ -63,6 +63,34 @@ class TaskController extends Controller
         };
 
         $task->save();
+
+        return redirect()->route('tasks.index');
+    }
+
+    //View de editar TArea
+    public function edit(Task $task)
+    {
+        return view('tasks.edit', compact('task'));
+    }
+
+    //Editar tarea
+    public function update(Request $request, Task $task)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'priority' => 'required|string',
+            'tags' => 'nullable|array',
+        ]);
+
+        $tags = $request->has('tags') ? preg_split('/\s+/', $request->input('tags')[0]) : [];
+
+        $task->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'priority' => $request->input('priority'),
+            'tags' => $tags,
+        ]);
 
         return redirect()->route('tasks.index');
     }
