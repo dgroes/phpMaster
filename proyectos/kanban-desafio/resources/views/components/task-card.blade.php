@@ -11,42 +11,53 @@
             <div class="dropdown dropdown-end">
                 <button tabindex="0" role="button" class="btn btn-sm m-1">Opciones</button>
                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow text-zinc-100">
-                    <li><a href="#">Editar</a></li>
-                    <li>
-                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST">
+                    <li><a href="{{route('tasks.edit', $task)}}">Editar</a></li>
+                    
+                    @unless ($task->status === 'pending')
+                    <li class="cursor-pointer" onclick="this.querySelector('form').submit()">
+                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST" class="w-full">
                             @csrf
                             @method('PATCH')
                             <input type="hidden" name="task_id" value="{{ $task->id }}">
                             <input type="hidden" name="status" value="pending">
-                            <button type="submit" class="btn btn-link">Por hacer</button>
+                            <span>Por hacer</span>
                         </form>
                     </li>
-                    <li>
-                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST">
+                    @endunless
+                    
+                    @unless ($task->status === 'in_progress')
+                    <li class="cursor-pointer" onclick="this.querySelector('form').submit()">
+                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST" class="w-full">
                             @csrf
                             @method('PATCH')
                             <input type="hidden" name="task_id" value="{{ $task->id }}">
                             <input type="hidden" name="status" value="in_progress">
-                            <button type="submit" class="btn btn-link">En curso</button>
+                            <span>En curso</span>
                         </form>
                     </li>
-                    <li>
-                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST">
+                    @endunless
+                    
+                    @unless ($task->status === 'completed')
+                    <li class="cursor-pointer" onclick="this.querySelector('form').submit()">
+                        <form action="{{ route('tasks.updateStatus', ['task' => $task->id]) }}" method="POST" class="w-full">
                             @csrf
                             @method('PATCH')
                             <input type="hidden" name="task_id" value="{{ $task->id }}">
                             <input type="hidden" name="status" value="completed">
-                            <button type="submit" class="btn btn-link">Terminar</button>
+                            <span>Terminado</span>
                         </form>
                     </li>
+                    @endunless
+                    
                     <li>
-                        <form action="{{ route('tasks.destroy', $task) }}" method="POST">
+                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="w-full">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-link text-red-600">Eliminar</button>
+                            <button type="submit" class="w-full text-left text-red-600">Eliminar</button>
                         </form>
                     </li>
                 </ul>
+                
             </div>
         </div>
         <p>{{ $task->description }}</p>
