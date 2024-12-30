@@ -15,8 +15,12 @@
                     <span class="label-text text-lg">Titulo de tarea</span>
                     <span class="badge badge-primary">Obligatorio</span>
                 </div>
-                <input type="text" name="title" placeholder="Type here" value="{{ old('title', $task->title) }}"
+                <!-- Referencia: views/readme.md#comentario-01 -->
+                <input type="text" name="title" placeholder="Type here"  value="{{ old('title') !== null ? old('title') : $task->title }}" 
                     class="input input-bordered w-full text-white p-4" />
+                @error('title')
+                    <span class="badge badge-error mt-2">{{ $message }}</span>
+                @enderror
             </label>
 
             {{-- Descripción --}}
@@ -25,7 +29,10 @@
                     <span class="label-text text-lg">Descripción</span>
                     <span class="badge badge-primary">Obligatorio</span>
                 </div>
-                <textarea name="description" class="textarea textarea-bordered h-32 text-white p-4" placeholder="Descripción">{{ old('description', $task->description) }}</textarea>
+                <textarea name="description" class="textarea textarea-bordered h-32 text-white p-4" placeholder="Descripción">{{ old('description') !== null ? old('description') : $task->description }}" </textarea>
+                @error('description')
+                    <span class="badge badge-error mt-2">{{ $message }}</span>
+                @enderror
             </label>
 
             {{-- Prioridad --}}
@@ -35,6 +42,7 @@
                     <span class="badge badge-primary">Obligatorio</span>
                 </div>
                 <select name="priority" class="select select-bordered text-white p-4 w-full">
+
                     <option disabled selected>Selecciona un nivel</option>
                     <option value="high" {{ old('priority', $task->priority) == 'high' ? 'selected' : '' }}>Alta
                     </option>
@@ -44,6 +52,9 @@
                     </option>
 
                 </select>
+                {{-- @error('description')
+                    <span class="badge badge-error mt-2">{{ $message }}</span>
+                @enderror --}}
             </label>
 
             {{-- Tags --}}
@@ -56,8 +67,9 @@
                     </span>
                     <span class="badge badge-accent">Opcional</span>
                 </div>
+                <!-- Referencia: views/readme.md#comentario-02 -->
                 <input type="text" name="tags[]" placeholder="Escribe tags separados por espacio..."
-                    value="{{ old('tags', isset($task->tags) ? implode(' ', $task->tags) : '') }}"
+                   value="{{ old('tags') ? implode(' ', old('tags')) : (isset($task->tags) ? implode(' ', $task->tags) : '') }}"
                     class="input input-bordered w-full text-white p-4" />
 
             </label>
