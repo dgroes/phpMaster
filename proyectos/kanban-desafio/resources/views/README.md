@@ -13,3 +13,9 @@ Este comentario explica la lógica del input "title" en el formulario:
   1. Si existe un error de validación, muestra los tags ingresados previamente (`old('tags')`).
   2. Si la tarea tiene tags almacenados, los muestra (`$task->tags`).
   3. Si no hay datos previos, el campo aparece vacío.
+
+  
+## Comentario 03
+Una forma más limpia para procesar los tags directamente en el controlador o el modelo antes de pasarlos a la vista.
+- array_filter($task->tags): Elimina valores "falsy" como cadenas vacías, null, o false del arreglo de tags.
+- Separar lógica y presentación: Filtrar los tags en el modelo o controlador es preferible para mantener la vista más limpia.
