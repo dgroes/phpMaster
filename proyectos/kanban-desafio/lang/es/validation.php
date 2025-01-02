@@ -227,6 +227,7 @@ return [
         'postal_code'              => 'código postal',
         'preview'                  => 'vista preliminar',
         'price'                    => 'precio',
+        'priority'                 => 'prioridad',    
         'product_id'               => 'ID del producto',
         'product_uid'              => 'UID del producto',
         'product_uuid'             => 'UUID del producto',
