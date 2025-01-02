@@ -13,7 +13,18 @@ class TaskController extends Controller
     //Index del sistema
     public function index()
     {
-        $tasks = Task::all();
+        //Obtener el usuario autenticado
+        $user = Auth::user();
+
+        //Verifica que el user está autenticado
+        if (!$user){
+            abort(403, 'Usuario no autenticado 🐹');
+        }
+
+        //Obtener las tareas del usuario autenticado
+        $tasks = Task::where('user_id', $user->id)->get();
+
+        
         return view('tasks.index', compact('tasks'));
     }
 
