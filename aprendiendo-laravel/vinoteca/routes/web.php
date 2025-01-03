@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    // ray("hola desde el fichero web.php");
     return view('welcome');
 });
 

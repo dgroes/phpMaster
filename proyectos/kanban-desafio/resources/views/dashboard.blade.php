@@ -1,17 +1,25 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    {{-- <x-slot name="header">
+        <h2 class="navbar bg-neutral text-neutral-content">
             {{ __('Dashboard') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Mis tareas:</h1>
+    {{-- @if ($tasks->count())
+        <ul>
+            @foreach ($tasks as $task)
+                <li>{{ $task->title }}</li>
+            @endforeach
+        </ul>
+    @else
+        <p>No hay tareas disponibles.</p>
+    @endif --}}
+    <section class="w-full grid grid-cols-3 gap-4 p-4">
+        <!-- Grupo de tareas: Por hacer -->
+        
+    </section>
+
+
+
 </x-app-layout>
