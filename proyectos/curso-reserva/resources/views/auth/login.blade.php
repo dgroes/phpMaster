@@ -34,7 +34,7 @@
                                     <div class="mb-3">
                                         <label for="email" class="form-label">{{ __('Correo Electronico') }}</label>
                                         {{-- C10 Cadenas de traducción --}}
-                                        <input type="emal" id="email" name="email"
+                                        <input type="email" id="email" name="email"
                                             placeholder="Ingrese Correo electronico" value="{{ old('email') }}"
                                             class="form-control pe-5 @error('email') is-invalid @enderror" required
                                             autofocus>
