@@ -68,3 +68,73 @@ Usuando response_json guardas toda esta información como una cadena de texto en
 *Para este fichero se tiene que tener en cuenta el UserFactory*
 - User::create(): Aquí creo un usuario especifico de manera manual
 - User:factory(): Aquí creo 3 usuarios que deben tener un rol de consultor y 10 usuario que sean usuarios comunes
+
+
+### C08 Inclusión de scripts @stack
+**Su uso:**
+La directiva @stack('scripts') es una herramienta de Laravel Blade 
+que permite gestionar de manera flexible y organizada la inclusión de 
+scripts específicos para cada vista en una aplicación web.
+
+Funciona como un "espacio reservado" en el layout principal donde se 
+inyectarán scripts adicionales definidos en las vistas secundarias 
+usando la directiva @push. Esto tiene varias ventajas:
+
+1. **Modularidad**: Los scripts específicos de una vista pueden 
+   definirse directamente en esa vista, en lugar de tener que 
+   incluirlos globalmente en el layout principal, manteniendo el 
+   código más limpio y fácil de entender.
+
+2.  **Evitar duplicaciones**: Solo se cargarán los scripts que 
+   realmente necesiten las vistas, reduciendo el peso de las páginas 
+   y optimizando la carga de recursos.
+
+
+3.  **Flexibilidad**: Si en el futuro necesitas añadir más scripts a 
+   una vista en particular, solo tendrás que usar @push en esa vista, 
+   sin necesidad de modificar el layout global.
+
+4. **Orden garantizado**: Los scripts se inyectan en el orden en el 
+   que se definieron con @push, asegurando que todo funcione como se 
+   espera incluso si hay dependencias entre los scripts.
+
+
+Ejemplo de uso:
+
+1. En el layout principal (`layout.blade.php`):
+   @stack('scripts') indica el lugar donde se insertarán los scripts 
+   adicionales.
+
+2. En una vista secundaria (`home.blade.php`):
+   Puedes usar @push('scripts') para agregar un script que se 
+   insertará en la posición de @stack('scripts').
+
+Este mecanismo es especialmente útil en aplicaciones complejas donde 
+cada vista puede requerir scripts únicos, permitiendo mantener un 
+código más organizado y eficiente.
+
+
+### C09 Plantilla Guest
+Es uarchivo de plantilla que generalmente se utiliza como un layout básico para las páginas que no requieren que el usuario esté autenticado en la aplicación. Por ejemplo, páginas como el inicio de sesión, registro, recuperación de contraseña, y otras páginas públicas suelen utilizar este layout.
+
+#### Utilidad principal
+Diseño mínimo y liviano:
+- Proporciona una estructura básica de HTML con estilos y scripts necesarios para páginas públicas.
+- No incluye elementos específicos para usuarios autenticados, como barras de navegación personalizadas o menús laterales.
+
+#### Separación de layouts:
+- Permite diferenciar entre el diseño de páginas públicas (usando guest.blade.php) y el diseño de páginas privadas (generalmente utilizando otro layout como app.blade.php o similar).
+
+#### Facilita la modularidad:
+- Si en el futuro necesitas cambiar el diseño de las páginas públicas, puedes hacerlo en un solo lugar, sin afectar las vistas privadas.
+
+
+### 10 Cadenas de Traducción
+Para poder traducir "cadenas de textos" utilizando localización, el utilizar las "Cadenas de traducción" ayudará para poner cambiarlo de idioma si lo deseamos.
+Esto permite que el texto sea dinámico y multilingüe si estás utilizando archivos de localización.
+
+#### Diferencia:
+- Con __(): Soporta traducciones, útil para aplicaciones multilingües.
+-  Sin __(): El texto es estático y no se traducirá automáticamente.
+
+Usar __() es esencial si planeas soportar varios idiomas en tu aplicación.
