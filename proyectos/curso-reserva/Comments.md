@@ -129,7 +129,7 @@ Diseño mínimo y liviano:
 - Si en el futuro necesitas cambiar el diseño de las páginas públicas, puedes hacerlo en un solo lugar, sin afectar las vistas privadas.
 
 
-### 10 Cadenas de Traducción
+### C10 Cadenas de Traducción
 Para poder traducir "cadenas de textos" utilizando localización, el utilizar las "Cadenas de traducción" ayudará para poner cambiarlo de idioma si lo deseamos.
 Esto permite que el texto sea dinámico y multilingüe si estás utilizando archivos de localización.
 
@@ -172,3 +172,7 @@ De esta forma, al hacer clic en el enlace, se activa el formulario oculto que cu
 Usar solo el href enviaría una solicitud GET, lo que:
 - Violenta la semántica de los métodos HTTP.
 - Podría generar problemas de seguridad o errores si la ruta no está configurada para manejar solicitudes GET.
+
+
+### C13 Relaciones en views
+Si utilizamos *$usuario->rol*, solo devolvería un ID del tipo de rol. Gracias a Laravel podemos con nuestras relaciones ya previamente hechas llamar desde usuario y luego a roles así: $usuario->role->name. Sería como un Inner Join
