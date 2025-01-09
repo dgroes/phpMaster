@@ -104,7 +104,7 @@
 
                         {{-- Mnt. Usuarios --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('usuarios.index')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Mnt. Usuarios</span>
                         </a>
 
