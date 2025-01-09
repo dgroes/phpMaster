@@ -138,3 +138,37 @@ Esto permite que el texto sea dinámico y multilingüe si estás utilizando arch
 -  Sin __(): El texto es estático y no se traducirá automáticamente.
 
 Usar __() es esencial si planeas soportar varios idiomas en tu aplicación.
+
+
+### C11 Multipart Form Data
+Permite enviar no solo texto, como campos de entrada normales, sino también archivos (como imágenes, documentos, etc.) y datos binarios al servidor.
+
+Cuando subes un archivo a través de un formulario, los datos que contiene no se pueden codificar como texto plano (como sucede con el formato predeterminado application/x-www-form-urlencoded). Por eso, multipart/form-data divide el contenido del formulario en "partes" separadas, donde cada parte corresponde a un campo del formulario y sus datos, incluyendo los archivos.
+
+
+### C12 Logout en Laravel
+En Laravel, las rutas que maneja acciones como cerrar sesión generalmente requieren un método POST. Esto se debe a que, por convención, las operaciones que alterann el estado del sistema (como iniciar o cerrar sesión) no debería realizarse con un método GET, ya que GET se reserva para operaciones "idemponentes" (que no cambian de estado).
+
+El simple enlace href="{{ route('logout') }}" enviaría una solicitud GET, pero Laravel espera un POST para la ruta de logout. Si intentaras acceder directamente al enlace, recibirías un error (normalmente un 405 Method Not Allowed).
+
+#### Estrategia para usar POST com un enlace
+Como no puedes usar directamente un botón con un método POST en un <a> (porque los enlaces envían solicitudes GET), se emplea un truco:
+- El atributo onclick="event.preventDefault();" evita que el navegador siga el enlace.
+- document.getElementById('logout-form').submit(); envía un formulario oculto que utiliza el método POST y apunta a la misma ruta de logout.
+
+De esta forma, al hacer clic en el enlace, se activa el formulario oculto que cumple con el requisito de Laravel de recibir una solicitud POST.
+
+#### Uso del formulario oculto
+```
+<form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+    @csrf
+</form>
+```
+- Este formulario es el que realmente envía la solicitud POST a la ruta de logout.
+- @csrf: Se incluye un token CSRF para proteger la solicitud contra ataques de falsificación (Cross-Site Request Forgery). Laravel requiere este token para validar cualquier solicitud POST.
+- style="display: none;": Oculta el formulario para que no sea visible en la interfaz de usuario, ya que no se necesita interacción directa del usuario con él.
+
+#### ¿Por qué no basta solo con el href?
+Usar solo el href enviaría una solicitud GET, lo que:
+- Violenta la semántica de los métodos HTTP.
+- Podría generar problemas de seguridad o errores si la ruta no está configurada para manejar solicitudes GET.
