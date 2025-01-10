@@ -66,7 +66,7 @@
                                         <label for="teléfono" class="form-label">{{ __('Teléfono') }} <span
                                                 class="text-danger">*</span> </label>
                                         {{-- C10 Cadenas de traducción --}}
-                                        <input type="number" id="teléfono" name="teléfono"
+                                        <input type="tel" id="teléfono" name="teléfono"
                                             placeholder="Ingrese su teléfono" value="{{ old('teléfono') }}"
                                             class="form-control pe-5 @error('teléfono') is-invalid @enderror" required>
                                         @error('teléfono')
@@ -94,9 +94,7 @@
                                     <div class="mb-3">
                                         <label for="foto" class="form-label">{{ __('Foto (Opcional)') }}</label>
                                         {{-- C10 Cadenas de traducción --}}
-                                        <input type="file" id="foto" name="foto"
-                                            placeholder="Ingrese Correo electronico" value="{{ old('foto') }}"
-                                            class="form-control pe-5 @error('foto') is-invalid @enderror">
+                                        <input type="file" id="foto" name="foto" class="form-control pe-5 @error('foto') is-invalid @enderror">
                                         @error('foto')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
