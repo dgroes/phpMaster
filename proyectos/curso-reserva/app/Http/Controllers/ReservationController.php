@@ -21,9 +21,9 @@ class ReservationController extends Controller
         $users = User::where('rol_id', 3)->whereNull('deleted_at')->get();
 
         // Llamar a los usuarios que tengan el rol de 'consultores' y que no estén eliminados
-        $consultans = User::where('rol_id', 2)->whereNull('deleted_at')->get();
+        $consultants = User::where('rol_id', 2)->whereNull('deleted_at')->get();
 
-        return view('reservations.create', compact('users', 'consultans'));
+        return view('reservations.create', compact('users', 'consultants'));
     }
 
 
