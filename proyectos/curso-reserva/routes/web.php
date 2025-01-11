@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -31,5 +32,8 @@ Route::middleware('auth')->group(function () {
 
 //Ruta de usuarios
 Route::resource('usuarios', UserController::class);
+
+//Ruta de reservaciones
+Route::resource('reservations', ReservationController::class);
 
 require __DIR__.'/auth.php';
