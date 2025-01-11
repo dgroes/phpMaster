@@ -176,3 +176,43 @@ Usar solo el href enviaría una solicitud GET, lo que:
 
 ### C13 Relaciones en views
 Si utilizamos *$usuario->rol*, solo devolvería un ID del tipo de rol. Gracias a Laravel podemos con nuestras relaciones ya previamente hechas llamar desde usuario y luego a roles así: $usuario->role->name. Sería como un Inner Join
+
+
+### C14 Pluck
+El método pluck en Laravel sirve para extraer valores específicos de una colección o conjunto de registros. 
+```
+$userIds = User::where('rol_id', 3)->pluck('id')->toArray();
+```
+¿Qué hace exactamente?
+1. where('rol_id', 3): Filtra los registros de la tabla users, seleccionando solo aquellos donde el campo rol_id sea igual a 3 (en este caso, los usuarios que son clientes).
+
+2. pluck('id'): Extrae únicamente los valores de la columna id de los registros que coinciden con el filtro anterior. Devuelve una colección de los IDs de los usuarios.
+
+3. toArray(): Convierte esa colección en un array simple de PHP.
+
+Para qué sirve en este contexto?
+El propósito de esta línea es obtener una lista de los IDs de los usuarios que cumplen con la condición (rol_id = 3). Posteriormente, esa lista ($userIds) probablemente se usará para:
+
+Generar datos aleatorios para clientes específicos.
+Asignar relaciones en un modelo de pruebas (por ejemplo, en un Factory o Seeder).
+Cualquier otra operación que requiera trabajar solo con los usuarios de rol 3.
+
+El método pluck aquí se utiliza para simplificar la obtención de una lista específica (en este caso, los IDs de los usuarios con rol_id = 3). Es una forma eficiente de trabajar solo con la información necesaria, sin cargar todos los campos de la base de datos.
+
+
+### C15 Sprintf
+El método  sprintf() sirve para fomatear cadenas de texto de acuerdo con un formato específico.
+
+%02d:
+
+%d: Indica que se va a insertar un número entero.
+
+02: Indica que el número debe tener al menos 2 dígitos, y si tiene menos, se rellenará con ceros a la izquierda.
+
+:00:
+
+Esto es texto literal que se agrega después del número formateado. Representa minutos en este caso.
+
+$starTime:
+
+Es el valor que se inserta en el formato especificado.
