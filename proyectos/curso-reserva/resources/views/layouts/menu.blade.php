@@ -46,7 +46,7 @@
 
                     {{-- Consultar Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('reservations.index')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Consultar Reserva</span>
                         </a>
                     </li>
@@ -92,7 +92,7 @@
 
                     {{-- Consultar Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('reservations.index')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Consultar Reserva</span>
                         </a>
 
