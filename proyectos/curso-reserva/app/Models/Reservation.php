@@ -10,7 +10,7 @@ class Reservation extends Model
     use HasFactory;
 
     // Campos rellenables
-    protected $filliable = [
+    protected $fillable = [
         'user_id',
         'consultant_id',
         'reservation_date',
