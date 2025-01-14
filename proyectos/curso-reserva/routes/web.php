@@ -33,8 +33,37 @@ Route::middleware('auth')->group(function () {
 //Ruta de usuarios
 Route::resource('usuarios', UserController::class);
 
+//Ruta de calendar
+Route::get('reservations.calendar', function () {
+    return view('reservations.calendar');
+})->name('reservations.calendar');
+
+Route::get('adminstrador/fullcalendar', [ReservationController::class, 'getAllReservations'])->name('administrador.fullcalendar');
+
 //Ruta de reservaciones
 Route::resource('reservations', ReservationController::class);
-Route::post('reservation.cancel',[ReservationController::class,'cancel'])->name('reservations.cancel');
+Route::post('reservation.cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
 
-require __DIR__.'/auth.php';
+
+//Ruta de Asesor (consultor)
+Route::get('consultant.calendar', function () {
+    return view('consultant.calendar');
+})->name('consultant.calendar');
+
+Route::get('consultant/fullcalendar', [ReservationController::class, 'getAllReservationsByConsultant'])->name('consultant.fullcalendar');
+
+
+//Ruta de Cliente (usuario normal)
+
+Route::get('client/reservations', [ReservationController::class, 'indexClient'])->name('client.reservations');
+Route::get('client/reservation', [ReservationController::class, 'create'])->name('client.reservation');
+
+Route::get('client.calendar', function () {
+    return view('client.calendar');
+})->name('client.calendar');
+
+
+
+
+Route::post('client.cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+require __DIR__ . '/auth.php';
