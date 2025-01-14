@@ -39,21 +39,21 @@
 
                     {{-- Nueva Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('client.reservation')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Nueva Reserva</span>
                         </a>
                     </li>
 
                     {{-- Consultar Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{route('reservations.index')}}">
+                        <a class="nav-link menu-link" href="{{ route('client.reservations') }}">
                             <i class="ri-dashboard-2-line"></i> <span>Consultar Reserva</span>
                         </a>
                     </li>
 
                     {{-- Calendario --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{ route('client.calendar') }}">
                             <i class="ri-dashboard-2-line"></i> <span>Calendario</span>
                         </a>
                     </li>
@@ -66,13 +66,13 @@
                     </li>
                 @endif
 
-                {{-- __MENÚ CONSULTOR__ --}}
+                {{-- __MENÚ CONSULTOR / ASESOR__ --}}
                 @if (Auth::user()->rol_id == 2)
                     <li class="menu-title"><span>Consultor</span></li>
 
                     {{-- Calendario --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('consultant.calendar')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Calendario</span>
                         </a>
                     </li>
@@ -85,30 +85,37 @@
 
                     {{-- Nueva Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{route('reservations.create')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Nueva Reserva</span>
                         </a>
                     </li>
 
                     {{-- Consultar Reserva --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{route('reservations.index')}}">
+                        <a class="nav-link menu-link" href="{{ route('reservations.index') }}">
                             <i class="ri-dashboard-2-line"></i> <span>Consultar Reserva</span>
                         </a>
+                    </li>
 
-                        {{-- Ver Pagos --}}
+                     {{-- Calendario --}}
+                     <li class="nav-item">
+                        <a class="nav-link menu-link"  href="{{route('reservations.calendar')}}">
+                            <i class="ri-dashboard-2-line"></i> <span>Calendario</span>
+                        </a>
+                    </li>
+
+                    {{-- Ver Pagos --}}
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="#">
                             <i class="ri-dashboard-2-line"></i> <span>Ver Pagos</span>
                         </a>
+                    </li>
 
-                        {{-- Mnt. Usuarios --}}
+                    {{-- Mnt. Usuarios --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{route('usuarios.index')}}">
+                        <a class="nav-link menu-link" href="{{ route('usuarios.index') }}">
                             <i class="ri-dashboard-2-line"></i> <span>Mnt. Usuarios</span>
                         </a>
-
-
                     </li>
                 @endif
             </ul>
