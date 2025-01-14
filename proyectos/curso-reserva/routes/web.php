@@ -56,7 +56,7 @@ Route::get('consultant/fullcalendar', [ReservationController::class, 'getAllRese
 //Ruta de Cliente (usuario normal)
 
 Route::get('client/reservations', [ReservationController::class, 'indexClient'])->name('client.reservations');
-Route::get('client/reservation', [ReservationController::class, 'create'])->name('client.reservation');
+Route::get('client/reservation', [ReservationController::class, 'createClient'])->name('client.reservation');
 
 Route::get('client.calendar', function () {
     return view('client.calendar');
