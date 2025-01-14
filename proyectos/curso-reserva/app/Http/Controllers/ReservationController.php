@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -14,6 +15,13 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::with(['user', 'consultant'])->get();
         return view('reservations.index', compact('reservations'));
+    }
+
+    public function indexClient()
+    {
+        $userId = Auth::user()->id;
+        $reservations = Reservation::where('user_id', $userId)->get();
+        return view('client.index', compact('reservations'));
     }
 
     public function create()
@@ -25,6 +33,14 @@ class ReservationController extends Controller
         $consultants = User::where('rol_id', 2)->whereNull('deleted_at')->get();
 
         return view('reservations.create', compact('users', 'consultants'));
+    }
+
+    public function createClient()
+    {
+        // Llamar a los usuarios que tengan el rol de 'consultores' y que no estén eliminados
+        $consultants = User::where('rol_id', 2)->whereNull('deleted_at')->get();
+
+        return view('client.reservation', compact('consultants'));
     }
 
     public function store(Request $request)
@@ -121,14 +137,95 @@ class ReservationController extends Controller
 
     public function getAllReservations()
     {
-        $reservations = Reservation::where('reservarion_status', '!=', 'cancelada')->get();
+        $reservations = Reservation::all();
         $events = [];
-        foreach ($reservations as $reservation) {
-            $events = [
-                'title' => 'Reserva de ' . $reservation->user->nombres . ' ' . $reservation->user->apellidos . ' con ' . $reservation->consultant->nombres . ' ' . $reservation->consultant->apellidos,
-                'start' => $reservation->reservation_date . 'T' . $reservation->start_time,
-                'end' => $reservation->reservation_date . 'T' . $reservation->end_time,
+        foreach($reservations as $reservation){
+            $color = '#28a745';
+            $bordercolor = '#28a745';
+
+            if($reservation->reservation_status === 'pendiente'){
+                $color = '#ffc107';
+                $bordercolor = '#ffc107';
+            }elseif($reservation->reservation_status === 'cancelada'){
+                $color = '#dc3545';
+                $bordercolor = '#dc3545';
+            }
+
+            $events[] = [
+                'title' => 'Reserva con '. $reservation->user->nombres .' '. $reservation->user->apellidos,
+                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
+                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'backgroundColor' => $color,
+                'borderColor' => $bordercolor,
+                // 'reservation_status' => $reservation->reservation_status,
             ];
+
+        }
+
+        return response()->json($events);
+    }
+
+    public function getAllReservationsByConsultant()
+    {
+        $consultantId = Auth::user()->id;
+
+        $reservations = Reservation::where('consultant_id', $consultantId)->get();
+
+        $events = [];
+        foreach($reservations as $reservation){
+            $color = '#28a745';
+            $bordercolor = '#28a745';
+
+            if($reservation->reservation_status === 'pendiente'){
+                $color = '#ffc107';
+                $bordercolor = '#ffc107';
+            }elseif($reservation->reservation_status === 'cancelada'){
+                $color = '#dc3545';
+                $bordercolor = '#dc3545';
+            }
+
+            $events[] = [
+                'title' => 'Reserva con '. $reservation->user->nombres .' '. $reservation->user->apellidos,
+                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
+                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'backgroundColor' => $color,
+                'borderColor' => $bordercolor,
+                // 'reservation_status' => $reservation->reservation_status,
+            ];
+
+        }
+
+        return response()->json($events);
+    }
+
+    public function getAllReservationsByClient()
+    {
+        $userId = Auth::user()->id;
+
+        $reservations = Reservation::where('user_id', $userId)->get();
+
+        $events = [];
+        foreach($reservations as $reservation){
+            $color = '#28a745';
+            $bordercolor = '#28a745';
+
+            if($reservation->reservation_status === 'pendiente'){
+                $color = '#ffc107';
+                $bordercolor = '#ffc107';
+            }elseif($reservation->reservation_status === 'cancelada'){
+                $color = '#dc3545';
+                $bordercolor = '#dc3545';
+            }
+
+            $events[] = [
+                'title' => 'Reserva con '. $reservation->consultant->nombres .' '. $reservation->user->apellidos,
+                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
+                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'backgroundColor' => $color,
+                'borderColor' => $bordercolor,
+                // 'reservation_status' => $reservation->reservation_status,
+            ];
+
         }
 
         return response()->json($events);
