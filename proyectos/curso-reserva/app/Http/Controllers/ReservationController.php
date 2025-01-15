@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\ReservationDetail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -139,27 +140,26 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::all();
         $events = [];
-        foreach($reservations as $reservation){
+        foreach ($reservations as $reservation) {
             $color = '#28a745';
             $bordercolor = '#28a745';
 
-            if($reservation->reservation_status === 'pendiente'){
+            if ($reservation->reservation_status === 'pendiente') {
                 $color = '#ffc107';
                 $bordercolor = '#ffc107';
-            }elseif($reservation->reservation_status === 'cancelada'){
+            } elseif ($reservation->reservation_status === 'cancelada') {
                 $color = '#dc3545';
                 $bordercolor = '#dc3545';
             }
 
             $events[] = [
-                'title' => 'Reserva con '. $reservation->user->nombres .' '. $reservation->user->apellidos,
-                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
-                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'title' => 'Reserva con ' . $reservation->user->nombres . ' ' . $reservation->user->apellidos,
+                'start' => $reservation->reservation_date . 'T' . $reservation->start_time,
+                'end' => $reservation->reservation_date . 'T' . $reservation->end_time,
                 'backgroundColor' => $color,
                 'borderColor' => $bordercolor,
                 // 'reservation_status' => $reservation->reservation_status,
             ];
-
         }
 
         return response()->json($events);
@@ -172,27 +172,26 @@ class ReservationController extends Controller
         $reservations = Reservation::where('consultant_id', $consultantId)->get();
 
         $events = [];
-        foreach($reservations as $reservation){
+        foreach ($reservations as $reservation) {
             $color = '#28a745';
             $bordercolor = '#28a745';
 
-            if($reservation->reservation_status === 'pendiente'){
+            if ($reservation->reservation_status === 'pendiente') {
                 $color = '#ffc107';
                 $bordercolor = '#ffc107';
-            }elseif($reservation->reservation_status === 'cancelada'){
+            } elseif ($reservation->reservation_status === 'cancelada') {
                 $color = '#dc3545';
                 $bordercolor = '#dc3545';
             }
 
             $events[] = [
-                'title' => 'Reserva con '. $reservation->user->nombres .' '. $reservation->user->apellidos,
-                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
-                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'title' => 'Reserva con ' . $reservation->user->nombres . ' ' . $reservation->user->apellidos,
+                'start' => $reservation->reservation_date . 'T' . $reservation->start_time,
+                'end' => $reservation->reservation_date . 'T' . $reservation->end_time,
                 'backgroundColor' => $color,
                 'borderColor' => $bordercolor,
                 // 'reservation_status' => $reservation->reservation_status,
             ];
-
         }
 
         return response()->json($events);
@@ -205,29 +204,79 @@ class ReservationController extends Controller
         $reservations = Reservation::where('user_id', $userId)->get();
 
         $events = [];
-        foreach($reservations as $reservation){
+        foreach ($reservations as $reservation) {
             $color = '#28a745';
             $bordercolor = '#28a745';
 
-            if($reservation->reservation_status === 'pendiente'){
+            if ($reservation->reservation_status === 'pendiente') {
                 $color = '#ffc107';
                 $bordercolor = '#ffc107';
-            }elseif($reservation->reservation_status === 'cancelada'){
+            } elseif ($reservation->reservation_status === 'cancelada') {
                 $color = '#dc3545';
                 $bordercolor = '#dc3545';
             }
 
             $events[] = [
-                'title' => 'Reserva con '. $reservation->consultant->nombres .' '. $reservation->user->apellidos,
-                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
-                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'title' => 'Reserva con ' . $reservation->consultant->nombres . ' ' . $reservation->user->apellidos,
+                'start' => $reservation->reservation_date . 'T' . $reservation->start_time,
+                'end' => $reservation->reservation_date . 'T' . $reservation->end_time,
                 'backgroundColor' => $color,
                 'borderColor' => $bordercolor,
                 // 'reservation_status' => $reservation->reservation_status,
             ];
-
         }
 
         return response()->json($events);
+    }
+
+    public function completePayment(Request $request)
+    {
+        $request->validate([
+            'orderID' => 'requered',
+            'details' => 'required',
+            'user_id' => 'required|exists:user,id',
+            'consultant_id' => 'required|exists:users,id',
+            'reservation_date' => 'required|date',
+            'start_time' => 'required|date_format:H:i|after_or_equal:09:00|before_or_equal:15:00',
+            'end_time' => 'required|date_format:H:i|before_or_equal:15:00',
+            'total_amount' => 'required|numeric|min:0',
+
+        ]);
+        $details = $request->details;
+        $payment_status = $details['status'];
+
+        if ($payment_status === 'COMPLETED') {
+
+            $reservation = Reservation::create([
+                'user_id' => $request->user_id,
+                'consultant_id' => $request->consultant_id,
+                'reservation_date' => $request->reservation_date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+                'reservation_status' => 'confirmada',
+                'payment_status' => 'pagado',
+                'total_amount' => $request->total_amount,
+            ]);
+
+            $transaction_id = $details['id'] ?? null;
+            $payer_id = $details['payer']['payer_id'] ?? null;
+            $payer_email = $details['payer']['email_adress'] ?? null;
+            $amount = $details['purchase_units'][0]['amount']['value'] ?? null;
+
+            ReservationDetail::create([
+                'reservation_id' => $reservation->id,
+                'transaction_id' => $transaction_id,
+                'payer_id' => $payer_id,
+                'payer_email' => $payer_email,
+                'payment_status' => $payment_status,
+                'amount' => $amount,
+                'response_json' => json_encode($details),
+            ]);
+
+            return response()->json(['success' => true]);
+        } else {
+
+            return response()->json(['error' => 'Pago no completado'], 400);
+        }
     }
 }
