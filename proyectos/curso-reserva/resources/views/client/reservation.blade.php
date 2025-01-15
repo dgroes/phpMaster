@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form class="row gy-4" method="POST" action="{{ route('reservations.store') }}">
+                    <form class="row gy-4" id="reservationForm">
                         @csrf
 
                         {{-- Nombre del Usuario --}}
@@ -168,7 +168,7 @@
     {{-- Paypal --}}
     <script src="https://www.paypal.com/sdk/js?client-id=AcymNlz1q-u6xvO2kLtSxcyp53V851J87KkbL6St3_-rf7x433Wh5SQDSOk-wninfemJtcithHQH3T2x&currency=USD"></script>
 
-    <script>
+    {{-- <script>
         const today = new Date().toISOString().split('T')[0]; // Fecha actual
         document.getElementById('reservation_date').setAttribute('min', today); // Fecha mínima
 
@@ -185,6 +185,7 @@
                 });
             },
             onApprove: function(data, actions) {
+                console.log(data);
                 return actions.order.capture().then(function(details) {
                     console.log(details);
                     alert("Pago completado por " + details.payer.name.given_name);
@@ -220,5 +221,110 @@
                 document.getElementById('total_amount').value = "";
             }
         });
+    </script> --}}
+    <script>
+        // Obtiene la fecha actual en formato YYYY-MM-DD y la establece como mínimo en el campo de fecha de reserva
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('reservation_date').setAttribute('min', today);
+
+        const pricePerHour = 50; // Define el precio por hora
+
+        // Evento cuando el usuario selecciona la hora de inicio
+        document.getElementById('start_time').addEventListener('change', function() {
+            const startTime = this.value; // Obtiene el valor de la hora de inicio seleccionada
+
+            if (startTime) {
+                // Convierte la hora de inicio en un objeto Date (usando una fecha ficticia)
+                const startDate = new Date(`1970-01-01T${startTime}:00`);
+                // Añade una hora al objeto Date
+                startDate.setHours(startDate.getHours() + 1);
+                // Formatea la nueva hora como HH:MM
+                const endTime = startDate.toTimeString().slice(0, 5);
+                // Establece el valor del campo de hora de finalización
+                document.getElementById('end_time').value = endTime;
+
+                // Calcula el total por una hora (puedes ajustar si hay múltiplos de horas)
+                const total = pricePerHour; // Para este caso, el total es el precio por una hora
+                document.getElementById('total_amount').value = total.toFixed(2); // Establece el total formateado
+            } else {
+                // Si no se selecciona una hora, limpia los campos de hora de finalización y total
+                document.getElementById('end_time').value = "";
+                document.getElementById('total_amount').value = "";
+            }
+        });
+
+        // Inicializa el botón de PayPal al cargar el DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            paypal.Buttons({
+                // Método que se ejecuta cuando se crea una orden de pago
+                createOrder: function(data, actions) {
+                    var consultantId = document.getElementById('consultant_id').value;
+                    var reservationDate = document.getElementById('reservation_date').value;
+                    var startTime = document.getElementById('start_time').value;
+                    var totalAmount = document.getElementById('total_amount').value;
+
+                    // Validación para verificar que todos los campos obligatorios estén completos
+                    if (!consultantId || !reservationDate || !startTime || !totalAmount) {
+                        Swal.fire({
+                            icon: 'warning', // Muestra una advertencia si faltan campos
+                            title: 'Campos Incompletos',
+                            text: 'Por Favor, completa todos los campos obligatorios',
+                        });
+                        return false; // Detiene el proceso si hay campos incompletos
+                    }
+
+                    // Crea la orden de PayPal con el monto total
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totalAmount // Monto total de la orden
+                            }
+                        }]
+                    });
+                },
+                // Método que se ejecuta cuando el pago ha sido aprobado
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Realiza una solicitud POST al servidor para completar la reserva
+                        return fetch('/paypal', {
+                            method: 'post',
+                            headers: {
+                                'content-type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Añade el token CSRF para la seguridad de Laravel
+                            },
+                            body: JSON.stringify({
+                                orderID: data.orderID, // ID de la orden de PayPal
+                                details: details, // Detalles del pago de PayPal
+                                user_id: {{ auth()->user()->id }}, // ID del usuario autenticado
+                                consultant_id: document.getElementById('consultant_id').value, // ID del consultor
+                                reservation_date: document.getElementById('reservation_date').value, // Fecha de la reserva
+                                start_time: document.getElementById('start_time').value, // Hora de inicio de la reserva
+                                end_time: document.getElementById('end_time').value, // Hora de fin de la reserva
+                                total_amount: document.getElementById('total_amount').value, // Monto total de la reserva
+                            })
+                        }).then(function(response) {
+                            if (response.ok) {
+                                // Si la respuesta es exitosa, muestra un mensaje de éxito
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pago Completado',
+                                    text: 'Pago Completado y reserva creada correctamente',
+                                }).then(function() {
+                                    window.location.href = '/client/reservations'; // Redirige a la página de reservas del cliente
+                                });
+                            } else {
+                                // Si hay un error en el pago, muestra un mensaje de error
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Error al procesar el pago',
+                                });
+                            }
+                        });
+                    });
+                }
+            }).render('#paypal-button-container'); // Renderiza el botón de PayPal en el contenedor
+        });
     </script>
+
 @endpush
