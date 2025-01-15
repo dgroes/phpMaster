@@ -66,4 +66,7 @@ Route::get('client.calendar', function () {
 
 
 Route::post('client.cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+
+
+Route::post('/paypal', [ReservationController::class, 'completePayment']);
 require __DIR__ . '/auth.php';
