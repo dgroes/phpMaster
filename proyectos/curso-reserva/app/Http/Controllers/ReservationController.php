@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Reservation;
 use App\Models\ReservationDetail;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class ReservationController extends Controller
 {
@@ -231,17 +236,18 @@ class ReservationController extends Controller
 
     public function completePayment(Request $request)
     {
+
         $request->validate([
-            'orderID' => 'requered',
+            'orderID' => 'required',
             'details' => 'required',
-            'user_id' => 'required|exists:user,id',
+            'user_id' => 'required|exists:users,id',
             'consultant_id' => 'required|exists:users,id',
             'reservation_date' => 'required|date',
             'start_time' => 'required|date_format:H:i|after_or_equal:09:00|before_or_equal:15:00',
             'end_time' => 'required|date_format:H:i|before_or_equal:15:00',
             'total_amount' => 'required|numeric|min:0',
-
         ]);
+
         $details = $request->details;
         $payment_status = $details['status'];
 
@@ -260,23 +266,68 @@ class ReservationController extends Controller
 
             $transaction_id = $details['id'] ?? null;
             $payer_id = $details['payer']['payer_id'] ?? null;
-            $payer_email = $details['payer']['email_adress'] ?? null;
+            $payer_email = $details['payer']['email_address'] ?? null;
             $amount = $details['purchase_units'][0]['amount']['value'] ?? null;
 
             ReservationDetail::create([
                 'reservation_id' => $reservation->id,
                 'transaction_id' => $transaction_id,
-                'payer_id' => $payer_id,
+                'payer_id' =>  $payer_id,
                 'payer_email' => $payer_email,
                 'payment_status' => $payment_status,
                 'amount' => $amount,
                 'response_json' => json_encode($details),
             ]);
 
+            $this->sendConfirmationEmail($reservation);
+
             return response()->json(['success' => true]);
         } else {
-
             return response()->json(['error' => 'Pago no completado'], 400);
+        }
+    }
+
+    public function sendConfirmationEmail($reservation)
+    {
+        $user = User::find($reservation->user_id);
+        $consultant = User::find($reservation->consultant_id);
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'diegopasten78@gmail.com';
+            $mail->Password = 'faulvrtsxujztglg';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom('diegopasten78@gmail.com', 'Nombre Remitente');
+            $mail->addAddress($user->email);
+
+            $mail->CharSet = 'UTF8';
+
+            $mail->Subject = 'Confirmación de Reserva - Curso Reserva';
+
+            $html = View::make('emails.reserva', [
+                'userName' => $user->nombres . ' ' . $user->apellidos,
+                'consultantName' => $consultant->nombres . ' ' . $consultant->apellidos,
+                'reservationDate' => $reservation->reservation_date,
+                'startTime' => $reservation->start_time,
+                'endTime' => $reservation->end_time,
+                'totalAmount' => $reservation->total_amount,
+            ])->render();
+
+            $mail->isHTML(true);
+            $mail->Body = $html;
+
+            $mail->send();
+
+            return back()->with('success', 'Correo enviado correctamente.');
+        } catch (Exception $e) {
+            Log::error('Error al enviar el correo: ' . $mail->ErrorInfo);
+            return back()->with('error', 'Error al enviar el correo :' . $mail->ErrorInfo);
         }
     }
 }
