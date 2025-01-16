@@ -303,7 +303,7 @@ class ReservationController extends Controller
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('diegopasten78@gmail.com', 'Nombre Remitente');
+            $mail->setFrom('@gmail.com', 'Nombre Remitente');
             $mail->addAddress($user->email);
 
             $mail->CharSet = 'UTF8';
