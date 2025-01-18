@@ -342,12 +342,12 @@ class ReservationController extends Controller
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'diegopasten78@gmail.com';
-            $mail->Password = 'faulvrtsxujztglg';
+            $mail->Username = '@gmail.com';
+            $mail->Password = '';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('diegopasten78@gmail.com', 'Nombre Remitente');
+            $mail->setFrom('@gmail.com', 'Nombre Remitente');
             $mail->addAddress($user->email);
 
             $mail->CharSet = 'UTF8';
