@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Log;
-use Carbon\Carbon;
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Carbon\Carbon;
+use Twilio\Rest\Client;
+
 
 class ReservationController extends Controller
 {
@@ -75,6 +76,16 @@ class ReservationController extends Controller
             'payment_status' => $request->payment_status,
             'total_amount' => $request->total_amount,
         ]);
+
+        // Envío de correo de confirmación
+        $this->sendConfirmationEmail($reservation);
+
+        // Envío de mensaje de WhatsApp si el usuario tiene teléfono
+        $user = User::find($request->user_id);
+        $userPhone = $user->teléfono;
+        if ($userPhone) {
+            $this->sendWhastsAppMessage($userPhone, $this->generateWhatsAppMessage($reservation, $user));
+        }
 
         return redirect()->route('reservations.index')->with('success', '¡Reservación creada con éxito!');
     }
@@ -164,6 +175,33 @@ class ReservationController extends Controller
                 'backgroundColor' => $color,
                 'borderColor' => $bordercolor,
                 // 'reservation_status' => $reservation->reservation_status,
+            ];
+        }
+
+        return response()->json($events);
+    }
+
+    public function getAllReservationsLanding(){
+        $reservations = Reservation::all();
+        $events = [];
+        foreach($reservations as $reservation){
+            $color = '#28a745';
+            $bordercolor = '#28a745';
+
+            if($reservation->reservation_status === 'pendiente'){
+                $color = '#ffc107';
+                $bordercolor = '#ffc107';
+            }elseif($reservation->reservation_status === 'cancelada'){
+                $color = '#dc3545';
+                $bordercolor = '#dc3545';
+            }
+
+            $events[] = [
+                'title' => $reservation->consultant->nombres .' '. $reservation->consultant->apellidos,
+                'start' => $reservation->reservation_date.'T'.$reservation->start_time,
+                'end' => $reservation->reservation_date.'T'.$reservation->end_time,
+                'backgroundColor' => $color,
+                'borderColor' => $bordercolor,
             ];
         }
 
@@ -281,6 +319,12 @@ class ReservationController extends Controller
 
             $this->sendConfirmationEmail($reservation);
 
+            $user = User::find($request->user_id);
+            $userPhone = $user->teléfono;
+            if ($userPhone) {
+                $this->sendWhastsAppMessage($userPhone, $this->generateWhatsAppMessage($reservation, $user));
+            }
+
             return response()->json(['success' => true]);
         } else {
             return response()->json(['error' => 'Pago no completado'], 400);
@@ -329,5 +373,46 @@ class ReservationController extends Controller
             Log::error('Error al enviar el correo: ' . $mail->ErrorInfo);
             return back()->with('error', 'Error al enviar el correo :' . $mail->ErrorInfo);
         }
+    }
+
+    protected function generateWhatsAppMessage($reservation, $user)
+    {
+        return "Hola {$user->nombres}" . " " . "{$user->apellidos}, tu reserva ha sido confirmada.\n" .
+            "Fecha: {$reservation->reservation_date}\n" .
+            "Hora de Inicio: {$reservation->start_time}\n" .
+            "Hora de Fin: {$reservation->end_time}\n" .
+            "Costo Total: {$reservation->total_amount}\n" .
+            "Gracias por elegir nuestros servicios.\n";
+    }
+
+    protected function sendWhastsAppMessage($to, $message)
+    {
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_AUTH_TOKEN');
+        $twilio = new Client($sid, $token);
+
+        $twilio->messages->create(
+            "whatsapp:+{$to}",
+            [
+                'from' => env('TWILIO_WHATSAPP_FROM'),
+                'body' => $message
+            ]
+        );
+    }
+
+    public function showPayments()
+    {
+        $payments = ReservationDetail::with('reservation.user', 'reservation.consultant')->get();
+
+        return view('reservations.pagos', compact('payments'));
+    }
+
+    public function showClientPayments(){
+        $userId = Auth::id();
+
+        $payments = ReservationDetail::whereHas('reservation',function($query) use ($userId){
+            $query->where('user_id',$userId);
+        })->get();
+        return view('client.payments',compact('payments'));
     }
 }
