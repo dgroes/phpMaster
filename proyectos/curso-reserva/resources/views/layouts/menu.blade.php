@@ -60,7 +60,7 @@
 
                     {{-- Ver pagos --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link" href="{{ route('client.payments') }}">
                             <i class="ri-dashboard-2-line"></i> <span>Ver Pagos</span>
                         </a>
                     </li>
@@ -106,7 +106,7 @@
 
                     {{-- Ver Pagos --}}
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#">
+                        <a class="nav-link menu-link"  href="{{route('reservations.pagos')}}">
                             <i class="ri-dashboard-2-line"></i> <span>Ver Pagos</span>
                         </a>
                     </li>
