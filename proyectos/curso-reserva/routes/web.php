@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
 //Ruta de usuarios
 Route::resource('usuarios', UserController::class);
 
+Route::get('reservations/pagos', [ReservationController::class, 'showPayments'])->name('reservations.pagos');
+
 //Ruta de calendar
 Route::get('reservations.calendar', function () {
     return view('reservations.calendar');
@@ -52,15 +54,16 @@ Route::get('consultant.calendar', function () {
 
 Route::get('consultant/fullcalendar', [ReservationController::class, 'getAllReservationsByConsultant'])->name('consultant.fullcalendar');
 
+Route::get('client/payments', [ReservationController::class, 'showClientPayments'])->name('client.payments');
 
 //Ruta de Cliente (usuario normal)
-
-Route::get('client/reservations', [ReservationController::class, 'indexClient'])->name('client.reservations');
-Route::get('client/reservation', [ReservationController::class, 'createClient'])->name('client.reservation');
-
 Route::get('client.calendar', function () {
     return view('client.calendar');
 })->name('client.calendar');
+Route::get('client/fullcalendar',[ReservationController::class,'getAllReservationsByClient'])->name('client.fullcalendar');
+Route::get('client/reservations', [ReservationController::class, 'indexClient'])->name('client.reservations');
+Route::get('client/reservation', [ReservationController::class, 'createClient'])->name('client.reservation');
+
 
 
 
@@ -69,4 +72,6 @@ Route::post('client.cancel', [ReservationController::class, 'cancel'])->name('re
 
 
 Route::post('/paypal',[ReservationController::class,'completePayment']);
+
+Route::get('welcome/fullcalendar',[ReservationController::class,'getAllReservationsLanding'])->name('welcome.fullcalendar');
 require __DIR__ . '/auth.php';
