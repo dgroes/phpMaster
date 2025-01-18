@@ -24,13 +24,20 @@ class Reservation extends Model
 
     // C04: Relación uno a muchos inversa
     // Relación uno a muchos inversa
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);  //Cliente quien hace la reserva
     }
 
     // C05: Relación uno a muchos inversa
     // Relación uno a muchos inversa
-    public function consultant(){
+    public function consultant()
+    {
         return $this->belongsTo(User::class, 'consultant_id'); // Consultor asignado para atender la reserva
+    }
+
+    public function reservationDetail()
+    {
+        return $this->hasOne(ReservationDetail::class);
     }
 }
