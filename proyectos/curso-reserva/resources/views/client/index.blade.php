@@ -23,7 +23,7 @@
                     <h5 class="card-title mb-0">Reservas</h5>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('reservations.create') }}" class="btn btn-primary waves-effect waves-light">Nueva
+                    <a href="{{ route('client.reservation') }}" class="btn btn-primary waves-effect waves-light">Nueva
                         Reserva</a>
                     <br>
                     <br>
