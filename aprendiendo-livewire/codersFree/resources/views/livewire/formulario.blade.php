@@ -7,17 +7,17 @@
             {{-- Nombre --}}
             <div class="mb-4">
                 <x-label>Nombre</x-label>
-                <x-input class="w-full" wire:model='postCreate.title' />
+                <x-input class="w-full" wire:model.live='postCreate.title' />
 
-                    <x-input-error for='postCreate.title'/>
+                <x-input-error for='postCreate.title' />
 
             </div>
 
             {{-- Contenido --}}
             <div class="mb-4">
                 <x-label>Contenido</x-label>
-                <x-textarea class="w-full" wire:model='postCreate.content'></x-textarea>
-                <x-input-error for='postCreate.content'/>
+                <x-textarea class="w-full" wire:model.live='postCreate.content'></x-textarea>
+                <x-input-error for='postCreate.content' />
 
             </div>
 
@@ -25,7 +25,7 @@
             <div class="mb-4">
                 <x-label>Categoría</x-label>
 
-                <x-select class="w-full" wire:model='postCreate.category_id'>
+                <x-select class="w-full" wire:model.live='postCreate.category_id'>
                     <option value="" disabled>
                         Selecciona una categoría
                     </option>
@@ -34,7 +34,7 @@
                     @endforeach
                     content
                 </x-select>
-                <x-input-error for='postCreate.category_id'/>
+                <x-input-error for='postCreate.category_id' />
             </div>
 
             {{-- Etiquetas --}}
@@ -51,7 +51,7 @@
                         </li>
                     @endforeach
                 </ul>
-                <x-input-error for='postCreate.tags'/>
+                <x-input-error for='postCreate.tags' />
             </div>
 
             {{-- Enviar --}}
@@ -85,7 +85,7 @@
 
     {{-- Modal de formulario de edición --}}
     <form wire:submit="update">
-        <x-dialog-modal wire:model="open">
+        <x-dialog-modal wire:model="postEdit.open">
             <x-slot name='title'>
                 Actualizar Post
             </x-slot>
@@ -95,14 +95,14 @@
                 <div class="mb-4">
                     <x-label>Nombre</x-label>
                     <x-input class="w-full" wire:model='postEdit.title' />
-                    <x-input-error for='postEdit.title'/>
+                    <x-input-error for='postEdit.title' />
                 </div>
 
                 {{-- Contenido --}}
                 <div class="mb-4">
                     <x-label>Contenido</x-label>
                     <x-textarea class="w-full" wire:model='postEdit.content'></x-textarea>
-                    <x-input-error for='postEdit.content'/>
+                    <x-input-error for='postEdit.content' />
                 </div>
 
                 {{-- Categoría --}}
@@ -117,7 +117,7 @@
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </x-select>
-                    <x-input-error for='postEdit.category_id'/>
+                    <x-input-error for='postEdit.category_id' />
                 </div>
 
                 {{-- Etiquetas --}}
@@ -135,7 +135,7 @@
                             </li>
                         @endforeach
                     </ul>
-                    <x-input-error for='postEdit.tags'/>
+                    <x-input-error for='postEdit.tags' />
                 </div>
 
             </x-slot>
@@ -143,7 +143,7 @@
             <x-slot name='footer'>
                 {{-- Enviar --}}
                 <div class="flex justify-end">
-                    <x-danger-button class="mr-4" wire:click="$set('open', false)">
+                    <x-danger-button class="mr-4" wire:click="$set('postEdit.open', false)">
                         Cancelar
                     </x-danger-button>
 
@@ -153,5 +153,15 @@
 
         </x-dialog-modal>
     </form>
+
+
+    @push('js')
+        <script>
+            Livewire.on('post-created', function(comment) {
+                console.log(comment);
+            });
+        </script>
+    @endpush
+
 
 </div>
