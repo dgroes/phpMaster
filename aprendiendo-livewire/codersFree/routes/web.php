@@ -17,4 +17,6 @@ Route::middleware([
     })->name('dashboard');
     // Route::get('/dashboard', CreatePost::class)
     // ->name('dashboard');
+
+    Route::view('/prueba', 'prueba')->name('prueba');
 });
