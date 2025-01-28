@@ -8,4 +8,8 @@
     @persist('player-key')
         <audio src="{{ asset('audios/Cavernous.m4a') }}" controls></audio>
     @endpersist
+
+    <script>
+        // console.log('Hola desde la página prueba');
+    </script>
 </x-app-layout>

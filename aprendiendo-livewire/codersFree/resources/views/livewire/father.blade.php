@@ -27,6 +27,10 @@
         @livewire('contador', [], key('contador2'))
         @livewire('contador', [], key('contador3'))
         @livewire('contador', [], key('contador4'))
+
+       @push('js')
+
+       @endpush
     </div>
 
     {{-- {{$prueba}} --}}

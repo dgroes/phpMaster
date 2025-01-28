@@ -7,12 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-           {{--  @livewire('formulario')
+            {{-- @livewire('formulario') --}}
+            {{-- <livewire:formulario />
             <div class="mt-6">
                 @livewire('comments')
             </div> --}}
 
-            @livewire('father')
+            @livewire('computo')
+
+            {{-- @livewire('father') --}}
 
         </div>
     </div>
