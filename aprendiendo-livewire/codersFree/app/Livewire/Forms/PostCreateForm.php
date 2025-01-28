@@ -7,8 +7,11 @@ use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
+
 class PostCreateForm extends Form
 {
+
+
     #[Rule('required|min:6')]
     public $title;
 
@@ -21,7 +24,11 @@ class PostCreateForm extends Form
     #[Rule('required|array')]
     public $tags = [];
 
-    public function save(){
+    #[Rule('nullable|image|max:1024')]
+    public $image;
+
+    public function save()
+    {
         $this->validate(); //Llamar a las validaciones de Froms/PostCreateForm
 
         // Una manera de crear un post con el PostCreateForm
@@ -34,9 +41,14 @@ class PostCreateForm extends Form
         // Otra manera de crear un post con el PostCreateForm
         $post = Post::create($this->toArray());
 
-
         // Asocia las etiquetas al post
         $post->tags()->attach($this->tags);
+
+        // Guarda la imagen en el disco
+        if ($this->image) {
+            $post->image_path = $this->image->store('posts');
+            $post->save();
+        }
 
         // Limpia el formulario
         $this->reset();
