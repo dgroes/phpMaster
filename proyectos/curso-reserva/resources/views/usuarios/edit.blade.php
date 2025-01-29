@@ -22,7 +22,7 @@
             <div class="card">
 
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">{{('Editar:')}} {{$usuario->nombres}} {{$usuario->apellidos}}</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">{{('Editar:')}} {{$usuario->nombres}} {{$usuario->apellidos}} <strong>({{$usuario->role->name}})</strong></h4>
                 </div>
 
                 <div class="card-body">
