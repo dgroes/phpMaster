@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class CityResource extends Resource
 {
     protected static ?string $model = City::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationGroup = 'System Management'; /* C08: Cambiar grupo de navegación */
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2'; /* C07: Cambiar icono del recurso */
+    protected static ?int $navigationSort = 3; // C09: Cambiar orden de navegación
     public static function form(Form $form): Form
     {
         return $form
