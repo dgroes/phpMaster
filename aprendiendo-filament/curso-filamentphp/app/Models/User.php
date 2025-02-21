@@ -17,10 +17,17 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    //  C06: Agregar los campos al $fillable en el modelo User
     protected $fillable = [
         'name',
         'email',
         'password',
+        'country_id',
+        'state_id',
+        'city_id',
+        'address',
+        'postal_code',
     ];
 
     /**
@@ -44,5 +51,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /* C04: Agregar nueva sección al formulario con una relación */
+
+    // Creación de la relación entre usuario y country
+    public function country(){
+        return $this->belongsTo(Country::class);
     }
 }
