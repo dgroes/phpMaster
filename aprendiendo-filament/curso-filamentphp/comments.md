@@ -75,3 +75,19 @@ Para agrupar los recursos en un grupo será neseario crear una variable el cual 
 
 ### C09: Cambiar orden de navegación
 Para cambiar el orden de la navegación, se crea una variable `?int $navigationSort = 2;`. El 2 indica la posición, por lo que en el resto de recursos será importante cambiar su posición para que no interfieran entre ellas, por ejemplo en gestión de empleados se utilizó el orden "2", pero en la gestión de sistemas se utilizón el orden "3".
+
+
+### 10: Tablas Pivote
+En una relación de **muchos a muchos**, cada entidad puede estar relacionada con múltiples registros de la otra.  
+
+#### **Usuarios y Calendarios**  
+El método `belongsToMany(Calendar::class)` indica que:  
+- Un **usuario** puede estar asociado a **múltiples calendarios**.  
+- Un **calendario** puede estar asociado a **múltiples usuarios**.  
+
+Para gestionar esta relación, se necesita una **tabla pivote**. Por ello, se creó la tabla `table_user_calendar`, que contiene solo las claves foráneas (`user_id`, `calendar_id`) que vinculan a ambas entidades.  
+
+##### **Otras Relaciones**  
+De manera similar, la tabla `table_user_departament` se usa para gestionar la relación **muchos a muchos** entre **usuarios y departamentos**.  
+
+Ambas tablas pivote permiten que las relaciones sean eficientes y escalables, evitando la duplicación de datos y facilitando las consultas.
