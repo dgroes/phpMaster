@@ -18,7 +18,7 @@ class StateResource extends Resource
     protected static ?string $model = State::class;
     protected static ?string $navigationGroup = 'System Management'; /* C08: Cambiar grupo de navegación */
     protected static ?string $navigationIcon = 'heroicon-o-building-library'; /* C07: Cambiar icono del recurso */
-    protected static ?int $navigationSort = 3; // C09: Cambiar orden de navegación
+    protected static ?int $navigationSort = 4; // C09: Cambiar orden de navegación
     public static function form(Form $form): Form
     {
         return $form
