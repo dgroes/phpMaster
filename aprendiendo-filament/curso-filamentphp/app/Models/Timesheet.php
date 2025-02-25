@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timesheet extends Model
 {
+
+    ///Rellenado de campos
+
+    //Opción en entornos de desarrollo
+    protected $guarded = [];
+
     //Relación uno a muchos inversa
     public function user()
     {

@@ -22,6 +22,23 @@ Por consiguiente, cuando se ejecuta `php artisan make:filament-resource Countrie
     - CountriesResource/RelationManagers
 - Analiza los atributos del modelo para crear los formularios y las tablas.
 
+### Generación de recursos con o sin `--generate`
+#### Sin `--generate`
+`php artisan make:filament-resource Customer`
+- Solo genera la clase CustomerResource.php en app/Filament/Resources/.
+- No incluye las páginas CRUD, solo la estructura básica del recurso.
+- Debes agregar manualmente las páginas (ListCustomers, CreateCustomer, EditCustomer, etc.).
+
+#### Con `--generate`
+- Genera la clase CustomerResource.php.
+- Además, crea automáticamente las páginas CRUD en `app/Filament/Resources/CustomerResource/Pages/`:
+    - ListCustomers.php → Para listar registros.
+    - CreateCustomer.php → Para crear un registro.
+    - EditCustomer.php → Para editar un registro.
+- Esto te ahorra trabajo porque ya tienes el CRUD funcional desde el inicio.
+- Detecta los compos de la tabla, generando los inputs correspondientes para todos los atributos de la tabla.
+
+
 # Comentario extensos del proyecto de curso
 
 ### XX: Creación de recursos filament
@@ -66,6 +83,10 @@ Será importante agregar los campos aceptados en el $fillable dentro del Modelo,
 Para cambiar el icono de un recurso será importante obtener los códigos de los iconos que están en esta ruta de Fillament, los cuales son iconos soportados por Blade:
 https://blade-ui-kit.com/blade-icons?set=1&search=users#search
 
+Además podemos utilizar HeroIcons:
+https://heroicons.com/
+En el caso de heroicons debe ser `heroicon-o-` seguido del **nombre** del icon, por ejemplo si el icono se llama: `table-cells` deberá llamarse `heroicon-o-table-cells`
+
 En la documentación hay más info:
 https://filamentphp.com/docs/3.x/support/icons
 
@@ -75,6 +96,23 @@ Para agrupar los recursos en un grupo será neseario crear una variable el cual 
 
 ### C09: Cambiar orden de navegación
 Para cambiar el orden de la navegación, se crea una variable `?int $navigationSort = 2;`. El 2 indica la posición, por lo que en el resto de recursos será importante cambiar su posición para que no interfieran entre ellas, por ejemplo en gestión de empleados se utilizó el orden "2", pero en la gestión de sistemas se utilizón el orden "3".
+
+Si hay disntos grupos dentro de la navegación, el número de orden será a **nivel general**. Por ejemplo si está el grupo **Instrumentos** que tiene Guitarras y Baterías; luego otro grupo **Amplificadores** con balbulares y transistores. pues el orden sería así:
+
+- guitarras "1"
+- beterias "2"
+- balbulares "3"
+- transistores "4"
+
+de esa forma aparecerá así en la navegación:
+
+Instrumentos:
+- Guitarras
+- Baterías
+
+Amplificadores
+- Balbulares
+- Transistores
 
 
 ### 10: Tablas Pivote
