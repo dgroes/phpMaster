@@ -71,6 +71,7 @@ class UserResource extends Resource
 
                         //Creación de campo de selección de Estado
                         Forms\Components\Select::make('state_id') /* C05: Select en base al Pais */
+                            ->label('State') // Cambiar el label del campo
                             ->options(fn(Get $get): Collection => State::query()
                                 ->where('country_id', $get('country_id'))
                                 ->pluck('name', 'id'))
@@ -85,6 +86,7 @@ class UserResource extends Resource
 
                         //Creación de campo de selección de Ciudad
                         Forms\Components\Select::make('city_id') /* C05: Select en base al Pais */
+                            ->label('City')
                             ->options(fn(Get $get): Collection => City::query()
                                 ->where('state_id', $get('state_id'))
                                 ->pluck('name', 'id'))
