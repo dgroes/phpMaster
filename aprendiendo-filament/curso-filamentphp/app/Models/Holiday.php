@@ -9,6 +9,10 @@ class Holiday extends Model
 {
     use HasFactory;
 
+    ///Rellenado de campos
+    //Opción en entornos de desarrollo
+    protected $guarded = [];
+
     //Relación uno a muchos inversa
     public function user(){
         return $this->belongsTo(User::class);
