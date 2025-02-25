@@ -22,6 +22,11 @@ Por consiguiente, cuando se ejecuta `php artisan make:filament-resource Countrie
     - CountriesResource/RelationManagers
 - Analiza los atributos del modelo para crear los formularios y las tablas.
 
+### Paneles
+Dentro del proyecto se encuentran 2 paneles: Dashboard(Administrativo) y Personal (Usuarios comúnes)
+
+Documentación: "https://filamentphp.com/docs/3.x/panels/resources/getting-started"
+
 ### Generación de recursos con o sin `--generate`
 #### Sin `--generate`
 `php artisan make:filament-resource Customer`
@@ -129,3 +134,33 @@ Para gestionar esta relación, se necesita una **tabla pivote**. Por ello, se cr
 De manera similar, la tabla `table_user_departament` se usa para gestionar la relación **muchos a muchos** entre **usuarios y departamentos**.  
 
 Ambas tablas pivote permiten que las relaciones sean eficientes y escalables, evitando la duplicación de datos y facilitando las consultas.
+
+
+### C:11 Personalización de Querys
+Para poder personalizar las `querys`, y por ejemplo mostrar solo las consultas en base al usuario logeado se puede hacer con `getEloquentQuery`
+
+Mas info en el link: Customizing the resource Eloquent query (https://filamentphp.com/docs/3.x/panels/resources/getting-started)
+
+
+
+### C12: Modificar o agregar datos antes de guardar los datos en la BD
+El método `mutateFormDataBeforeCreate()` se usa **para modificar o agrega datos antes de que se guarden en la base de datos al crear un nuevo registro** en un recurso de Filament
+
+Cuando por ejemplo un usuario llena un formulario de creación en Filament, antes de que lod datos se guarden en la base de datos, puedes modificarlos o agrega información automáticamente con este método
+
+Por ejemplo en el fichero: "app\Filament\Personal\Resources\HolidayResource\Pages\CreateHoliday.php". Se encuentra el método `mutateFormDataBeforeCreate`, en el formulario de creación solo están los campos de "Calendar" y "Day". pero con este método agregamos a ese submit datos que quermos rellenar automáticamente. Esto es importante ya que la tabla Holiday además de un "Calendario_ID" y un "Dia", espera adémas un "Usuario_id" y un "Tipo". En el ejmplo de Personal/Holiday se puede apreciar que le pasamos el id del usuario que actualmente logeado y el tipo, que por defecto la solicitud de vacaciones estará pendiente
+
+Otra cosa importante, en base al ejemplo de Personal/Holiday, tambien con eso si editamos por ejemplo la fecha de una solicitud de vacaciones esta tambien fucionará sin agregar nada más. Ya que como las Holidays creadas ya tienen un identificador se actualizaría de esa forma
+
+Más info en **Customizing data before saving**: (https://filamentphp.com/docs/3.x/panels/resources/creating-records)
+
+
+### C13: Header Actions
+Agregar una action (botón) en el header, en el caso de el fichero (Personal\Resources\TimesheetResource\Pages\ListTimesheets.php) será un botón de action en el header de la view de la Lista de Hojas de Tiempo dentro de Personal
+
+
+Mas info en: "https://filamentphp.com/docs/3.x/panels/pages#header-actions"
+Mas info sobre la acciones avanzadas: "https://filamentphp.com/docs/3.x/actions/advanced"
+Mas info sobre las actions modals: https://filamentphp.com/docs/3.x/actions/modals
+
+Mas info para aciones en botones: https://filamentphp.com/docs/3.x/actions/trigger-button
