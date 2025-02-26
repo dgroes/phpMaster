@@ -65,7 +65,11 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    /* C14: Hoza horaria */
+    // 'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'America/Santiago',
+
+
 
     /*
     |--------------------------------------------------------------------------
