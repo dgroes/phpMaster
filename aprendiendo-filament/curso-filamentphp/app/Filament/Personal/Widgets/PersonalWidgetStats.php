@@ -20,6 +20,7 @@ class PersonalWidgetStats extends BaseWidget
             Stat::make('Pending Holidays', $this->getPendingHoliday(Auth::user())),
             Stat::make('Approved Holidays',  $this->getApprovedHoliday(Auth::user())),
             Stat::make('Total Hours Worker', $this->getTotalWork(Auth::user())),
+            Stat::make('Total Pause', $this->getTotalPause(Auth::user())),
         ];
     }
 
@@ -59,7 +60,11 @@ class PersonalWidgetStats extends BaseWidget
         $tiempoFormato = gmdate("H:i:s", $sumSeconds);
 
         return $tiempoFormato;
+
     } */
+
+
+
 
     protected function getTotalWork(User $user)
     {
@@ -76,4 +81,24 @@ class PersonalWidgetStats extends BaseWidget
         // Convertir a formato HH:mm:ss
         return CarbonInterval::seconds($sumSeconds)->cascade()->format('%H:%I:%S');
     }
+
+
+
+
+    protected function getTotalPause(User $user)
+    {
+        // Obtener la suma total de segundos directamente desde la base de datos
+        $sumSeconds = Timesheet::where('user_id', $user->id)
+            ->where('type', 'pause')
+            ->whereNotNull('day_in')
+            ->whereNotNull('day_out') // Evita registros sin salida
+            ->get()
+            ->sum(function ($timesheet) {
+                return Carbon::parse($timesheet->day_out)->diffInSeconds(Carbon::parse($timesheet->day_in));
+            });
+
+        // Convertir a formato HH:mm:ss
+        return CarbonInterval::seconds($sumSeconds)->cascade()->format('%H:%I:%S');
+    }
+
 }
