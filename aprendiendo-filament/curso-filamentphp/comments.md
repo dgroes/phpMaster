@@ -164,3 +164,15 @@ Mas info sobre la acciones avanzadas: "https://filamentphp.com/docs/3.x/actions/
 Mas info sobre las actions modals: https://filamentphp.com/docs/3.x/actions/modals
 
 Mas info para aciones en botones: https://filamentphp.com/docs/3.x/actions/trigger-button
+
+
+### C14: Hoza horaria
+Para establecer la zona horaria personalizada bastará con establecer dicha zona en el fichero de `config\app.php` agregando en el caso de este proyecto la zona de chile: `'timezone' => 'America/Santiago',`
+
+De manera opción tambien se puede configurar en `.env` con la siguiente línea: `APP_TIMEZONE=America/Santiago`. En esta opción será igual recomendable limpiar el caché de configuración para que se apliquen los cambios del fichero con el siguiente comando: `php artisan config:clear`. 
+
+
+### C15: Notifiación de acción
+Luego de que la acción se ejecute corerctamente se enviará una notifiación 
+
+Mas info en: "https://filamentphp.com/docs/3.x/notifications/sending-notifications"

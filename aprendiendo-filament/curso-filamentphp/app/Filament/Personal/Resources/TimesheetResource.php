@@ -25,7 +25,7 @@ class TimesheetResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         //el 'user_id' hace referencía al atributo de la tabla Holidays
-        return parent::getEloquentQuery()->where('user_id', Auth::user()->id);
+        return parent::getEloquentQuery()->where('user_id', Auth::user()->id)->orderBy('id', 'desc');
     }
 
     public static function form(Form $form): Form
