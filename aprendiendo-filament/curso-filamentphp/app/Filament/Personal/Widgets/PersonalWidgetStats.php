@@ -63,14 +63,12 @@ class PersonalWidgetStats extends BaseWidget
 
     } */
 
-
-
-
     protected function getTotalWork(User $user)
     {
         // Obtener la suma total de segundos directamente desde la base de datos
         $sumSeconds = Timesheet::where('user_id', $user->id)
             ->where('type', 'work')
+            ->whereDate('created_at', Carbon::today()) //Obtener horas del día actual
             ->whereNotNull('day_in')
             ->whereNotNull('day_out') // Evita registros sin salida
             ->get()
@@ -81,8 +79,6 @@ class PersonalWidgetStats extends BaseWidget
         // Convertir a formato HH:mm:ss
         return CarbonInterval::seconds($sumSeconds)->cascade()->format('%H:%I:%S');
     }
-
-
 
 
     protected function getTotalPause(User $user)
@@ -90,6 +86,7 @@ class PersonalWidgetStats extends BaseWidget
         // Obtener la suma total de segundos directamente desde la base de datos
         $sumSeconds = Timesheet::where('user_id', $user->id)
             ->where('type', 'pause')
+            ->whereDate('created_at', Carbon::today()) //Obtener horas del día actual
             ->whereNotNull('day_in')
             ->whereNotNull('day_out') // Evita registros sin salida
             ->get()
@@ -100,5 +97,4 @@ class PersonalWidgetStats extends BaseWidget
         // Convertir a formato HH:mm:ss
         return CarbonInterval::seconds($sumSeconds)->cascade()->format('%H:%I:%S');
     }
-
 }
