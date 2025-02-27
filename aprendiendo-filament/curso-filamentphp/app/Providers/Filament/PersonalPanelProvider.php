@@ -51,6 +51,7 @@ class PersonalPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->databaseNotifications() /* C20: Notifiación de BD */
             ->authMiddleware([
                 Authenticate::class,
             ]);
