@@ -28,7 +28,7 @@ class PersonalPanelProvider extends PanelProvider
             ->login()
             ->default() //Panel por defecto
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Pink, //Cambio de color principal del panel Personal /* C18: Colro de panel */
             ])
             ->discoverResources(in: app_path('Filament/Personal/Resources'), for: 'App\\Filament\\Personal\\Resources')
             ->discoverPages(in: app_path('Filament/Personal/Pages'), for: 'App\\Filament\\Personal\\Pages')

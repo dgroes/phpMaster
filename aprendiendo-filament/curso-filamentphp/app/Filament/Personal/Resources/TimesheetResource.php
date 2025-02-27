@@ -5,6 +5,8 @@ namespace App\Filament\Personal\Resources;
 use App\Filament\Personal\Resources\TimesheetResource\Pages;
 use App\Filament\Personal\Resources\TimesheetResource\RelationManagers;
 use App\Models\Timesheet;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -85,8 +87,24 @@ class TimesheetResource extends Resource
                     ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(), //Añadir la opción de eliminar
+                // Tables\Actions\EditAction::make(),
+                // Tables\Actions\DeleteAction::make(), //Añadir la opción de eliminar */
+
+               /*  C16: Más colores */
+                /* C17: Edit Action */
+                EditAction::make()
+                    ->color('indigo') // Usa un color registrado en FilamentColor::register
+                    ->icon('heroicon-m-pencil')
+                    ->label('Editar')
+                    ->size('sm') // Tamaño pequeño para más consistencia visual
+                    ->tooltip('Editar este registro'),
+
+                DeleteAction::make()
+                    ->color('mi-rosa') // Otro color personalizado
+                    ->icon('heroicon-m-trash')
+                    ->label('Eliminar')
+                    ->size('sm')
+                    ->tooltip('Eliminar este registro'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

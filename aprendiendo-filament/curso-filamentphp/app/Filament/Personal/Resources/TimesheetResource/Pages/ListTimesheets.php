@@ -88,7 +88,7 @@ class ListTimesheets extends ListRecords
                     /* C15: Notifiación de acción */
                     Notification::make()
                         ->title("Has terminado de trabajar 🥳")
-                        ->color('success')
+                        ->color('cyan') //Se agrega un color de Filament
                         ->success()
                         ->body('Haz terminado de trabajar a las: ' . Carbon::now()->format('H:i:s') . ' Espero que tengas un exelente descanzo y nos vemos 😃')
                         ->send();
