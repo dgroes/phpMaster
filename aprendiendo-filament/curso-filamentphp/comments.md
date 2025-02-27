@@ -176,3 +176,126 @@ De manera opción tambien se puede configurar en `.env` con la siguiente línea:
 Luego de que la acción se ejecute corerctamente se enviará una notifiación 
 
 Mas info en: "https://filamentphp.com/docs/3.x/notifications/sending-notifications"
+
+
+### C16: Más colores
+En Filament, se pueden registrar más colores para su uso, dentro del fichero: `app\Providers\AppServiceProvider.php` dentro del método `boot()` podemos especificar nuestros colores personalizados.
+
+Filament detecta nombre de colores en base a **Tailwind**, por lo que será fácil agrega más colores.
+Entonces **FilamentColor::register()** permite definir nuevos colores personalizados. Y Puedes usar los colores en botones, alertas, etiquetas, etc.
+
+Además podemos utilizar colores 100% personalizados, sin utilizar colores de **Tailwind**
+
+Mas info en: "https://filamentphp.com/docs/3.x/support/colors#registering-extra-colors"
+
+
+#### C17: Edit Action
+En los accións de Editar y Eliminar se pueden hacer modificaicones con EditAction (en el botón de editar) en el cual detnro del EditAction podrémos customizar el look y comportamiento de nuestro botón en este caso
+
+Mas info en "https://filamentphp.com/docs/3.x/actions/prebuilt-actions/edit"
+
+
+### C18: Colro de panel
+Una de las forma de cambiar el color principal de un panel sería cambiando el nombre del `Color::`. Para saber que nombre están registrados dentro de use `Filament\Support\Colors\Color` se puede visualizar en la ruta: "`vendor\filament\support\src\Colors\Color.php"`
+
+
+### C19: Envio de correo
+Para esta configuración se utilizó **mailgun** para el envio de correos. Lo primero es configurar `.env` en la sección de mails se agregan las configuraciones dadas luego de crear una cuenta en "**mailgun.com**".
+
+Luego de crear un dominio con mailgun, será importante ir a "Domain Settings" y agregar nuestro correos que utilizaremos. Será importante utilzar correos que se puedan verificar (correos reales) para que funcione de manera correcta. Una vez verficiados los emails se podrán enviar y recibir correos con los mails registrados.
+
+#### Holiday Pending
+Para que un usuario envie al "Admin" un correo indicando que quiere soliciar vacaiones primero tendremos que ir a la consola y escribir `php artisan make:mail HolidayPending`. Visualizar el Fichero HolidayPending.php para ver la esctructura.
+
+Luego en nuestro `Personal\Resources\HolidayResource\Pages\CreateHoliday.php` podrémos especificar y utilizar nuestro HoldiayPending para que se efectue luego de la creación de una solicitud pendiente de vacación. 
+
+Con esta configuración podemos hacer que luego de solicitar una vacación (en pendiente) le llege al correo del admin un mail con la estrucura establecida y los datos obtenidos.
+
+#### Holiday Approved
+Importante leer `Holiday Pending` para saber como sigue el ``Approved``.
+Para aprovar una solicitud o rechazarla será importante que se haga en el EditHoliday pero del Panel principal (el panel principla es del admin, en el pending se hizo del Panel Personal, porque un usuario común del sistema trabaja con ese panel.), es decir en el fichero `app\Filament\Resources\HolidayResource\Pages\EditHoliday.php`. 
+
+Tendrémos que crear un fichero con `php artisan make:mail HolidayPending`. Visualizar el Fichero HolidayApproved.php para ver la esctructura. En este fichero se puede establecer el asunto, la vista del body del correo, etc. 
+
+Luego que se edite un registro de Holidays tiene que enviarse el correo al usuario indicando si fue aprovado. Se tendrá que utilizar un handleRecordUpdate(). 
+
+$record son los datos de esa actualización, si realizamos un `dd` luego de guardar una actualización podremos ver algo como esto:
+
+
+```php
+App\Models\Holiday {#3084 ▼ 
+  #connection: "mysql"
+  #table: "holidays"
+  #primaryKey: "id"
+  #keyType: "int"
+  +incrementing: true
+  #with: []
+  #withCount: []
+  +preventsLazyLoading: false
+  #perPage: 15
+  +exists: true
+  +wasRecentlyCreated: false
+  #escapeWhenCastingToString: false
+  #attributes: array:7 [▼
+    "id" => 9
+    "calendar_id" => 1
+    "user_id" => 2
+    "day" => "2025-03-07"
+    "type" => "pending"
+    "created_at" => "2025-02-27 10:36:43"
+    "updated_at" => "2025-02-27 10:36:43"
+  ]
+  #original: array:7 [▼
+    "id" => 9
+    "calendar_id" => 1
+    "user_id" => 2
+    "day" => "2025-03-07"
+    "type" => "pending"
+    "created_at" => "2025-02-27 10:36:43"
+    "updated_at" => "2025-02-27 10:36:43"
+  ]
+  #changes: []
+  #casts: []
+  #classCastCache: []
+  #attributeCastCache: []
+  #dateFormat: null
+  #appends: []
+  #dispatchesEvents: []
+  #observables: []
+  #relations: []
+  #touches: []
+  +timestamps: true
+  +usesUniqueIds: false
+  #hidden: []
+  #visible: []
+  #fillable: []
+  #guarded: []
+}
+```
+
+Con esta info podemos saber los datos de la solicitud de vacaciones, nos interesa en este caso el nombre, email y día. Dentro del fichero están los pasos y código de la obtención y utilización de esos datos.
+
+Etonces dentro de nuestra función ``handleRecordUpdate()`` solo si se edita la parte de **type** a "approved" se enviará el correo indicando la aprovación de las vacaciones.
+
+
+
+Mas info de handleRecordUpdate() y de los distintos **Editing records**: "https://filamentphp.com/docs/3.x/panels/resources/editing-records#customizing-the-saving-process" 
+
+
+
+
+
+### C20: Notifiación de BD
+**Database Notifications** es un sistema de notifiaciones que se almacenan en la BD y se puede mostrar dentro del panel de adminstración u otro panel. Estas noficiaciones pueden ser usadas para informar a los usuarios sobre eventos importantes, como validación de vacaciones, mensajes, etc.
+
+Filament usa el sistema de notificaciones de Laravel (Illuminate\Notifications\DatabaseNotification) para guardar las notificaciones en la base de datos. Esto permite que los usuarios vean un historial de notificaciones dentro del panel de Filament.
+
+*Más info en: "https://filamentphp.com/docs/3.x/notifications/database-notifications"*
+
+En Laravel 11 para generar una notificación de BD se deberá ejecutar este comando: `php artisan make:notifications-table` luego php artisan migrate para integra nuestra nueva tabla a la BD.
+
+Tambien será importante importarlo en el panel añadiendo `  ->databaseNotifications()`
+*más info en "https://filamentphp.com/docs/3.x/panels/notifications"*
+
+Ya con esto en nuestro nav-bar aparecerá un icono de campana de notifiaciones
+
