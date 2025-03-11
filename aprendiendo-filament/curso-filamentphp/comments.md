@@ -176,3 +176,6 @@ De manera opción tambien se puede configurar en `.env` con la siguiente línea:
 Luego de que la acción se ejecute corerctamente se enviará una notifiación 
 
 Mas info en: "https://filamentphp.com/docs/3.x/notifications/sending-notifications"
+
+
+## Prueba de Ubuntu 
